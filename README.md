@@ -1,0 +1,2 @@
+# SLS
+The aMAZEing labyrinth
