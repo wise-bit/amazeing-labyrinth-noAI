@@ -1,8 +1,11 @@
-public class tile {
+/*
+ * Author: Satrajit Chatterjee
+ */
+
+public class Tile {
 
     private int rotation = 0; // rotation 0,1,2,3
-    private int[][] shape; // the layout of each tile
-    int[] t;
+    private int[][] shape; // the layout of each Tile
 
     public int[][] getShape() {
         return shape;
@@ -23,19 +26,18 @@ public class tile {
             this.rotation = 0;
     }
 
-    public int[] getT() {
-        return t;
-    }
-
-    public void setT(int[] t) {
-        this.t = t;
-    }
-
-    public tile(int[][] shape){
+    public Tile(int[][] shape){
 
         setRotation(0);
         setShape(shape);
 
     }
+    /*
+    orientation
+    ownership
+    row
+    column
+    moveable
+     */
 
 }
