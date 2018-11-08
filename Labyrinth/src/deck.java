@@ -1,2 +1,2 @@
-public class deck {
+public class Deck {
 }

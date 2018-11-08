@@ -1,6 +1,13 @@
 /*
-Author: Shrill Patel
+Author (of class): Shrill Patel
  */
 
-public class player {
+import java.awt.*;
+
+public class Player {
+
+    private String name;
+    private String colour;
+    private Point position;
+
 }
