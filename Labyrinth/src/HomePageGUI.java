@@ -20,7 +20,7 @@ public class HomePageGUI extends JFrame implements ActionListener {
         //Makes frame and sets size and color (full-screen)
         setLayout(null);
         setBounds(0, 0, getToolkit().getScreenSize().width, getToolkit().getScreenSize().height);
-        getContentPane().setBackground(new Color (218, 76, 71));
+        getContentPane().setBackground(new Color (34, 55, 218));
 
         //Closes program if the exit option is clicked.
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
