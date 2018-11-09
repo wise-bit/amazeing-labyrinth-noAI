@@ -42,6 +42,7 @@ public class Board {
 
     public void shiftBoardTiles(int row_colum_ToShift, int directionOfShift, Tile extraTile){
 
+    	// THIS IS A TEST COMMENT
     	// CHECK IF ANY PEICES THAT ARE BEING MOVES ARE OCCUPIED
         if (directionOfShift == RIGHT){
 
