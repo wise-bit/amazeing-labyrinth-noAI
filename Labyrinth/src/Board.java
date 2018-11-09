@@ -17,10 +17,12 @@ public class Board {
 
     public Board(){
 
-
         set = new Tile[9][9];
+        
         for (int i = 0; i < 9; i++){
+        	
             for (int j = 0; j < 9; j++) {
+            	
                 // set[i][j] = new Tile;
             }
         }
@@ -40,6 +42,7 @@ public class Board {
 
     public void shiftBoardTiles(int row_colum_ToShift, int directionOfShift, Tile extraTile){
 
+    	// CHECK IF ANY PEICES THAT ARE BEING MOVES ARE OCCUPIED
         if (directionOfShift == RIGHT){
 
             set[row_colum_ToShift][0] = extraTile;
