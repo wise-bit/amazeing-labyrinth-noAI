@@ -10,6 +10,8 @@ public class Main {
 
         Player[] players = new Player[4];
         Setup s = new Setup();
+      
+        new HomePageGUI();
 
     }
   
