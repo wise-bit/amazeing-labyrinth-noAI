@@ -14,6 +14,7 @@ public class Tile {
     private boolean moveable;
     private int row;
     private int column;
+    private int[][] layout;
 
     public Tile(String name, boolean moveable, char shape, int row, int column, int rotation){
 
@@ -70,6 +71,35 @@ public class Tile {
         return rotation;
     }
 
+    public void setLayout(){
+        int[][] layout =  new int[3][3];
+
+        if (getShape() == 'l') {
+            layout = new int[][]{
+                    {0,1,0},
+                    {0,1,0},
+                    {0,1,0},
+            };
+        } else if (getShape() == 'l') {
+            layout = new int[][]{
+                    {0,1,0},
+                    {0,1,1},
+                    {0,0,0},
+            };
+        } else if (getShape() == 't') {
+            layout = new int[][]{
+                    {0,0,0},
+                    {1,1,1},
+                    {0,1,0},
+            };
+        }
+
+    }
+
+    public int[][] getLayout() {
+        return layout;
+    }
+
     public void setRotation(int rotation) {
         if (rotation >= 0 && rotation <= 3)
             this.rotation = rotation;
@@ -77,6 +107,24 @@ public class Tile {
             this.rotation = rand.nextInt(4);
         else
             this.rotation = 0;
+    }
+
+    public void rotate(){
+
+        for(int i=0; i<getLayout()[0].length; i++){
+            for(int j=getLayout().length-1; j>=0; j--){
+                layout[i][j] = layout[j][i];
+            }
+        }
+
+    }
+
+    public void orientation(){
+
+        for (int i = 0; i < rotation; i++){
+            rotate();
+        }
+
     }
 
     @Override
