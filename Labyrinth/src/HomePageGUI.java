@@ -33,7 +33,7 @@ public class HomePageGUI extends JFrame implements ActionListener {
         add(gameTitle);
 
         //Add picture to frame
-        picture1 = new JLabel (new ImageIcon("images/pic1.png"));
+        picture1 = new JLabel (new ImageIcon("res/images/pic1.png"));
         picture1.setBounds(425, 150, 590, 430);
         add(picture1);
 
