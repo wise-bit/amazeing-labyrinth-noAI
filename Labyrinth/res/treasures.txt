@@ -1,0 +1,24 @@
+Bag of Gold Coins,false,t,1,5,0
+Bat,true,i
+Book with Clasp,false,t,1,3,0
+Dragon,true,i
+Ghost (in bottle),true,i
+Ghost (waving),true,i
+Gold Crown,false,t,3,3,3
+Gold Menorah,false,t,7,3,2
+Gold Ring,false,t,5,1,3
+Helmet (armor),false,t,7,5,2
+Jewel,false,t,5,5,1
+Lady Pig,true,i
+Lizard,true,t
+Moth,true,t
+Owl,true,t
+Rat,true,t
+Scarab,true,t
+Set of Keys,false,t,3,5,0
+Skull,false,t,3,7,1
+Sorceress,true,i
+Spider on Web,true,t
+Sword,false,t,5,7,1
+Treasure Chest,false,t,5,3,2
+Treasure Map,false,t,3,1,3
