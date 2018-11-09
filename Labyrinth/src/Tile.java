@@ -5,13 +5,14 @@
 public class Tile {
 
     private int rotation = 0; // rotation 0,1,2,3
-    private int[][] shape; // the layout of each Tile
+    private char shape; // the layout of each Tile
 
-    public int[][] getShape() {
+
+    public char getShape() {
         return shape;
     }
 
-    public void setShape(int[][] shape) {
+    public void setShape(char shape) {
         this.shape = shape;
     }
 
@@ -26,7 +27,7 @@ public class Tile {
             this.rotation = 0;
     }
 
-    public Tile(int[][] shape){
+    public Tile(char shape){
 
         setRotation(0);
         setShape(shape);
