@@ -43,19 +43,17 @@ public class Board {
     // UPDATE THE TILE WHICH THE PLAYER IS NOW ABLE TO MOVE
 
     // 	NO NEED FOR LOCAL EXTRA TILE PARAMETER
-    public void shiftBoardTiles(int rowToShift, int columnToShift, int directionOfShift, Tile extraTile){
+    public void shiftBoardTiles(int rowToShift, int columnToShift, int directionOfShift){
 
     	// CHECK IF ANY PEICES THAT ARE BEING MOVES ARE OCCUPIED
         if (directionOfShift == RIGHT){
 
-            set[rowToShift][0] = extraTile;
+            set[rowToShift][0] = getTileForPlayer();
 
             for (int i = 0; i <=  7; i++) {
 
                 set[rowToShift][i + 1] = set[rowToShift ][i];
             }
-
-            // CREATE GLOBAL TILE, CHANGE TO EXCESS TILE
             
             setTileForPlayer(set[rowToShift][8]);
             // ADD PLAYER AVAILABLE TILE TO  CLASS
@@ -65,7 +63,7 @@ public class Board {
         }
         else if (directionOfShift == LEFT){
 
-            set[rowToShift][8] = extraTile;
+            set[rowToShift][8] = getTileForPlayer();
 
             for (int i = 7; i >=  1; i--) {
 
