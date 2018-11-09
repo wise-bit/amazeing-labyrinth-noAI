@@ -1,14 +1,20 @@
+import java.io.FileNotFoundException;
+
 /*
  * Author: Satrajit Chatterjee
  * Author: Lazar Glumac
  */
 
-import java.util.logging.Level;
 
 public class Board {
 
+	// DECK IS ARRAY OF STRINGS--  CHECK SLACK
+	// CREATE DECK
+	
     private Tile[][] set;
     private int[][] tileset;
+
+    private Player[] playersArray;
 
     private final int RIGHT = 1;
     private final int LEFT = 2;
@@ -17,20 +23,19 @@ public class Board {
 
     private Tile tileForPlayer;
     
-    public Board(){
+    public Board() throws FileNotFoundException{
 
-        set = new Tile[9][9];
+        Setup setupStart = new Setup();
+        set = setupStart.getBoard();
         
-        for (int i = 0; i < 9; i++){
+        
+        
+        // SHRILL MAKE 
+        for (int i = 0; i < playersArray.length; i++) {
         	
-            for (int j = 0; j < 9; j++) {
-            	
-                // set[i][j] = new Tile;
-            }
+        	playersArray[i] = new Player(playerHand, playerName, playerColour, rows, columns)
         }
-        tileset = new int[27][27];
-        setTileset(tileset);
-
+    	
     }
 //
 //    add tiles
@@ -42,7 +47,6 @@ public class Board {
     // UPDATE POSITIONS OF ALL PIECES MOVED
     // UPDATE THE TILE WHICH THE PLAYER IS NOW ABLE TO MOVE
 
-    // 	NO NEED FOR LOCAL EXTRA TILE PARAMETER
     public void shiftBoardTiles(int rowToShift, int columnToShift, int directionOfShift){
 
     	// CHECK IF ANY PEICES THAT ARE BEING MOVES ARE OCCUPIED
@@ -50,14 +54,15 @@ public class Board {
 
             set[rowToShift][0] = getTileForPlayer();
 
-            for (int i = 0; i <=  7; i++) {
+            for (int i = 1; i <=  7; i++) {
 
-                set[rowToShift][i + 1] = set[rowToShift ][i];
+                set[rowToShift][i] = set[rowToShift ][i - 1];
+        		set[rowToShift][i].setColumn(i);
+        		
             }
             
             setTileForPlayer(set[rowToShift][8]);
-            // ADD PLAYER AVAILABLE TILE TO  CLASS
-                    // Player.setCurrentTile(set[row_colum_ToShift][8])
+
             set[rowToShift][8] = null;
             set[rowToShift][0] = null;
         }
@@ -68,6 +73,10 @@ public class Board {
             for (int i = 7; i >=  1; i--) {
 
                 set[rowToShift][i] = set[rowToShift][i - 1];
+        		set[rowToShift][i].setColumn(i);
+        		if (checkTileOccupied(set[rowToShift][i])) {
+        			
+        		}
             }
             
             setTileForPlayer(set[rowToShift][0]);
@@ -77,20 +86,44 @@ public class Board {
         }
         else if (directionOfShift == UP) {
         	
-        	set[8][columnToShift] = extraTile;
+        	set[8][columnToShift] = getTileForPlayer();
         	
         	for (int i = 7; i <= 1; i--) {
         		
         		set[i][columnToShift] = set[i - 1][columnToShift];
+        		set[i][columnToShift].setRow(i);
+
         	}
         	setTileForPlayer(set[0][columnToShift]);
         	
-        	// REMOVE THE TILES THAT ARE NOT ACTUALLY PART OF THE BOARD
+        	set[0][columnToShift] = null;
+        	set[8][columnToShift] = null;
+        }
+        else if (directionOfShift == DOWN) {
+        	
+        	set[0][columnToShift] = getTileForPlayer();
+        	
+        	for (int i = 1; i <= 7; i++) {
+        		
+        		set[i][columnToShift] = set[i - 1][columnToShift];
+        		set[i][columnToShift].setRow(i);
+        	}
+        	
+        	setTileForPlayer(set[8][columnToShift]);
+        	
+        	set[0][columnToShift] = null;
+        	set[8][columnToShift] = null;
         }
 
     }
     
-    public int[][] getTileset() {
+    private boolean checkTileOccupied(Tile tileBeingMoved) {
+
+    	
+    	if (Player.)
+    	return false;
+}
+	public int[][] getTileset() {
         return tileset;
     }
 

@@ -7,7 +7,7 @@ import java.util.*;
 
 public class Player extends JLabel {
 
-    //Varibales to store player attributes
+    //Variables to store player attributes
     private String[] playerHand = new String[5];
     private String playerName;
     private String playerColour;
