@@ -15,6 +15,8 @@ public class Board {
     private final int UP = 3;
     private final int DOWN = 4;
 
+    private Tile tileForPlayer;
+    
     public Board(){
 
         set = new Tile[9][9];
@@ -40,40 +42,56 @@ public class Board {
     // UPDATE POSITIONS OF ALL PIECES MOVED
     // UPDATE THE TILE WHICH THE PLAYER IS NOW ABLE TO MOVE
 
-    public void shiftBoardTiles(int row_colum_ToShift, int directionOfShift, Tile extraTile){
+    // 	NO NEED FOR LOCAL EXTRA TILE PARAMETER
+    public void shiftBoardTiles(int rowToShift, int columnToShift, int directionOfShift, Tile extraTile){
 
-    	// PLEASE WORK PLEASE WORK
     	// CHECK IF ANY PEICES THAT ARE BEING MOVES ARE OCCUPIED
         if (directionOfShift == RIGHT){
 
-            set[row_colum_ToShift][0] = extraTile;
+            set[rowToShift][0] = extraTile;
 
             for (int i = 0; i <=  7; i++) {
 
-                set[row_colum_ToShift][i + 1] = set[row_colum_ToShift ][i];
+                set[rowToShift][i + 1] = set[rowToShift ][i];
             }
 
-            // ADD PLAYER AVAILABLE TILE TO PLAYER CLASS
+            // CREATE GLOBAL TILE, CHANGE TO EXCESS TILE
+            
+            setTileForPlayer(set[rowToShift][8]);
+            // ADD PLAYER AVAILABLE TILE TO  CLASS
                     // Player.setCurrentTile(set[row_colum_ToShift][8])
-            set[row_colum_ToShift][8] = null;
-            set[row_colum_ToShift][0] = null;
+            set[rowToShift][8] = null;
+            set[rowToShift][0] = null;
         }
         else if (directionOfShift == LEFT){
 
-            set[row_colum_ToShift][8] = extraTile;
+            set[rowToShift][8] = extraTile;
 
-            for (int i = 7; i >=  1; i++) {
+            for (int i = 7; i >=  1; i--) {
 
-                set[row_colum_ToShift][i] = set[row_colum_ToShift][i - 1];
+                set[rowToShift][i] = set[rowToShift][i - 1];
             }
-
-            // ADD PLAYER AVAILABLE TILE TO PLAYER CLASS
-                // Player.setCurrentTile(set[row_colum_ToShift][0])
-            set[row_colum_ToShift][8] = null;
-            set[row_colum_ToShift][0] = null;
+            
+            setTileForPlayer(set[rowToShift][0]);
+            
+            set[rowToShift][8] = null;
+            set[rowToShift][0] = null;
+        }
+        else if (directionOfShift == UP) {
+        	
+        	set[8][columnToShift] = extraTile;
+        	
+        	for (int i = 7; i <= 1; i--) {
+        		
+        		set[i][columnToShift] = set[i - 1][columnToShift];
+        	}
+        	setTileForPlayer(set[0][columnToShift]);
+        	
+        	// REMOVE THE TILES THAT ARE NOT ACTUALLY PART OF THE BOARD
         }
 
     }
+    
     public int[][] getTileset() {
         return tileset;
     }
@@ -89,6 +107,15 @@ public class Board {
 
     }
 
+    public void setTileForPlayer(Tile tile) {
+   	 
+    	this.tileForPlayer = tile;
+    }
+    
+    public Tile getTileForPlayer() {
+    	
+    	return this.tileForPlayer;
+    }
     public Tile[][] getSet() {
         return set;
     }
