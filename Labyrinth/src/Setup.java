@@ -13,7 +13,10 @@ public class Setup extends JFrame {
 
     private Tile[][] board;
 
-    // TODO: Finish boolean arraylist
+
+    /// Variable initializations
+
+
     private ArrayList<Integer> counter = new ArrayList<Integer>();
 
     private File text = new File("C:\\Users\\satra\\IdeaProjects\\SLS\\Labyrinth\\res\\treasures.txt");
@@ -23,8 +26,68 @@ public class Setup extends JFrame {
     private int lCount = 9;
     private int iCount = 13;
 
+
+    /// Methods
+
+
     public Setup() throws FileNotFoundException {
         init();
+    }
+
+    public ArrayList<Integer> getCounter() {
+        return counter;
+    }
+
+    public void setCounter(ArrayList<Integer> counter) {
+        this.counter = counter;
+    }
+
+    public Tile[][] getBoard() {
+        return board;
+    }
+
+    public void setBoard(Tile[][] board) {
+        this.board = board;
+    }
+
+    public File getText() {
+        return text;
+    }
+
+    public void setText(File text) {
+        this.text = text;
+    }
+
+    public Scanner getFile() {
+        return file;
+    }
+
+    public void setFile(Scanner file) {
+        this.file = file;
+    }
+
+
+    /// HELPER METHODS (Not all commented)
+
+
+    // This returns a string array with the names of all treasures
+    public ArrayList<String> listOfTreasures() throws FileNotFoundException {
+
+        // Initializes list
+        ArrayList<String> list = new ArrayList<String>();
+
+        // Resets file location to beginning
+        setFile(new Scanner(text));
+
+        // Adds each name from file to arraylist
+        while(getFile().hasNextLine()){
+            list.add(getFile().nextLine().split(",")[0]);
+        }
+
+        // Shuffles list
+        Collections.shuffle(list);
+        return list;
+
     }
 
     public void init() throws FileNotFoundException {
@@ -131,14 +194,6 @@ public class Setup extends JFrame {
 
     }
 
-    public ArrayList<Integer> getCounter() {
-        return counter;
-    }
-
-    public void setCounter(ArrayList<Integer> counter) {
-        this.counter = counter;
-    }
-
     public void initializeCounter(){
 
         for (int i = 7; i < 56; i++){
@@ -165,27 +220,5 @@ public class Setup extends JFrame {
         lCount -= 1;
     }
 
-    public Tile[][] getBoard() {
-        return board;
-    }
 
-    public void setBoard(Tile[][] board) {
-        this.board = board;
-    }
-
-    public File getText() {
-        return text;
-    }
-
-    public void setText(File text) {
-        this.text = text;
-    }
-
-    public Scanner getFile() {
-        return file;
-    }
-
-    public void setFile(Scanner file) {
-        this.file = file;
-    }
 }
