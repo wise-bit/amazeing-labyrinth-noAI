@@ -5,16 +5,19 @@ Author: Satrajit Chatterjee
 import javax.swing.*;
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.util.Arrays;
-import java.util.Random;
-import java.util.Scanner;
+import java.util.*;
 
 public class Setup extends JFrame {
 
     private Random rand = new Random();
 
     private Tile[][] board;
+
+    // TODO: Finish boolean arraylist
+    private ArrayList<Integer> counter = new ArrayList<Integer>();
+
     private File text = new File("C:\\Users\\satra\\IdeaProjects\\SLS\\Labyrinth\\res\\treasures.txt");
+
     Scanner file = new Scanner(text);
 
     private int lCount = 9;
@@ -24,57 +27,69 @@ public class Setup extends JFrame {
         init();
     }
 
-    public void init(){
+    public void init() throws FileNotFoundException {
 
         board = new Tile[9][9];
+        initializeCounter();
 
+        file = new Scanner(text);
         while(getFile().hasNextLine()){
             String line = getFile().nextLine();
             fixed(line);
         }
+
+        file = new Scanner(text);
+        while(getFile().hasNextLine()){
+            String line = getFile().nextLine();
+            otherTreasures(line);
+        }
+
+        otherTiles();
+
     }
 
     public void fixed(String attributes){
 
         String[] attribs = attributes.split(",");
 
-        if (attribs[1].equals("false")){
+        if (attribs[1].equals("false")) {
 
             int row = Integer.parseInt(attribs[3]);
             int column = Integer.parseInt(attribs[4]);
 
-            System.out.println(this.board[row][column]);
             this.board[row][column] =
                     new Tile(attribs[0], Boolean.parseBoolean(attribs[1]), attribs[2].charAt(0), row, column, Integer.parseInt(attribs[5]));
 
-            //System.out.println(this.board[row][column]);
+            this.counter.remove(new Integer(row * 7 + column));
+
+            // System.out.println(this.board[row][column]);
 
         }
 
     }
 
+    // Place the other treasures
     public void otherTreasures(String attributes){
 
+        // Splits it into the attributes as string array
         String[] attribs = attributes.split(",");
 
+        // Only if the tile is moveable
         if (attribs[1].equals("true")) {
 
-            boolean changed = false;
+            int row = counter.get(1)/7;
+            int column = counter.get(1)%7;
 
-            while (changed == false) {
+            if (getBoard()[row][column] == null) {
 
-                int row = rand.nextInt(4) * 2 + 1;
-                int column = rand.nextInt(4) * 2 + 1;
+                // System.out.println("AAA");
 
-                if (getBoard()[row][column] == null) {
-
-                    changed = true;
-                    this.board[row][column] =
-                            new Tile(attribs[1], Boolean.parseBoolean(attribs[1]), attribs[2].charAt(0), row, column, 4);
-
-                }
+                this.board[row][column] =
+                        new Tile(attribs[0], Boolean.parseBoolean(attribs[1]), attribs[2].charAt(0), row, column, 4);
 
             }
+
+            counter.remove(1);
 
         }
 
@@ -113,6 +128,24 @@ public class Setup extends JFrame {
                 }
             }
         }
+
+    }
+
+    public ArrayList<Integer> getCounter() {
+        return counter;
+    }
+
+    public void setCounter(ArrayList<Integer> counter) {
+        this.counter = counter;
+    }
+
+    public void initializeCounter(){
+
+        for (int i = 7; i < 56; i++){
+            this.counter.add(i);
+        }
+
+        Collections.shuffle(this.counter);
 
     }
 

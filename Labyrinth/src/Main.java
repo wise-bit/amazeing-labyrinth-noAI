@@ -10,8 +10,14 @@ public class Main {
 
         Player[] players = new Player[4];
         Setup s = new Setup();
+
+        for (int i = 0; i < 9; i++){
+            for (int j = 0; j < 9; j++){
+                System.out.println(s.getBoard()[i][j]);
+            }
+        }
       
-        new HomePageGUI();
+        // new HomePageGUI();
 
     }
   
