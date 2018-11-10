@@ -1,47 +1,51 @@
 import java.awt.*;
 import java.awt.event.*;
+import java.io.File;
+import java.io.IOException;
 //import java.io.*;
 //import javax.sound.sampled.*;
+import javax.imageio.ImageIO;
 import javax.swing.*;
 
 public class HomePageGUI extends JFrame implements ActionListener {
 
     //Home Screen Components
-    private JLabel gameTitle;
-    private JButton start;
-    private JLabel picture1;
+    private JLabel gameTitle = new JLabel ("AMAZEING LABYRINTH");;
+    private JButton start = new JButton ("START");;
+    private JLabel picture1 = new JLabel (new ImageIcon("/Users/shrillpatel/IdeaProjects/SLS/Labyrinth/res/pic1.png"));
     private Font font = new Font("Helvetica" , Font.BOLD, 75);
 //    Clip clip;
 //    Clip clip2;
 
     //constructor method
-    public HomePageGUI () {
+    public HomePageGUI () throws IOException {
 
         //Makes frame and sets size and color (full-screen)
         setLayout(null);
         setBounds(0, 0, getToolkit().getScreenSize().width, getToolkit().getScreenSize().height);
-        getContentPane().setBackground(new Color (34, 55, 218));
+        this.setTitle("aMAZEing Labyrinth");
+        setContentPane(new JLabel(new ImageIcon(ImageIO.read(new File("/Users/shrillpatel/IdeaProjects/SLS/Labyrinth/res/background.jpg")))));
 
         //Closes program if the exit option is clicked.
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         //Adds the title and sets the font
-        gameTitle = new JLabel ("AMAZEING LABYRINTH");
-        gameTitle.setForeground(new Color (47,79,79));
+        gameTitle.setForeground(Color.WHITE);
         gameTitle.setFont(font);
         gameTitle.setBounds(292, 0, 855, 150);
         add(gameTitle);
 
         //Add picture to frame
-        picture1 = new JLabel (new ImageIcon("res/images/pic1.png"));
         picture1.setBounds(425, 150, 590, 430);
         add(picture1);
 
         //Adds continue button and makes it clickable
-        start = new JButton ("START");
+        start.setOpaque(false);
+        start.setContentAreaFilled(false);
+        start.setBorderPainted(false);
         start.setFont(new Font("Helvetica" , Font.CENTER_BASELINE, 50));
+        start.setForeground(Color.WHITE);
         start.setBounds(575, 625, 275, 120);
-        start.setBackground(Color.RED);
         add(start);
         start.addActionListener(this);
 
@@ -71,6 +75,7 @@ public class HomePageGUI extends JFrame implements ActionListener {
 //        }
 //    }
 
+    //Method used to listen to events occuring on the current frame
     public void actionPerformed(ActionEvent event) {
 
         //If the button on home screen is pressed, close home frame
