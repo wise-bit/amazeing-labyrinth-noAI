@@ -6,7 +6,7 @@ import java.util.Random;
 
 public class Tile {
 
-    Random rand;
+    Random rand = new Random();
 
     private String name;
     private int rotation = 0; // rotation 0,1,2,3
@@ -100,15 +100,18 @@ public class Tile {
         return layout;
     }
 
+    // Error checks rotation
     public void setRotation(int rotation) {
         if (rotation >= 0 && rotation <= 3)
             this.rotation = rotation;
+        // 4 triggers randomizer
         else if (rotation == 4)
             this.rotation = rand.nextInt(4);
         else
             this.rotation = 0;
     }
 
+    // TODO: Add 90 degrees rotation
     public void rotate(){
 
         for(int i=0; i<getLayout()[0].length; i++){
@@ -119,14 +122,16 @@ public class Tile {
 
     }
 
+    // Rotates the tile n number of times as governed by getRotation()
     public void orientation(){
 
-        for (int i = 0; i < rotation; i++){
+        for (int i = 0; i < getRotation(); i++){
             rotate();
         }
 
     }
 
+    // toString for error monitoring
     @Override
     public String toString() {
         return "Tile{" +
