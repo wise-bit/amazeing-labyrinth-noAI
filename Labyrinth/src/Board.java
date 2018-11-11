@@ -114,8 +114,6 @@ public class Board {
 			set[8][columnToShift] = null;
 		}
 		
-		
-		
 		checkIfPlayerOverflowed();
 
 	}
