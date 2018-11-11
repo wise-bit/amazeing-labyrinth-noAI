@@ -15,11 +15,11 @@ public class Main {
         Player[] players = new Player[4];
         Setup s = new Setup();
 
-//        for (int i = 0; i < 9; i++){
-//            for (int j = 0; j < 9; j++){
-//                System.out.println(s.getBoard()[i][j]);
-//            }
-//        }
+        for (int i = 0; i < 9; i++){
+            for (int j = 0; j < 9; j++){
+                System.out.println(s.getBoard()[i][j]);
+            }
+        }
 
         // New stuff starts here:
 
@@ -35,7 +35,6 @@ public class Main {
         // Sorry if I did too much in this method, it just seemed simple to do it all at the same place
       
         // new HomePageGUI();
-        // new ExtraMethods();
 
     }
   

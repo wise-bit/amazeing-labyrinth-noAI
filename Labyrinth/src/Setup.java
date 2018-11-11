@@ -29,18 +29,21 @@ public class Setup extends JFrame {
 
     /// Methods
 
-
+    // Constructor which calls the initialization method
     public Setup() throws FileNotFoundException {
         init();
     }
 
+    // Returns the counter ArrayList keeping track of empty spaces
     public ArrayList<Integer> getCounter() {
         return counter;
     }
 
+    // Sets counter, kept for debugging purposes mostly
     public void setCounter(ArrayList<Integer> counter) {
         this.counter = counter;
     }
+
 
     public Tile[][] getBoard() {
         return board;
@@ -140,19 +143,17 @@ public class Setup extends JFrame {
         // Only if the tile is moveable
         if (attribs[1].equals("true")) {
 
-            int row = counter.get(1)/7;
-            int column = counter.get(1)%7;
+            int row = counter.get(0)/9;
+            int column = counter.get(0)%9;
 
             if (getBoard()[row][column] == null) {
-
-                // System.out.println("AAA");
 
                 this.board[row][column] =
                         new Tile(attribs[0], Boolean.parseBoolean(attribs[1]), attribs[2].charAt(0), row, column, 4);
 
             }
 
-            counter.remove(1);
+            counter.remove(0);
 
         }
 
@@ -163,10 +164,10 @@ public class Setup extends JFrame {
         for (int i = 1; i < 8; i++) {
             for (int j = 1; j < 8; j++) {
 
-                if (i == 1 && j == 1) this.board[i][j] = new Tile("Start1", false, 'l', i, j, 0);
-                else if (i == 1 && j == 7) this.board[i][j] = new Tile("Start2", false, 'l', i, j, 1);
-                else if (i == 7 && j == 7) this.board[i][j] = new Tile("Start3", false, 'l', i, j, 2);
-                else if (i == 7 && j == 1) this.board[i][j] = new Tile("Start4", false, 'l', i, j, 3);
+                if (i == 1 && j == 1) this.board[i][j] = new Tile("Start1", false, 'l', i, j, 1);
+                else if (i == 1 && j == 7) this.board[i][j] = new Tile("Start2", false, 'l', i, j, 2);
+                else if (i == 7 && j == 1) this.board[i][j] = new Tile("Start3", false, 'l', i, j, 0);
+                else if (i == 7 && j == 7) this.board[i][j] = new Tile("Start4", false, 'l', i, j, 3);
 
                 else if (getBoard()[i][j] == null) {
 
@@ -194,12 +195,26 @@ public class Setup extends JFrame {
 
     }
 
+    // Initializes the counter array from
     public void initializeCounter(){
 
-        for (int i = 7; i < 56; i++){
+        for (int i = 9; i < 72; i++){
             this.counter.add(i);
         }
 
+        // removes all elements which would lead to a column of 0
+        int looper = 0;
+        while (looper < counter.size()){
+            int current = counter.get(looper);
+            // remove the four corners from being taken as a tile, and hence later replaced permanently, as well as the sides
+            if (current % 9 == 0 || (current + 1) % 9 == 0 || current == 10 || current == 16 || current == 64 || current == 70){
+                counter.remove(looper);
+            } else {
+                looper++;
+            }
+        }
+
+        // Randomizes the ArrayList to ensure the tiles are placed randomly
         Collections.shuffle(this.counter);
 
     }
