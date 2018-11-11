@@ -19,7 +19,7 @@ public class Setup extends JFrame {
 
     private ArrayList<Integer> counter = new ArrayList<Integer>();
 
-    private File text = new File("C:\\Users\\satra\\IdeaProjects\\SLS\\Labyrinth\\res\\treasures.txt");
+    private File text = new File("Labyrinth/res/treasures.txt");
 
     Scanner file = new Scanner(text);
 
