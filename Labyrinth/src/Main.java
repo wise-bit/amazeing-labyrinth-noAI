@@ -25,6 +25,8 @@ public class Main {
         for (int i = 0; i < 24; i++)
             System.out.print(list.get(i) + ", ");
 
+
+
         // To get list of treasures Call:
         // s.listOfTreasures()
         // This is already randomized / scrambled
