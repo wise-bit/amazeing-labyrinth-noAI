@@ -87,6 +87,11 @@ public class PlayerGUI extends JFrame implements ActionListener {
         add(next);
         next.addActionListener(this);
 
+        playerOneSetup();
+        playerTwoSetup();
+        playerThreeSetup();
+        playerFourSetup();
+
         //Makes all the attributes of the screen visible
         setVisible(true);
         repaint();
@@ -163,24 +168,6 @@ public class PlayerGUI extends JFrame implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent event) {
-        if(event.getSource() == twoPlayers) {
-            playerOneSetup();
-            playerTwoSetup();
-            repaint();
-        }
-        else if(event.getSource() == threePlayers) {
-            playerOneSetup();
-            playerTwoSetup();
-            playerThreeSetup();
-            repaint();
-        }
-        else if(event.getSource() == fourPlayers) {
-            playerOneSetup();
-            playerTwoSetup();
-            playerThreeSetup();
-            playerFourSetup();
-            repaint();
-        }
-        setVisible(true);
+
     }
 }
