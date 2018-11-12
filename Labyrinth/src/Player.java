@@ -1,14 +1,18 @@
 /*
-Author (of class): Shrill Patel
+Author: Shrill Patel
  */
 
 import javax.swing.*;
+import java.io.*;
+import java.lang.reflect.Array;
 import java.util.*;
 
 public class Player extends JLabel {
+  
+    Setup setup = new Setup();
 
-    //Variables to store player attributes
-    private String[] playerHand = new String[5];
+    //Varibales to store player attributes
+    private String[] playerHand;
     private String playerName;
     private String playerColour;
 
@@ -21,7 +25,7 @@ public class Player extends JLabel {
     private int columns;
 
     //Constructor Method
-    public Player(String[] playerHand, String playerName, String playerColour, int rows, int columns){
+    public Player(String[] playerHand, String playerName, String playerColour, int rows, int columns) throws FileNotFoundException {
         this.playerHand = playerHand;
         this.playerName = playerName;
         this.playerColour = playerColour;
@@ -99,5 +103,15 @@ public class Player extends JLabel {
     //Method to help increment the treasure count when player collects them
     public void incrementTreasure(){
         this.treasures++;
+    }
+
+    public void removeCard(){
+        int count = 5;
+        for (int x = 0; x < playerHand.length; x++) {
+            if (collected.contains(playerHand[x])) {
+                collected.remove(playerHand[x]);
+                count -= 1;
+            }
+        }
     }
 }

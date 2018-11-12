@@ -24,7 +24,6 @@ public class Board {
 	private Tile tileForPlayer;
 
 	public Board() throws FileNotFoundException{
-
 		Setup setupStart = new Setup();
 		set = setupStart.getBoard();
 	}
