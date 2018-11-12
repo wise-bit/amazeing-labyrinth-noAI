@@ -25,50 +25,17 @@ public class Board {
 
 	public Board() throws FileNotFoundException{
 
-<<<<<<< HEAD
 		Setup setupStart = new Setup();
 		set = setupStart.getBoard();
-=======
-    // 	NO NEED FOR LOCAL EXTRA TILE PARAMETER
-    public void shiftBoardTiles(int rowToShift, int columnToShift, int directionOfShift){
->>>>>>> refs/remotes/origin/Lazar
-
-
-<<<<<<< HEAD
-=======
-            set[rowToShift][0] = getTileForPlayer();
->>>>>>> refs/remotes/origin/Lazar
-
-		// SHRILL MAKE 
-		for (int i = 0; i < playersArray.length; i++) {
-
-<<<<<<< HEAD
-			playersArray[i] = new Player(playerHand, playerName, playerColour, rows, columns)
-		}
-
 	}
-=======
-                set[rowToShift][i + 1] = set[rowToShift ][i];
-            }
-            
-            setTileForPlayer(set[rowToShift][8]);
-            // ADD PLAYER AVAILABLE TILE TO  CLASS
-                    // Player.setCurrentTile(set[row_colum_ToShift][8])
-            set[rowToShift][8] = null;
-            set[rowToShift][0] = null;
-        }
-        else if (directionOfShift == LEFT){
->>>>>>> refs/remotes/origin/Lazar
-
-<<<<<<< HEAD
+    // 	NO NEED FOR LOCAL EXTRA TILE PARAMETER
+    
+             
 	// SHIFT OVER 1 BASED ON DIRECTION OF SHIFT
 	// CHECK IF PIECES, TREASURES, OR PLAYERS ARE ON SHIFTED TILES
 	// UPDATE POSITIONS OF ALL PIECES MOVED
 	// UPDATE THE TILE WHICH THE PLAYER IS NOW ABLE TO MOVE
-=======
-            set[rowToShift][8] = getTileForPlayer();
->>>>>>> refs/remotes/origin/Lazar
-
+       
 	
 
 
