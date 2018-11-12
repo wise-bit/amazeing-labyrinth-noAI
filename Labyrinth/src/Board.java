@@ -32,10 +32,6 @@ public class Board {
         setTileset(tileset);
 
     }
-//
-//    add tiles
-//    16 stationary tiles
-//    randomly assign moveable tiles
 
     // SHIFT OVER 1 BASED ON DIRECTION OF SHIFT
     // CHECK IF PIECES, TREASURES, OR PLAYERS ARE ON SHIFTED TILES
