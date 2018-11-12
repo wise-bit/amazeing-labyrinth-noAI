@@ -11,9 +11,10 @@ import java.util.Arrays;
 public class Main {
   
     public static void main(String[] args) throws IOException, FontFormatException {
-
-        Player[] players = new Player[4];
         new HomePageGUI();
+        Player[] players = new Player[4];
+        //new HomePageGUI();
+
         Setup s = new Setup();
 
 //        Tile[][] set = s.getBoard();
@@ -42,8 +43,6 @@ public class Main {
         // This is already randomized / scrambled
         // So just assign to different players using a for loop
         // Sorry if I did too much in this method, it just seemed simple to do it all at the same place
-      
-        new HomePageGUI();
 
     }
   

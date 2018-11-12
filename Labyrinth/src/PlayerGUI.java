@@ -30,7 +30,7 @@ public class PlayerGUI extends JFrame implements ActionListener {
         setLayout(null);
         setBounds(0, 0, getToolkit().getScreenSize().width, getToolkit().getScreenSize().height);
         this.setTitle("aMAZEing Labyrinth");
-        setContentPane(new JLabel(new ImageIcon(ImageIO.read(new File("/Users/shrillpatel/IdeaProjects/SLS/Labyrinth/res/background.jpg")))));
+        setContentPane(new JLabel(new ImageIcon(ImageIO.read(new File("Labyrinth/res/background.jpg")))));
 
         //Allows the program to be exited if the close button is clicked
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -94,12 +94,13 @@ public class PlayerGUI extends JFrame implements ActionListener {
 
         //Makes all the attributes of the screen visible
         setVisible(true);
+        setExtendedState(getExtendedState() | JFrame.MAXIMIZED_BOTH);
         repaint();
     }
 
     //Methods that are used to setup up to allow the user to enter the players information based on the number of players they select
     public void playerOneSetup(){
-        dots[0] = new ImageIcon("/Users/shrillpatel/IdeaProjects/SLS/Labyrinth/res/PlayerImages/bluedot.png");
+        dots[0] = new ImageIcon("Labyrinth/res/PlayerImages/bluedot.png");
         playerColour[0] = new JLabel(dots[0]);
         playerColour[0].setBounds(850, 80, 80, 80);
         add(playerColour[0]);
@@ -116,7 +117,7 @@ public class PlayerGUI extends JFrame implements ActionListener {
     }
 
     public void playerTwoSetup(){
-        dots[1] = new ImageIcon("/Users/shrillpatel/IdeaProjects/SLS/Labyrinth/res/PlayerImages/greendot.png");
+        dots[1] = new ImageIcon("Labyrinth/res/PlayerImages/greendot.png");
         playerColour[1] = new JLabel(dots[1]);
         playerColour[1].setBounds(850, 200, 80, 80);
         add(playerColour[1]);
@@ -133,7 +134,7 @@ public class PlayerGUI extends JFrame implements ActionListener {
     }
 
     public void playerThreeSetup(){
-        dots[2] = new ImageIcon("/Users/shrillpatel/IdeaProjects/SLS/Labyrinth/res/PlayerImages/orangedot.png");
+        dots[2] = new ImageIcon("Labyrinth/res/PlayerImages/orangedot.png");
         playerColour[2] = new JLabel(dots[2]);
         playerColour[2].setBounds(850, 320, 80, 80);
         add(playerColour[2]);
@@ -150,7 +151,7 @@ public class PlayerGUI extends JFrame implements ActionListener {
     }
 
     public void playerFourSetup(){
-        dots[3] = new ImageIcon("/Users/shrillpatel/IdeaProjects/SLS/Labyrinth/res/PlayerImages/reddot.png");
+        dots[3] = new ImageIcon("Labyrinth/res/PlayerImages/reddot.png");
         playerColour[3] = new JLabel(dots[3]);
         playerColour[3].setBounds(850, 440, 80, 80);
         add(playerColour[3]);
