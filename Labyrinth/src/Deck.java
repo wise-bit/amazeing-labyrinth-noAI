@@ -1,5 +1,5 @@
 /*
-Author: Satrajit
+Author: Satrajit and Shrill
  */
 
 import java.io.*;
@@ -71,8 +71,4 @@ public class Deck {
     public void setCardsList(ArrayList<String> cardsList) {
         this.cardsList = cardsList;
     }
-    //method for handing cards out
-    //method for randomizing the cards begin handed out to the players
-    //2 array lists (one for cards and one for players)
-
 }

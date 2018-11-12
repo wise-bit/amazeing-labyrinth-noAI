@@ -1,10 +1,13 @@
+/*
+ Author: Shrill Patel
+ */
+
 import java.awt.*;
 import java.awt.event.*;
-import java.io.File;
-import java.io.IOException;
+import java.io.*;
 //import java.io.*;
 //import javax.sound.sampled.*;
-import javax.imageio.ImageIO;
+import javax.imageio.*;
 import javax.swing.*;
 
 public class HomePageGUI extends JFrame implements ActionListener {
@@ -83,13 +86,11 @@ public class HomePageGUI extends JFrame implements ActionListener {
             this.setVisible(false);
             //clip.stop();
             //instructionsMusic();
-            new PlayerSelectionGUI();
-
-        }
-
-        if (event.getSource() == start) {
-            this.dispose();
-            new PlayerSelectionGUI();
+            try {
+                new PlayerGUI();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
 
         }
     }
