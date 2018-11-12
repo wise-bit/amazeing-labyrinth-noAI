@@ -1,3 +1,8 @@
+/*
+ * Author: Shrill Patel
+ * Author: Satrajit Chatterjee
+ */
+
 import java.awt.*;
 import java.awt.event.*;
 import java.io.File;
@@ -10,21 +15,29 @@ import javax.swing.*;
 public class HomePageGUI extends JFrame implements ActionListener {
 
     //Home Screen Components
-    private JLabel gameTitle = new JLabel ("AMAZEING LABYRINTH");;
-    private JButton start = new JButton ("START");;
-    private JLabel picture1 = new JLabel (new ImageIcon("/Users/shrillpatel/IdeaProjects/SLS/Labyrinth/res/pic1.png"));
-    private Font font = new Font("Helvetica" , Font.BOLD, 75);
+    private JLabel preGameTitle = new JLabel("A-MAZE-ING", SwingConstants.CENTER);
+    private JLabel gameTitle = new JLabel ("<HTML><u>LABYRINTH</u></HTML>", SwingConstants.CENTER);;
+    private JButton start = new JButton ("Start!");;
+    private JLabel picture1 = new JLabel (new ImageIcon("Labyrinth/res/pic1.png"));
+    private Font font = new Font("Sylfaen", Font.BOLD, 80); // Freestyle Script, Matura MT Script Capitals, French Script MT
+
+    // Used to get dimensions of Screen
+    private Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
 //    Clip clip;
 //    Clip clip2;
 
+//    public void paint(Graphics g){
+//        g.drawString("Hello to JavaTutorial.net", 100, 100);
+//    }
+
     //constructor method
-    public HomePageGUI () throws IOException {
+    public HomePageGUI () throws IOException, FontFormatException {
 
         //Makes frame and sets size and color (full-screen)
         setLayout(null);
-        setBounds(0, 0, getToolkit().getScreenSize().width, getToolkit().getScreenSize().height);
+        setBounds(0, 0, dim.width, dim.height);
         this.setTitle("aMAZEing Labyrinth");
-        setContentPane(new JLabel(new ImageIcon(ImageIO.read(new File("/Users/shrillpatel/IdeaProjects/SLS/Labyrinth/res/background.jpg")))));
+        setContentPane(new JLabel(new ImageIcon(ImageIO.read(new File("Labyrinth/res/background.jpg")))));
 
         //Closes program if the exit option is clicked.
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -32,25 +45,57 @@ public class HomePageGUI extends JFrame implements ActionListener {
         //Adds the title and sets the font
         gameTitle.setForeground(Color.WHITE);
         gameTitle.setFont(font);
-        gameTitle.setBounds(292, 0, 855, 150);
+        gameTitle.setSize(dim.width,(int) (dim.height/3));
         add(gameTitle);
+        gameTitle.setVisible(true);
+
+        preGameTitle.setForeground(Color.WHITE);
+        preGameTitle.setFont(font);
+        preGameTitle.setSize(dim.width,(int) (dim.height/5));
+        add(preGameTitle);
+        preGameTitle.setVisible(true);
+
+//        try{
+//            Font font = Font.createFont(Font.TRUETYPE_FONT, HomePageGUI.class.getResourceAsStream("Labyrinth/res/Bikarosta-Script.ttf"));
+//            gameTitle.setFont(font.deriveFont(Font.BOLD, 12f));
+//        }
+//        catch(Exception e){
+//            System.out.println("\n"+e);
+//        }
 
         //Add picture to frame
-        picture1.setBounds(425, 150, 590, 430);
+        picture1.setBounds(dim.width/5, dim.height/5, dim.width - 2*dim.width/5, dim.height - 2*dim.height/5);
         add(picture1);
 
         //Adds continue button and makes it clickable
         start.setOpaque(false);
         start.setContentAreaFilled(false);
         start.setBorderPainted(false);
-        start.setFont(new Font("Helvetica" , Font.CENTER_BASELINE, 50));
+        start.setBorder(null);
+        start.setFont(new Font("Segoe Script" , Font.PLAIN, 50));
         start.setForeground(Color.WHITE);
-        start.setBounds(575, 625, 275, 120);
+        // start.setBackground(new Color(59, 89, 182));
+        start.setBounds(dim.width/2 - 275/2, dim.height - dim.height/5, 275, 120);
         add(start);
         start.addActionListener(this);
 
+        // TODO: remove weird white lines around
+        // Makes button bigger when hovered over
+        start.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                start.setForeground(Color.YELLOW);
+                start.setFont(new Font("Segoe Script" , Font.PLAIN, 80));
+            }
+
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                start.setForeground(Color.WHITE);
+                start.setFont(new Font("Segoe Script" , Font.PLAIN, 50));
+            }
+        });
+
         //Makes every componet of the home screen visible
         setVisible(true);
+        setExtendedState(getExtendedState() | JFrame.MAXIMIZED_BOTH);
 //      homeScreenMusic();
         repaint();
 
@@ -93,4 +138,5 @@ public class HomePageGUI extends JFrame implements ActionListener {
 
         }
     }
+
 }
