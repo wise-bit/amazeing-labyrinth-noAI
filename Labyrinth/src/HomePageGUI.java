@@ -15,11 +15,11 @@ import javax.swing.*;
 public class HomePageGUI extends JFrame implements ActionListener {
 
     //Home Screen Components
-    private JLabel preGameTitle = new JLabel("a-MAZE-ing", SwingConstants.CENTER);
+    private JLabel preGameTitle = new JLabel("A-MAZE-ING", SwingConstants.CENTER);
     private JLabel gameTitle = new JLabel ("<HTML><u>LABYRINTH</u></HTML>", SwingConstants.CENTER);;
     private JButton start = new JButton ("Start!");;
     private JLabel picture1 = new JLabel (new ImageIcon("Labyrinth/res/pic1.png"));
-    private Font font = new Font("French Script MT", Font.BOLD, 80); // Freestyle Script, Matura MT Script Capitals
+    private Font font = new Font("Sylfaen", Font.BOLD, 80); // Freestyle Script, Matura MT Script Capitals, French Script MT
 
     // Used to get dimensions of Screen
     private Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
@@ -51,7 +51,7 @@ public class HomePageGUI extends JFrame implements ActionListener {
 
         preGameTitle.setForeground(Color.WHITE);
         preGameTitle.setFont(font);
-        preGameTitle.setSize(dim.width,(int) (dim.height/6));
+        preGameTitle.setSize(dim.width,(int) (dim.height/5));
         add(preGameTitle);
         preGameTitle.setVisible(true);
 

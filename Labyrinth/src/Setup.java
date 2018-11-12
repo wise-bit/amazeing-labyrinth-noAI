@@ -14,20 +14,25 @@ public class Setup extends JFrame {
     private Tile[][] board;
 
 
-    /// Variable initializations
+    //// Variable initializations
 
 
+    // A counter to keep track of availability of a spot on the board
     private ArrayList<Integer> counter = new ArrayList<Integer>();
 
+    // Declares the file with all the treasures listed, with all the attributes
     private File text = new File("Labyrinth/res/treasures.txt");
 
+    // Initializes scanner
     Scanner file = new Scanner(text);
 
+    // i and L shaped tiles count from the instructions manual
     private int lCount = 9;
     private int iCount = 13;
 
 
-    /// Methods
+    //// Main Methods
+
 
     // Constructor which calls the initialization method
     public Setup() throws FileNotFoundException {
@@ -45,32 +50,41 @@ public class Setup extends JFrame {
     }
 
 
+    //// Accessors and Modifiers
+
+
+    // Returns the board set up by the class using tiles
     public Tile[][] getBoard() {
         return board;
     }
 
+    // Kept for modifying board for debugging purposes
     public void setBoard(Tile[][] board) {
         this.board = board;
     }
 
+    // The contents of the treasure list file
     public File getText() {
         return text;
     }
 
+    // Sets the treasures textfile, method not used in current version
     public void setText(File text) {
         this.text = text;
     }
 
+    // Accesses the Scanner object file
     public Scanner getFile() {
         return file;
     }
 
+    // Modifies the Scanner object file
     public void setFile(Scanner file) {
         this.file = file;
     }
 
 
-    /// HELPER METHODS (Not all commented)
+    //// HELPER METHODS (Not all commented)
 
 
     // This returns a string array with the names of all treasures
@@ -93,6 +107,8 @@ public class Setup extends JFrame {
 
     }
 
+    // Initializer, which places the fixed tiles first, followed by the moveable tiles, and finally fills up the rest of the board
+    // Goes through all of the lines of the file each time to ensure they are all categorized correctly
     public void init() throws FileNotFoundException {
 
         board = new Tile[9][9];
@@ -114,20 +130,27 @@ public class Setup extends JFrame {
 
     }
 
+    // Places all the fixed tiles
     public void fixed(String attributes){
 
+        // Splits the input from the file into separate attributes for each object listed
         String[] attribs = attributes.split(",");
 
+        // Only place this if it is not moveable (false)
         if (attribs[1].equals("false")) {
 
+            // Fetches row and column, which are only listed in file for fixed files
             int row = Integer.parseInt(attribs[3]);
             int column = Integer.parseInt(attribs[4]);
 
+            // Adds the new Tile object to the respective row and column position, inputting all characteristics
             this.board[row][column] =
                     new Tile(attribs[0], Boolean.parseBoolean(attribs[1]), attribs[2].charAt(0), row, column, Integer.parseInt(attribs[5]));
 
+            // Removes this space from the list of open spaces
             this.counter.remove(new Integer(row * 7 + column));
 
+            // Print line for debugging purposes
             // System.out.println(this.board[row][column]);
 
         }
@@ -143,8 +166,9 @@ public class Setup extends JFrame {
         // Only if the tile is moveable
         if (attribs[1].equals("true")) {
 
-            int row = counter.get(0)/9;
-            int column = counter.get(0)%9;
+
+            int row = getCounter().get(0)/9;
+            int column = getCounter().get(0)%9;
 
             if (getBoard()[row][column] == null) {
 
@@ -159,6 +183,7 @@ public class Setup extends JFrame {
 
     }
 
+    // Places the starting position tiles and the empty tiles
     public void otherTiles(){
 
         for (int i = 1; i < 8; i++) {
@@ -219,20 +244,38 @@ public class Setup extends JFrame {
 
     }
 
+    // Checks if 'i' shaped tiles are available
     public boolean isIAvailable(){
         return iCount > 0;
     }
 
+    // Decrements the count of 'i' shaped tiles
     public void useI(){
         iCount -= 1;
     }
 
+    // Checks if 'L' shaped tiles are available
     public boolean isLAvailable(){
         return lCount > 0;
     }
 
+    // Decrements the count of 'L' shaped tiles
     public void useL(){
         lCount -= 1;
+    }
+
+    // TODO: Check functionality
+    // Creates a binary representation of the board to check if the player can move to a certain position
+    public int[][] fullBinaryBoard(){
+        int[][] binaryBoard = new int[27][27];
+
+        for (int i = 3; i < 24; i++){
+            for (int j = 3; j < 24; j++){
+                binaryBoard[i][j] = board[i/3][j/3].getLayout()[i%3][j%3];
+            }
+        }
+
+        return binaryBoard;
     }
 
 

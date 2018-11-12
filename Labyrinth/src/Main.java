@@ -15,10 +15,19 @@ public class Main {
         Player[] players = new Player[4];
         Setup s = new Setup();
 
-        for (int i = 0; i < 9; i++){
-            for (int j = 0; j < 9; j++){
-                System.out.println(s.getBoard()[i][j]);
+//        Tile[][] set = s.getBoard();
+//        for (int i = 1; i < 8; i++){
+//            for (int j = 1; j < 8; j++){
+//                System.out.println(set[i][j].makeFileName());
+//            }
+//        }
+
+        // Generates binary maze
+        for (int i = 0; i < 27; i++){
+            for (int j = 0; j < 27; j++){
+                System.out.print(s.fullBinaryBoard()[i][j] + " ");
             }
+            System.out.println();
         }
 
         // New stuff starts here:
@@ -34,7 +43,7 @@ public class Main {
         // So just assign to different players using a for loop
         // Sorry if I did too much in this method, it just seemed simple to do it all at the same place
       
-        // new HomePageGUI();
+        new HomePageGUI();
 
     }
   
