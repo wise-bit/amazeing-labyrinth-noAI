@@ -8,8 +8,6 @@ import java.lang.reflect.Array;
 import java.util.*;
 
 public class Player extends JLabel {
-  
-    Setup setup = new Setup();
 
     //Varibales to store player attributes
     private String[] playerHand;
