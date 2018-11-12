@@ -1,5 +1,5 @@
 /*
-Author: Satrajit's version
+Author: Satrajit, Shrill
  */
 
 import java.awt.*;
@@ -13,6 +13,7 @@ public class Main {
     public static void main(String[] args) throws IOException, FontFormatException {
 
         Player[] players = new Player[4];
+        new HomePageGUI();
         Setup s = new Setup();
 
 //        Tile[][] set = s.getBoard();
@@ -35,7 +36,6 @@ public class Main {
         ArrayList<String> list = s.listOfTreasures();
         for (int i = 0; i < 24; i++)
             System.out.print(list.get(i) + ", ");
-
 
         // To get list of treasures Call:
         // s.listOfTreasures()
