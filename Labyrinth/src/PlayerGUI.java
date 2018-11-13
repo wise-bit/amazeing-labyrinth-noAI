@@ -1,9 +1,11 @@
 /*
  Author: Shrill Patel
+ Author: Lazar Glumac
  */
 
 import javax.imageio.*;
 import javax.swing.*;
+
 import java.awt.*;
 import java.awt.event.*;
 import java.io.*;
@@ -167,8 +169,84 @@ public class PlayerGUI extends JFrame implements ActionListener {
         add(playerTitle[3]);
     }
 
+    // This method re adds the third player options to the screen if it has been detected they are missing
+    private void reAddPlayerThreeSetup() {
+    	
+    	playerTitle[2].setBounds(950, 340, 150, 40);
+    	add(playerTitle[2]);
+    	playerColour[2].setBounds(850, 320, 80, 80);
+    	add(playerColour[2]);
+    	names[2].setBounds(1100, 340, 250, 40);
+    	add(names[2]);
+    	
+    	repaint();
+    }
+    
+    // This method re adds the fourth player options to the screen if it has been detected they are missing
+    private void reAddPlayerFourSetup() {
+    	
+    	playerTitle[3].setBounds(950, 460, 150, 40);
+    	add(playerTitle[3]);
+    	playerColour[3].setBounds(850, 440, 80, 80);
+    	add(playerColour[3]);
+    	names[3].setBounds(1100, 460, 250, 40);
+    	add(names[3]);
+    	
+    	repaint();		
+	}
+    
     @Override
     public void actionPerformed(ActionEvent event) {
+
+    	if (event.getSource() == twoPlayers) {
+    		
+    			for (int i = 2; i < 4; i++) {
+        			
+            		remove(playerTitle[i]);
+            		remove(playerColour[i]);
+            		remove(names[i]);
+        		}
+    			
+    		}
+    		else if (event.getSource() == threePlayers) {
+    			
+    			if (isThisComponentFoundInJPanel(playerTitle[2])) {
+    				
+    				remove(playerTitle[3]);
+            		remove(playerColour[3]);
+            		remove(names[3]);
+    			}
+    			else {
+    				reAddPlayerThreeSetup();
+    			}
+    			
+    		}
+    		else if (event.getSource() == fourPlayers) {
+    			
+    			if (isThisComponentFoundInJPanel(playerTitle[3]) == false) {
+    				
+    				reAddPlayerThreeSetup();
+    				reAddPlayerFourSetup();
+    			}
+    		}
+    		
+    		repaint();
+    		
+    	
+    	
+    	}
+    	
+    // This method checks if a specific method is found on the frame/panel
+	boolean isThisComponentFoundInJPanel(Component lookingComponent) {
+    	    	
+        Component[] componentsArray = this.getContentPane().getComponents();
+        
+        for (Component component : componentsArray) {
+            if (lookingComponent == component) 
+                    return true;
+        }
+        return false;
+
         if(event.getSource() == next) {
             try {
                 new GameGUI();
@@ -180,5 +258,7 @@ public class PlayerGUI extends JFrame implements ActionListener {
         if(event.getSource() == threePlayers)
             playerFourSetup();
             setVisible(false);
+
     }
+    
 }
