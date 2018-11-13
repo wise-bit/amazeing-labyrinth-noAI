@@ -8,12 +8,10 @@
  *
  */
 
+import javax.swing.*;
 import java.util.Random;
 
-import javax.swing.ImageIcon;
-import javax.swing.JLabel;
-
-public class Tile extends JLabel{
+public class Tile extends JLabel {
 
     Random rand = new Random();
 
@@ -130,8 +128,6 @@ public class Tile extends JLabel{
                     {0,1,0},
             };
         }
-        this.setIcon(new ImageIcon(makeFileName()));
-
 
     }
 
@@ -185,7 +181,7 @@ public class Tile extends JLabel{
         // If it is one of the empty ones, return shape and rotation followed by filetype
         else if (getName().equals("Empty"))
             return Character.toUpperCase(getShape()) + Integer.toString(getRotation()) + ".png";
-        	
+
         // If the tile has a special name (treasure)
         else
             return getName().replaceAll("[^a-zA-Z:]", "") + getRotation() + ".png";

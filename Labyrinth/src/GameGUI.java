@@ -50,15 +50,27 @@ public class GameGUI extends JFrame implements ActionListener {
         help.add(instructions);
 
         // Places the other tiles
-        for (int i = 0; i < 9; i++){
-            for (int j = 0; j < 9; j++){
+        for (int i = 2; i < 9; i+=2){
+            for (int j = 2; j < 9; j+=2){
                 // Only if the tile is not a null
                 if (board.getSet()[i][j] != null){
                     // new tile creation begins here
 
-                    board.getSet()[i][j].makeFileName();
+                    String fileName = board.getSet()[i][j].makeFileName();
 
-                    //TODO: Make each of these tiles
+                    BufferedImage tileImg = null;
+                    try {
+                        tileImg = ImageIO.read(new File("Labyrinth/res/Images/" + fileName));
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                    Image currentTileImage = tileImg.getScaledInstance(1,1, Image.SCALE_SMOOTH);// TODO: Change
+                    ImageIcon tileIcon = new ImageIcon(currentTileImage);
+
+                    board.getSet()[i][j].setIcon(tileIcon);
+                    board.getSet()[i][j].setBounds(0,0,0,0); // TODO: Chnage
+                    add(board.getSet()[i][j]);
+                    board.getSet()[i][j].setVisible(true);
 
                     // new tile creation ends here
                 }
