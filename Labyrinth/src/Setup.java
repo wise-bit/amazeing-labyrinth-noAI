@@ -271,7 +271,7 @@ public class Setup extends JFrame {
 
         for (int i = 3; i < 24; i++){
             for (int j = 3; j < 24; j++){
-                binaryBoard[i][j] = board[i/3][j/3].getLayout()[i%3][j%3];
+                binaryBoard[i][j] = board[i/3][j/3].getIntLayout()[i%3][j%3];
             }
         }
 
