@@ -12,6 +12,7 @@ public class Board {
 	// DECK IS ARRAY OF STRINGS--  CHECK SLACK
 	// CREATE DECK
 
+	
 	private Tile[][] set;
 	private int[][] tileset;
 
@@ -29,17 +30,23 @@ public class Board {
 	public Board() throws FileNotFoundException{
 		Setup setupStart = new Setup();
 		set = setupStart.getBoard();
+		//displayTilesStart();
 	}
-    // 	NO NEED FOR LOCAL EXTRA TILE PARAMETER
-    
-             
-	// SHIFT OVER 1 BASED ON DIRECTION OF SHIFT
-	// CHECK IF PIECES, TREASURES, OR PLAYERS ARE ON SHIFTED TILES
-	// UPDATE POSITIONS OF ALL PIECES MOVED
-	// UPDATE THE TILE WHICH THE PLAYER IS NOW ABLE TO MOVE
-       
 	
+	
+    private void displayTilesStart() {
 
+    	for (int i = 0; i < set.length; i++) {
+    		
+    		for (int j = 0; j < set[i].length; j++) {
+    			
+    		//	set[i][j].setBounds(r);
+    		}
+    	}
+
+	}
+	
+    
 
 	public void shiftBoardTiles(int rowToShift, int columnToShift, int directionOfShift){
 

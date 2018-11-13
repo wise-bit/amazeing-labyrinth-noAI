@@ -10,7 +10,10 @@
 
 import java.util.Random;
 
-public class Tile {
+import javax.swing.ImageIcon;
+import javax.swing.JLabel;
+
+public class Tile extends JLabel{
 
     Random rand = new Random();
 
@@ -127,18 +130,20 @@ public class Tile {
                     {0,1,0},
             };
         }
+        this.setIcon(new ImageIcon(makeFileName()));
+
 
     }
 
     // Returns layout as a 2D array of 0s and 1s
-    public int[][] getLayout() {
+    public int[][] getIntLayout() {
         return layout;
     }
 
     // Rotates the tile 90 degrees clockwise
     public void rotate(){
 
-        int N = getLayout()[0].length;
+        int N = getIntLayout()[0].length;
         for (int x = 0; x < N / 2; x++)
         {
             for (int y = x; y < N-x-1; y++)
@@ -180,7 +185,7 @@ public class Tile {
         // If it is one of the empty ones, return shape and rotation followed by filetype
         else if (getName().equals("Empty"))
             return Character.toUpperCase(getShape()) + Integer.toString(getRotation()) + ".png";
-
+        	
         // If the tile has a special name (treasure)
         else
             return getName().replaceAll("[^a-zA-Z:]", "") + getRotation() + ".png";
