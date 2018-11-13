@@ -15,7 +15,7 @@ public class HomePageGUI extends JFrame implements ActionListener {
 
     //Home Screen Components
     private JLabel preGameTitle = new JLabel("A-MAZE-ING", SwingConstants.CENTER);
-    private JLabel gameTitle = new JLabel ("<HTML><u>LABYRINTH</u></HTML>", SwingConstants.CENTER);;
+    private JLabel gameTitle = new JLabel ("LABYRINTH", SwingConstants.CENTER);;
     private JButton start = new JButton ("Start!");;
     private JLabel picture1 = new JLabel (new ImageIcon("Labyrinth/res/pic1.png"));
     private Font font = new Font("Sylfaen", Font.BOLD, 80); // Freestyle Script, Matura MT Script Capitals, French Script MT
