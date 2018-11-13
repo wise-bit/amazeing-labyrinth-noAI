@@ -128,6 +128,8 @@ public class Setup extends JFrame {
 
         otherTiles();
 
+
+
     }
 
     // Places all the fixed tiles

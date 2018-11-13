@@ -19,9 +19,8 @@ public class GameGUI extends JFrame implements ActionListener {
     private JMenuBar menuBar = new JMenuBar();
     private JMenu help = new JMenu("Help");
     private JMenuItem instructions = new JMenuItem("Instructions");
-    private String[] names = new String[4];
 
-    public GameGUI(String[] names) throws IOException {
+    public GameGUI() throws IOException {
 
         setLayout(null);
         setBounds(0, 0, board.getDim().width, board.getDim().height);
@@ -50,10 +49,10 @@ public class GameGUI extends JFrame implements ActionListener {
         help.add(instructions);
 
         // Places the other tiles
-        for (int i = 2; i < 9; i+=2){
-            for (int j = 2; j < 9; j+=2){
+        for (int i = 0; i < 9; i++){
+            for (int j = 0; j < 9; j++){
                 // Only if the tile is not a null
-                if (board.getSet()[i][j] != null){
+                if (board.getSet()[i][j] != null && board.getSet()[i][j].isMoveable()){
                     // new tile creation begins here
 
                     String fileName = board.getSet()[i][j].makeFileName();
@@ -64,11 +63,11 @@ public class GameGUI extends JFrame implements ActionListener {
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
-                    Image currentTileImage = tileImg.getScaledInstance(1,1, Image.SCALE_SMOOTH);// TODO: Change
+                    Image currentTileImage = tileImg.getScaledInstance(50,50, Image.SCALE_SMOOTH);// TODO: Change
                     ImageIcon tileIcon = new ImageIcon(currentTileImage);
 
                     board.getSet()[i][j].setIcon(tileIcon);
-                    board.getSet()[i][j].setBounds(0,0,0,0); // TODO: Chnage
+                    board.getSet()[i][j].setBounds(10,10,50,50); // TODO: Chnage
                     add(board.getSet()[i][j]);
                     board.getSet()[i][j].setVisible(true);
 

@@ -26,7 +26,7 @@ public class PlayerGUI extends JFrame implements ActionListener {
     private JButton next = new JButton("Continue");
 
     //Constructor Method
-    public PlayerGUI() throws IOException{
+    public PlayerGUI() throws IOException {
 
         //Makes new frame and sets its attributes
         setLayout(null);
@@ -47,7 +47,7 @@ public class PlayerGUI extends JFrame implements ActionListener {
         twoPlayers.setOpaque(false);
         twoPlayers.setContentAreaFilled(false);
         twoPlayers.setBorderPainted(false);
-        twoPlayers.setFont(new Font("Helvetica" , Font.CENTER_BASELINE, 40));
+        twoPlayers.setFont(new Font("Helvetica", Font.CENTER_BASELINE, 40));
         twoPlayers.setForeground(Color.WHITE);
         twoPlayers.setBounds(188, 150, 220, 50);
         add(twoPlayers);
@@ -57,7 +57,7 @@ public class PlayerGUI extends JFrame implements ActionListener {
         threePlayers.setOpaque(false);
         threePlayers.setContentAreaFilled(false);
         threePlayers.setBorderPainted(false);
-        threePlayers.setFont(new Font("Helvetica" , Font.CENTER_BASELINE, 40));
+        threePlayers.setFont(new Font("Helvetica", Font.CENTER_BASELINE, 40));
         threePlayers.setForeground(Color.WHITE);
         threePlayers.setBounds(188, 280, 220, 50);
         add(threePlayers);
@@ -67,7 +67,7 @@ public class PlayerGUI extends JFrame implements ActionListener {
         fourPlayers.setOpaque(false);
         fourPlayers.setContentAreaFilled(false);
         fourPlayers.setBorderPainted(false);
-        fourPlayers.setFont(new Font("Helvetica" , Font.CENTER_BASELINE, 40));
+        fourPlayers.setFont(new Font("Helvetica", Font.CENTER_BASELINE, 40));
         fourPlayers.setForeground(Color.WHITE);
         fourPlayers.setBounds(188, 410, 220, 50);
         add(fourPlayers);
@@ -83,7 +83,7 @@ public class PlayerGUI extends JFrame implements ActionListener {
         next.setOpaque(false);
         next.setContentAreaFilled(false);
         next.setBorderPainted(false);
-        next.setFont(new Font("Helvetica" , Font.CENTER_BASELINE, 40));
+        next.setFont(new Font("Helvetica", Font.CENTER_BASELINE, 40));
         next.setForeground(Color.WHITE);
         next.setBounds(609, 700, 220, 50);
         add(next);
@@ -101,7 +101,7 @@ public class PlayerGUI extends JFrame implements ActionListener {
     }
 
     //Methods that are used to setup up to allow the user to enter the players information based on the number of players they select
-    public void playerOneSetup(){
+    public void playerOneSetup() {
         dots[0] = new ImageIcon("Labyrinth/res/PlayerImages/bluedot.png");
         playerColour[0] = new JLabel(dots[0]);
         playerColour[0].setBounds(850, 80, 80, 80);
@@ -112,13 +112,13 @@ public class PlayerGUI extends JFrame implements ActionListener {
         add(names[0]);
 
         playerTitle[0] = new JLabel("Player 1:");
-        playerTitle[0].setFont(new Font("Helvetica" , Font.CENTER_BASELINE, 30));
+        playerTitle[0].setFont(new Font("Helvetica", Font.CENTER_BASELINE, 30));
         playerTitle[0].setForeground(Color.WHITE);
         playerTitle[0].setBounds(950, 100, 150, 40);
         add(playerTitle[0]);
     }
 
-    public void playerTwoSetup(){
+    public void playerTwoSetup() {
         dots[1] = new ImageIcon("Labyrinth/res/PlayerImages/greendot.png");
         playerColour[1] = new JLabel(dots[1]);
         playerColour[1].setBounds(850, 200, 80, 80);
@@ -129,13 +129,13 @@ public class PlayerGUI extends JFrame implements ActionListener {
         add(names[1]);
 
         playerTitle[1] = new JLabel("Player 2:");
-        playerTitle[1].setFont(new Font("Helvetica" , Font.CENTER_BASELINE, 30));
+        playerTitle[1].setFont(new Font("Helvetica", Font.CENTER_BASELINE, 30));
         playerTitle[1].setForeground(Color.WHITE);
         playerTitle[1].setBounds(950, 220, 150, 40);
         add(playerTitle[1]);
     }
 
-    public void playerThreeSetup(){
+    public void playerThreeSetup() {
         dots[2] = new ImageIcon("Labyrinth/res/PlayerImages/orangedot.png");
         playerColour[2] = new JLabel(dots[2]);
         playerColour[2].setBounds(850, 320, 80, 80);
@@ -146,13 +146,13 @@ public class PlayerGUI extends JFrame implements ActionListener {
         add(names[2]);
 
         playerTitle[2] = new JLabel("Player 3:");
-        playerTitle[2].setFont(new Font("Helvetica" , Font.CENTER_BASELINE, 30));
+        playerTitle[2].setFont(new Font("Helvetica", Font.CENTER_BASELINE, 30));
         playerTitle[2].setForeground(Color.WHITE);
         playerTitle[2].setBounds(950, 340, 150, 40);
         add(playerTitle[2]);
     }
 
-    public void playerFourSetup(){
+    public void playerFourSetup() {
         dots[3] = new ImageIcon("Labyrinth/res/PlayerImages/reddot.png");
         playerColour[3] = new JLabel(dots[3]);
         playerColour[3].setBounds(850, 440, 80, 80);
@@ -163,7 +163,7 @@ public class PlayerGUI extends JFrame implements ActionListener {
         add(names[3]);
 
         playerTitle[3] = new JLabel("Player 4:");
-        playerTitle[3].setFont(new Font("Helvetica" , Font.CENTER_BASELINE, 30));
+        playerTitle[3].setFont(new Font("Helvetica", Font.CENTER_BASELINE, 30));
         playerTitle[3].setForeground(Color.WHITE);
         playerTitle[3].setBounds(950, 460, 150, 40);
         add(playerTitle[3]);
@@ -171,83 +171,65 @@ public class PlayerGUI extends JFrame implements ActionListener {
 
     // This method re adds the third player options to the screen if it has been detected they are missing
     private void reAddPlayerThreeSetup() {
-    	
-    	playerTitle[2].setBounds(950, 340, 150, 40);
-    	add(playerTitle[2]);
-    	playerColour[2].setBounds(850, 320, 80, 80);
-    	add(playerColour[2]);
-    	names[2].setBounds(1100, 340, 250, 40);
-    	add(names[2]);
-    	
-    	repaint();
+
+        playerTitle[2].setBounds(950, 340, 150, 40);
+        add(playerTitle[2]);
+        playerColour[2].setBounds(850, 320, 80, 80);
+        add(playerColour[2]);
+        names[2].setBounds(1100, 340, 250, 40);
+        add(names[2]);
+
+        repaint();
     }
-    
+
     // This method re adds the fourth player options to the screen if it has been detected they are missing
     private void reAddPlayerFourSetup() {
-    	
-    	playerTitle[3].setBounds(950, 460, 150, 40);
-    	add(playerTitle[3]);
-    	playerColour[3].setBounds(850, 440, 80, 80);
-    	add(playerColour[3]);
-    	names[3].setBounds(1100, 460, 250, 40);
-    	add(names[3]);
-    	
-    	repaint();		
-	}
-    
+
+        playerTitle[3].setBounds(950, 460, 150, 40);
+        add(playerTitle[3]);
+        playerColour[3].setBounds(850, 440, 80, 80);
+        add(playerColour[3]);
+        names[3].setBounds(1100, 460, 250, 40);
+        add(names[3]);
+
+        repaint();
+    }
+
     @Override
     public void actionPerformed(ActionEvent event) {
 
-    	if (event.getSource() == twoPlayers) {
-    		
-    			for (int i = 2; i < 4; i++) {
-        			
-            		remove(playerTitle[i]);
-            		remove(playerColour[i]);
-            		remove(names[i]);
-        		}
-    			
-    		}
-    		else if (event.getSource() == threePlayers) {
-    			
-    			if (isThisComponentFoundInJPanel(playerTitle[2])) {
-    				
-    				remove(playerTitle[3]);
-            		remove(playerColour[3]);
-            		remove(names[3]);
-    			}
-    			else {
-    				reAddPlayerThreeSetup();
-    			}
-    			
-    		}
-    		else if (event.getSource() == fourPlayers) {
-    			
-    			if (isThisComponentFoundInJPanel(playerTitle[3]) == false) {
-    				
-    				reAddPlayerThreeSetup();
-    				reAddPlayerFourSetup();
-    			}
-    		}
-    		
-    		repaint();
-    		
-    	
-    	
-    	}
-    	
-    // This method checks if a specific method is found on the frame/panel
-	boolean isThisComponentFoundInJPanel(Component lookingComponent) {
-    	    	
-        Component[] componentsArray = this.getContentPane().getComponents();
-        
-        for (Component component : componentsArray) {
-            if (lookingComponent == component) 
-                    return true;
-        }
-        return false;
+        if (event.getSource() == twoPlayers) {
 
-        if(event.getSource() == next) {
+            for (int i = 2; i < 4; i++) {
+
+                remove(playerTitle[i]);
+                remove(playerColour[i]);
+                remove(names[i]);
+            }
+
+        } else if (event.getSource() == threePlayers) {
+
+            if (isThisComponentFoundInJPanel(playerTitle[2])) {
+
+                remove(playerTitle[3]);
+                remove(playerColour[3]);
+                remove(names[3]);
+            } else {
+                reAddPlayerThreeSetup();
+            }
+
+        } else if (event.getSource() == fourPlayers) {
+
+            if (isThisComponentFoundInJPanel(playerTitle[3]) == false) {
+
+                reAddPlayerThreeSetup();
+                reAddPlayerFourSetup();
+            }
+        }
+
+        repaint();
+
+        if (event.getSource() == next) {
             try {
                 new GameGUI();
             } catch (IOException e) {
@@ -255,10 +237,21 @@ public class PlayerGUI extends JFrame implements ActionListener {
             }
         }
 
-        if(event.getSource() == threePlayers)
+        if (event.getSource() == threePlayers)
             playerFourSetup();
-            setVisible(false);
+        setVisible(false);
 
     }
-    
+
+    // This method checks if a specific method is found on the frame/panel
+    boolean isThisComponentFoundInJPanel(Component lookingComponent) {
+
+        Component[] componentsArray = this.getContentPane().getComponents();
+
+        for (Component component : componentsArray) {
+            if (lookingComponent == component)
+                return true;
+        }
+        return false;
+    }
 }

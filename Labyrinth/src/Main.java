@@ -20,12 +20,14 @@ public class Main {
         Setup s = new Setup();
 
         // Prints all tiles
-//        Tile[][] set = s.getBoard();
-//        for (int i = 0; i < 9; i++){
-//            for (int j = 0; j < 9; j++){
-//                System.out.println(set[i][j]);
-//            }
-//        }
+        Tile[][] set = s.getBoard();
+        for (int i = 0; i < 9; i++){
+            for (int j = 0; j < 9; j++){
+                if (set[i][j] != null && set[i][j].isMoveable()) {
+                    System.out.println(set[i][j].makeFileName());
+                }
+            }
+        }
 
         // Generates binary maze
 //        for (int i = 0; i < 27; i++){
@@ -40,8 +42,8 @@ public class Main {
 //        for (int i = 0; i < 24; i++)
 //            System.out.print(list.get(i) + ", ");
 
-        new HomePageGUI();
-        // new GameGUI();
+        // new HomePageGUI();
+        new GameGUI();
         // new UX().save(s.getBoard());
 
     }
