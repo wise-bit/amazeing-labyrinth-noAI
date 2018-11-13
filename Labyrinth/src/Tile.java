@@ -173,8 +173,12 @@ public class Tile {
     // Generates file name of tile image ofr GUI
     public String makeFileName(){
 
+        // If the tile is null
+        if (this == null)
+            return null;
+
         // If it is one of the empty ones, return shape and rotation followed by filetype
-        if (getName().equals("Empty"))
+        else if (getName().equals("Empty"))
             return Character.toUpperCase(getShape()) + Integer.toString(getRotation()) + ".png";
 
         // If the tile has a special name (treasure)
@@ -194,4 +198,9 @@ public class Tile {
                 ", column=" + column +
                 '}';
     }
+
+    public String toStorageString() {
+        return name + "," + moveable + "," + shape + "," + row + "," + column + "," + rotation;
+    }
+
 }
