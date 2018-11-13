@@ -24,6 +24,10 @@ public class GameGUI extends JFrame implements ActionListener {
         //Closes program if the exit option is clicked.
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
+        setVisible(true);
+        setExtendedState(getExtendedState() | JFrame.MAXIMIZED_BOTH);
+        repaint();
+
     }
 
     @Override
