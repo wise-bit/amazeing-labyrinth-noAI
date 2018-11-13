@@ -1,5 +1,5 @@
 /*
-Author: Satrajit and Shrill
+Author: Shrill and Satrajit
  */
 
 import java.io.*;

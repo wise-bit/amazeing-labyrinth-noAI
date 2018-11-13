@@ -17,6 +17,8 @@ public class Board {
 
 	private Player[] playersArray;
 
+    Deck deck;
+
 	private final int RIGHT = 1;
 	private final int LEFT = 2;
 	private final int UP = 3;
@@ -29,6 +31,7 @@ public class Board {
 	public Board() throws FileNotFoundException{
 		Setup setupStart = new Setup();
 		set = setupStart.getBoard();
+		deck = new Deck(4);
 	}
     // 	NO NEED FOR LOCAL EXTRA TILE PARAMETER
     
@@ -202,4 +205,12 @@ public class Board {
 	public void setDim(Dimension dim) {
 		this.dim = dim;
 	}
+
+    public Deck getDeck() {
+        return deck;
+    }
+
+    public void setDeck(Deck deck) {
+        this.deck = deck;
+    }
 }

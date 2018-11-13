@@ -20,8 +20,12 @@ public class PlayerGUI extends JFrame implements ActionListener {
     private Font font = new Font("Helvetica", Font.BOLD, 40);
     private ImageIcon[] dots = new ImageIcon[4];    //array to hold the player colours
     private JLabel[] playerColour = new JLabel[4];
+
     private JTextField[] names = new JTextField[4];
+    private String [] playerNames = new String[4];
     private JButton next = new JButton("Continue");
+
+    private Board board = new Board();
 
     //Constructor Method
     public PlayerGUI() throws IOException{
@@ -167,18 +171,24 @@ public class PlayerGUI extends JFrame implements ActionListener {
         add(playerTitle[3]);
     }
 
+    public JTextField[] getNames() {
+        return names;
+    }
+
+    public void setNames(JTextField[] names) {
+        this.names = names;
+    }
+
     @Override
     public void actionPerformed(ActionEvent event) {
         if(event.getSource() == next) {
+            for(int x = 0; x < 4; x++)
+                playerNames[x] = names[x].getText();
             try {
-                new GameGUI();
+                new GameGUI(playerNames);
             } catch (IOException e) {
                 e.printStackTrace();
             }
         }
-
-        if(event.getSource() == threePlayers)
-            playerFourSetup();
-            setVisible(false);
     }
 }

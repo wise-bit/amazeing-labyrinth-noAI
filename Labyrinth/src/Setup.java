@@ -154,7 +154,6 @@ public class Setup extends JFrame {
             // System.out.println(this.board[row][column]);
 
         }
-
     }
 
     // Place the other treasures
@@ -174,13 +173,11 @@ public class Setup extends JFrame {
 
                 this.board[row][column] =
                         new Tile(attribs[0], Boolean.parseBoolean(attribs[1]), attribs[2].charAt(0), row, column, 4);
-
             }
 
             counter.remove(0);
 
         }
-
     }
 
     // Places the starting position tiles and the empty tiles
@@ -213,11 +210,9 @@ public class Setup extends JFrame {
                             this.board[i][j] = new Tile("Empty", true, 'i', i, j, 4);
                         }
                     }
-
                 }
             }
         }
-
     }
 
     // Initializes the counter array from
@@ -271,11 +266,11 @@ public class Setup extends JFrame {
 
         for (int i = 3; i < 24; i++){
             for (int j = 3; j < 24; j++){
-                binaryBoard[i][j] = board[i/3][j/3].getLayout()[i%3][j%3];
+                binaryBoard[i][j] = board[i/3][j/3].getIntLayout()[i%3][j%3];
             }
         }
 
         return binaryBoard;
-    }
 
+    }
 }
