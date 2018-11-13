@@ -139,15 +139,15 @@ public class PlayerGUI extends JFrame implements ActionListener {
         playerColour[2].setBounds(850, 320, 80, 80);
         add(playerColour[2]);
 
-        names[0] = new JTextField(20);
-        names[0].setBounds(1100, 340, 250, 40);
-        add(names[0]);
+        names[2] = new JTextField(20);
+        names[2].setBounds(1100, 340, 250, 40);
+        add(names[2]);
 
-        playerTitle[0] = new JLabel("Player 3:");
-        playerTitle[0].setFont(new Font("Helvetica" , Font.CENTER_BASELINE, 30));
-        playerTitle[0].setForeground(Color.WHITE);
-        playerTitle[0].setBounds(950, 340, 150, 40);
-        add(playerTitle[0]);
+        playerTitle[2] = new JLabel("Player 3:");
+        playerTitle[2].setFont(new Font("Helvetica" , Font.CENTER_BASELINE, 30));
+        playerTitle[2].setForeground(Color.WHITE);
+        playerTitle[2].setBounds(950, 340, 150, 40);
+        add(playerTitle[2]);
     }
 
     public void playerFourSetup(){
@@ -156,19 +156,29 @@ public class PlayerGUI extends JFrame implements ActionListener {
         playerColour[3].setBounds(850, 440, 80, 80);
         add(playerColour[3]);
 
-        names[0] = new JTextField(20);
-        names[0].setBounds(1100, 460, 250, 40);
-        add(names[0]);
+        names[3] = new JTextField(20);
+        names[3].setBounds(1100, 460, 250, 40);
+        add(names[3]);
 
-        playerTitle[0] = new JLabel("Player 4:");
-        playerTitle[0].setFont(new Font("Helvetica" , Font.CENTER_BASELINE, 30));
-        playerTitle[0].setForeground(Color.WHITE);
-        playerTitle[0].setBounds(950, 460, 150, 40);
-        add(playerTitle[0]);
+        playerTitle[3] = new JLabel("Player 4:");
+        playerTitle[3].setFont(new Font("Helvetica" , Font.CENTER_BASELINE, 30));
+        playerTitle[3].setForeground(Color.WHITE);
+        playerTitle[3].setBounds(950, 460, 150, 40);
+        add(playerTitle[3]);
     }
 
     @Override
     public void actionPerformed(ActionEvent event) {
+        if(event.getSource() == next) {
+            try {
+                new GameGUI();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
 
+        if(event.getSource() == threePlayers)
+            playerFourSetup();
+            setVisible(false);
     }
 }

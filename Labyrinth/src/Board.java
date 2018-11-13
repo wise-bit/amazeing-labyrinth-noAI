@@ -1,3 +1,4 @@
+import java.awt.*;
 import java.io.FileNotFoundException;
 
 /*
@@ -20,8 +21,10 @@ public class Board {
 	private final int LEFT = 2;
 	private final int UP = 3;
 	private final int DOWN = 4;
-
 	private Tile tileForPlayer;
+
+	private Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
+
 
 	public Board() throws FileNotFoundException{
 		Setup setupStart = new Setup();
@@ -190,5 +193,13 @@ public class Board {
 
 	public void setSet(Tile[][] set) {
 		this.set = set;
+	}
+
+	public Dimension getDim() {
+		return dim;
+	}
+
+	public void setDim(Dimension dim) {
+		this.dim = dim;
 	}
 }
