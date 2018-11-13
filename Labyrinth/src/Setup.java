@@ -278,5 +278,4 @@ public class Setup extends JFrame {
         return binaryBoard;
     }
 
-
 }

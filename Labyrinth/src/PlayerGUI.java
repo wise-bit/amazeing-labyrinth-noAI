@@ -197,7 +197,7 @@ public class PlayerGUI extends JFrame implements ActionListener {
     
     @Override
     public void actionPerformed(ActionEvent event) {
-    	
+
     	if (event.getSource() == twoPlayers) {
     		
     			for (int i = 2; i < 4; i++) {
@@ -246,6 +246,19 @@ public class PlayerGUI extends JFrame implements ActionListener {
                     return true;
         }
         return false;
+
+        if(event.getSource() == next) {
+            try {
+                new GameGUI();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+
+        if(event.getSource() == threePlayers)
+            playerFourSetup();
+            setVisible(false);
+
     }
     
 }
