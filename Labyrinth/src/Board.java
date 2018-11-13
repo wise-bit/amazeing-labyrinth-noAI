@@ -11,6 +11,7 @@ public class Board {
 	// DECK IS ARRAY OF STRINGS--  CHECK SLACK
 	// CREATE DECK
 
+	
 	private Tile[][] set;
 	private int[][] tileset;
 
