@@ -31,6 +31,7 @@ public class GameGUI extends JFrame implements ActionListener, MouseListener {
     private JButton[] bottomButtons = new JButton[3];
     private JButton[] leftButtons = new JButton[3];
     private JButton[] rightButtons = new JButton[3];
+    private JLabel extraTile = new JLabel();
 
     private JButton shiftColumn2Button = new JButton();
     
@@ -324,6 +325,10 @@ public class GameGUI extends JFrame implements ActionListener, MouseListener {
         }
         ////////////////////////////////////////////////////
 
+        ////////////////////////////////////////////////////
+        //Adds the extra tile onto the board and allows for rotation
+        extraTile = new JLabel(new ImageIcon());
+
         System.out.println(board.getDeck().getPlayers().get(0).getPlayerName());
 
         //Closes program if the exit option is clicked.
@@ -409,8 +414,8 @@ public class GameGUI extends JFrame implements ActionListener, MouseListener {
         for (int i = 0; i < 9; i++) {
             for (int j = 0; j < 9; j++) {
                 if (e.getSource() == board.getSet()[i][j]) {
-                    // System.out.printf("Label (%d, %d) was clicked\n", i, j);
-                    board.extra.s.binaryBoardPrinter();
+                    System.out.printf("Label (%d, %d) was clicked\n", i, j);
+                    // board.extra.s.binaryBoardPrinter();
                     System.out.println();
                     if (board.getDeck().getPlayers().get(currentPlayer).movePlayer(i,j, 0) == true){
                         board.getDeck().getPlayers().get(currentPlayer).setRows(i);

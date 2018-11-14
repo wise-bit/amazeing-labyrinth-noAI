@@ -27,8 +27,7 @@ public class Board {
 	public ExtraMethods extra = new ExtraMethods();
 
 	public Board() throws FileNotFoundException{
-		
-		ExtraMethods extra = new ExtraMethods();
+		extra.s.init();
 		set = extra.s.getBoard();
         makeDeck(4);
 		//displayTilesStart();

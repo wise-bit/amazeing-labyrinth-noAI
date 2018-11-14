@@ -36,7 +36,6 @@ public class Setup extends JFrame {
 
     // Constructor which calls the initialization method
     public Setup() throws FileNotFoundException {
-        init();
     }
 
     // Returns the counter ArrayList keeping track of empty spaces
@@ -128,7 +127,7 @@ public class Setup extends JFrame {
 
         otherTiles();
 
-
+        System.out.println(iCount + " " + lCount + " " + Arrays.toString(counter.toArray()));
 
     }
 
@@ -217,6 +216,9 @@ public class Setup extends JFrame {
                             this.board[i][j] = new Tile("Empty", true, 'i', i, j, 4);
                         }
                     }
+
+                    counter.remove(new Integer(i*9+j));
+
                 }
             }
         }
