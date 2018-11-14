@@ -88,94 +88,173 @@ public class GameGUI extends JFrame implements ActionListener {
             }
         }
 
-        //////////////////////////////////////////////////
-        //Creating the player #1 icon
-        BufferedImage playerOneImg = null;
-        try {
-            playerOneImg = ImageIO.read(new File("Labyrinth/res/PlayerImages/bluedot.png"));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        Image currentPlayerOneImg = playerOneImg.getScaledInstance(50,50, Image.SCALE_SMOOTH);
-        ImageIcon playerOneIcon = new ImageIcon(currentPlayerOneImg);
-
-        System.out.println();
-        System.out.println(board.getDeck().getPlayers().get(0));
-        board.getDeck().getPlayers().get(0).setIcon(playerOneIcon);
-        board.getDeck().getPlayers().get(0).setBounds(10, 10, 80, 80);
-        fixedBoard.add(board.getDeck().getPlayers().get(0));
-        board.getDeck().getPlayers().get(0).setVisible(true);
-
-        ////////////////////////////////////////////////////
-
-        //////////////////////////////////////////////////
-        //Creating the player #2 icon
-        BufferedImage playerTwoImg = null;
-        try {
-            playerTwoImg = ImageIO.read(new File("Labyrinth/res/PlayerImages/greendot.png")); // Doesnt exist
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        Image currentPlayerTwoImg = playerTwoImg.getScaledInstance(50,50, Image.SCALE_SMOOTH);
-        ImageIcon playerTwoIcon = new ImageIcon(currentPlayerTwoImg);
-
-        System.out.println();
-        System.out.println(board.getDeck().getPlayers().get(0));
-        board.getDeck().getPlayers().get(0).setIcon(playerTwoIcon);
-        board.getDeck().getPlayers().get(0).setBounds(10, 10, 80, 80);
-        fixedBoard.add(board.getDeck().getPlayers().get(0));
-        board.getDeck().getPlayers().get(0).setVisible(true);
-
-        ////////////////////////////////////////////////////
-
-        //////////////////////////////////////////////////
-        //Creating the player #3 icon
-        BufferedImage playerThreeImg = null;
-        try {
-            playerThreeImg = ImageIO.read(new File("Labyrinth/res/PlayerImages/orangedot.png"));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        Image currentPlayerThreeImg = playerThreeImg.getScaledInstance(50,50, Image.SCALE_SMOOTH);
-        ImageIcon playerThreeIcon = new ImageIcon(currentPlayerThreeImg);
-
-        System.out.println();
-        System.out.println(board.getDeck().getPlayers().get(0));
-        board.getDeck().getPlayers().get(0).setIcon(playerThreeIcon);
-        board.getDeck().getPlayers().get(0).setBounds(10, 10, 80, 80);
-        fixedBoard.add(board.getDeck().getPlayers().get(0));
-        board.getDeck().getPlayers().get(0).setVisible(true);
-
-        ////////////////////////////////////////////////////
-
-        //////////////////////////////////////////////////
-        //Creating the player #4 icon
-        BufferedImage playerFourImg = null;
-        try {
-            playerFourImg = ImageIO.read(new File("Labyrinth/res/bluedot.png")); // Doesnt exist
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        Image currentPlayerFourImg = playerFourImg.getScaledInstance(50,50, Image.SCALE_SMOOTH);
-        ImageIcon playerFourIcon = new ImageIcon(currentPlayerFourImg);
-
-        System.out.println();
-        System.out.println(board.getDeck().getPlayers().get(0));
-        board.getDeck().getPlayers().get(0).setIcon(playerFourIcon);
-        board.getDeck().getPlayers().get(0).setBounds(10, 10, 80, 80);
-        fixedBoard.add(board.getDeck().getPlayers().get(0));
-        board.getDeck().getPlayers().get(0).setVisible(true);
-
-        ////////////////////////////////////////////////////
-
-
-//        //Handing out the cards for each player
-//        for(int x = 0; x < 4; x++){
-//            board.getDeck().getPlayers().get(x).getPlayerName();
-//            System.out.println();
+//        //////////////////////////////////////////////////
+//        //Creating the player #1 icon
+//        BufferedImage playerOneImg = null;
+//        try {
+//            playerOneImg = ImageIO.read(new File("Labyrinth/res/PlayerImages/bluedot.png"));
+//        } catch (IOException e) {
+//            e.printStackTrace();
 //        }
+//        Image currentPlayerOneImg = playerOneImg.getScaledInstance(50,50, Image.SCALE_SMOOTH);
+//        ImageIcon playerOneIcon = new ImageIcon(currentPlayerOneImg);
+//
+//        System.out.println();
+//        System.out.println(board.getDeck().getPlayers().get(0));
+//        board.getDeck().getPlayers().get(0).setIcon(playerOneIcon);
+//        board.getDeck().getPlayers().get(0).setBounds(10, 10, 80, 80);
+//        fixedBoard.add(board.getDeck().getPlayers().get(0));
+//        board.getDeck().getPlayers().get(0).setVisible(true);
+//
+//        ////////////////////////////////////////////////////
+//
+//        //////////////////////////////////////////////////
+//        //Creating the player #2 icon
+//        BufferedImage playerTwoImg = null;
+//        try {
+//            playerTwoImg = ImageIO.read(new File("Labyrinth/res/PlayerImages/greendot.png")); // Doesnt exist
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
+//        Image currentPlayerTwoImg = playerTwoImg.getScaledInstance(50,50, Image.SCALE_SMOOTH);
+//        ImageIcon playerTwoIcon = new ImageIcon(currentPlayerTwoImg);
+//
+//        System.out.println();
+//        System.out.println(board.getDeck().getPlayers().get(0));
+//        board.getDeck().getPlayers().get(0).setIcon(playerTwoIcon);
+//        board.getDeck().getPlayers().get(0).setBounds(10, 10, 80, 80);
+//        fixedBoard.add(board.getDeck().getPlayers().get(0));
+//        board.getDeck().getPlayers().get(0).setVisible(true);
+//
+//        ////////////////////////////////////////////////////
+//
+//        //////////////////////////////////////////////////
+//        //Creating the player #3 icon
+//        BufferedImage playerThreeImg = null;
+//        try {
+//            playerThreeImg = ImageIO.read(new File("Labyrinth/res/PlayerImages/orangedot.png"));
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
+//        Image currentPlayerThreeImg = playerThreeImg.getScaledInstance(50,50, Image.SCALE_SMOOTH);
+//        ImageIcon playerThreeIcon = new ImageIcon(currentPlayerThreeImg);
+//
+//        System.out.println();
+//        System.out.println(board.getDeck().getPlayers().get(0));
+//        board.getDeck().getPlayers().get(0).setIcon(playerThreeIcon);
+//        board.getDeck().getPlayers().get(0).setBounds(10, 10, 80, 80);
+//        fixedBoard.add(board.getDeck().getPlayers().get(0));
+//        board.getDeck().getPlayers().get(0).setVisible(true);
+//
+//        ////////////////////////////////////////////////////
+//
+//        //////////////////////////////////////////////////
+//        //Creating the player #4 icon
+//        BufferedImage playerFourImg = null;
+//        try {
+//            playerFourImg = ImageIO.read(new File("Labyrinth/res/bluedot.png")); // Doesnt exist
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
+//        Image currentPlayerFourImg = playerFourImg.getScaledInstance(50,50, Image.SCALE_SMOOTH);
+//        ImageIcon playerFourIcon = new ImageIcon(currentPlayerFourImg);
+//
+//        System.out.println();
+//        System.out.println(board.getDeck().getPlayers().get(0));
+//        board.getDeck().getPlayers().get(0).setIcon(playerFourIcon);
+//        board.getDeck().getPlayers().get(0).setBounds(10, 10, 80, 80);
+//        fixedBoard.add(board.getDeck().getPlayers().get(0));
+//        board.getDeck().getPlayers().get(0).setVisible(true);
+//
+//      ////////////////////////////////////////////////////
 
-        //
+        ////////////////////////////////////////////////////
+        //Dealing the hand out for player ONE
+        String[] playerOneHand = board.getDeck().getPlayers().get(0).getPlayerHand();
+
+        for(int x = 0; x < 5; x++){
+
+            BufferedImage picOne = null;
+            try {
+                picOne = ImageIO.read(new File("Labyrinth/res/cards/" + playerOneHand[x] + ".jpg"));
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            Image currentHandOne = picOne.getScaledInstance(80,150, Image.SCALE_SMOOTH);
+            ImageIcon cardIconOne = new ImageIcon(currentHandOne);
+
+            JLabel cardOne = new JLabel(cardIconOne);
+            cardOne.setBounds(10 + (x * 70), 100, 80, 150);
+            add(cardOne);
+            setVisible(true);
+        }
+        ////////////////////////////////////////////////////
+
+        ////////////////////////////////////////////////////
+        //Dealing the hand out for player TWO
+        String[] playerTwoHand = board.getDeck().getPlayers().get(1).getPlayerHand();
+
+        for(int y = 0; y < 5; y++){
+
+            BufferedImage picTwo = null;
+            try {
+                picTwo = ImageIO.read(new File("Labyrinth/res/cards/" + playerTwoHand[y] + ".jpg"));
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            Image currentHandTwo = picTwo.getScaledInstance(80,150, Image.SCALE_SMOOTH);
+            ImageIcon cardIconTwo = new ImageIcon(currentHandTwo);
+
+            JLabel cardTwo = new JLabel(cardIconTwo);
+            cardTwo.setBounds(10 + (y * 70), 400, 80, 150);
+            add(cardTwo);
+            setVisible(true);
+        }
+        ////////////////////////////////////////////////////
+
+        ////////////////////////////////////////////////////
+        //Dealing the hand out for player THREE
+        String[] playerThreeHand = board.getDeck().getPlayers().get(2).getPlayerHand();
+
+        for(int i = 0; i < 5; i++){
+
+            BufferedImage picThree = null;
+            try {
+                picThree = ImageIO.read(new File("Labyrinth/res/cards/" + playerThreeHand[i] + ".jpg"));
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            Image currentHandThree = picThree.getScaledInstance(80,150, Image.SCALE_SMOOTH);
+            ImageIcon cardIconThree = new ImageIcon(currentHandThree);
+
+            JLabel cardThree = new JLabel(cardIconThree);
+            cardThree.setBounds(1000 + (i * 70), 100, 80, 150);
+            add(cardThree);
+            setVisible(true);
+        }
+        ////////////////////////////////////////////////////
+
+        ////////////////////////////////////////////////////
+        //Dealing the hand out for player ONE
+        String[] playerFourHand = board.getDeck().getPlayers().get(3).getPlayerHand();
+
+        for(int z = 0; z < 5; z++){
+
+            BufferedImage picFour = null;
+            try {
+                picFour = ImageIO.read(new File("Labyrinth/res/cards/" + playerFourHand[z] + ".jpg"));
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            Image currentHandFour = picFour.getScaledInstance(80,150, Image.SCALE_SMOOTH);
+            ImageIcon cardIconFour = new ImageIcon(currentHandFour);
+
+            JLabel card = new JLabel(cardIconFour);
+            card.setBounds(1000 + (z * 70), 400, 80, 150);
+            add(card);
+            setVisible(true);
+        }
+        ////////////////////////////////////////////////////
 
         //Closes program if the exit option is clicked.
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -185,6 +264,7 @@ public class GameGUI extends JFrame implements ActionListener {
 
     }
 
+    //Creates the menu bar where instruction, save and load functionalities can be accessed
     public void createMenuBar(){
         JMenuBar menuBar = new JMenuBar();
         setJMenuBar(menuBar);

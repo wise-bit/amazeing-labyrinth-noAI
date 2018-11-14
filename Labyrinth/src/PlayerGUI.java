@@ -231,6 +231,7 @@ public class PlayerGUI extends JFrame implements ActionListener {
         repaint();
 
         if (event.getSource() == next) {
+            this.setVisible(false);
             try {
                 new GameGUI();
             } catch (IOException e) {
