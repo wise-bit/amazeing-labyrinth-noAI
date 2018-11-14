@@ -28,6 +28,7 @@ public class Board {
 
 	public Board() throws FileNotFoundException{
 		extra.s.init();
+		extra.s.binaryBoardPrinter();
 		set = extra.s.getBoard();
         makeDeck(4);
 		//displayTilesStart();

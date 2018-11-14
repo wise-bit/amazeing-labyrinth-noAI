@@ -94,13 +94,23 @@ public class Tile extends JLabel {
 
     // Error checks rotation, between 0 and 3
     public void setRotation(int rotation) {
-        if (rotation >= 0 && rotation <= 3)
+        if (rotation >= 0 && rotation <= 3) {
             this.rotation = rotation;
-        else if (rotation == 4)
+            orientation();
+        }
+        else if (rotation == 4) {
             // When 4 is passed, random is assigned
             this.rotation = rand.nextInt(4);
-        else
-            this.rotation = 0;
+            orientation();
+        }
+        else if (rotation  > 0) {
+            setRotation(rotation - 4);
+            orientation();
+        }
+        else {
+            setRotation(0);
+            orientation();
+        }
     }
 
     // Sets a layout for the tiles
@@ -176,9 +186,10 @@ public class Tile extends JLabel {
     // Rotates the tile n number of times as governed by getRotation()
     public void orientation(){
 
+        setLayout();
         // Repeats the rotation process getRotation() number of times
         for (int i = 0; i < getRotation(); i++){
-            rotate();
+            rotateClockwise();
         }
 
     }

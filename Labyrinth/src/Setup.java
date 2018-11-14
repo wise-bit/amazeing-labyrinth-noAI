@@ -12,7 +12,7 @@ public class Setup extends JFrame {
     private Random rand = new Random();
 
     private Tile[][] board;
-
+    private int[][] binary;
 
     //// Variable initializations
 
@@ -126,8 +126,10 @@ public class Setup extends JFrame {
         }
 
         otherTiles();
+        setBinary(fullBinaryBoard());
 
-        System.out.println(iCount + " " + lCount + " " + Arrays.toString(counter.toArray()));
+        // System.out.println(iCount + " " + lCount + " " + Arrays.toString(counter.toArray()));
+        System.out.println("New initialization");
 
     }
 
@@ -281,6 +283,14 @@ public class Setup extends JFrame {
 
         return binaryBoard;
 
+    }
+
+    public void setBinary(int[][] fullBinaryBoard){
+        binary = fullBinaryBoard;
+    }
+
+    public int[][] getBinary() {
+        return binary;
     }
 
     public void binaryBoardPrinter(){

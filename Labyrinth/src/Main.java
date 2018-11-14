@@ -43,6 +43,7 @@ public class Main {
 
         // new HomePageGUI();
         new GameGUI();
+
         // new UX().save(s.getBoard());
         // new Instructions();
 
