@@ -77,8 +77,8 @@ public class GameGUI extends JFrame implements ActionListener {
 
                     board.getSet()[i][j].setIcon(tileIcon);
 
-                    System.out.println(board.getSet()[i][j]);
-                    board.getSet()[i][j].setBounds(18 + 60 * (j- 1),22 + 60 * (i - 1),50,50); // TODO: Chnage
+                    // System.out.println(board.getSet()[i][j]);
+                    board.getSet()[i][j].setBounds(18 + 60 * (j- 1),22 + 60 * (i - 1),50,50);
 
                     fixedBoard.add(board.getSet()[i][j]);
                     board.getSet()[i][j].setVisible(true);
@@ -88,6 +88,7 @@ public class GameGUI extends JFrame implements ActionListener {
             }
         }
 
+        //////////////////////////////////////////////////
         //Creating the player #1 icon
         BufferedImage playerOneImg = null;
         try {
@@ -95,12 +96,78 @@ public class GameGUI extends JFrame implements ActionListener {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        Image currentPlayerOneImg = playerOneImg.getScaledInstance(50,50, Image.SCALE_SMOOTH);// TODO: Change
+        Image currentPlayerOneImg = playerOneImg.getScaledInstance(50,50, Image.SCALE_SMOOTH);
         ImageIcon playerOneIcon = new ImageIcon(currentPlayerOneImg);
 
-        board.extra.getDeck().getPlayers().get(0).setBounds(10, 10, 80, 80);
-        fixedBoard.add(board.extra.getDeck().getPlayers().get(0));
-        board.extra.getDeck().getPlayers().get(0).setVisible(true);
+        System.out.println();
+        System.out.println(board.getDeck().getPlayers().get(0));
+        board.getDeck().getPlayers().get(0).setIcon(playerOneIcon);
+        board.getDeck().getPlayers().get(0).setBounds(10, 10, 80, 80);
+        fixedBoard.add(board.getDeck().getPlayers().get(0));
+        board.getDeck().getPlayers().get(0).setVisible(true);
+
+        ////////////////////////////////////////////////////
+
+        //////////////////////////////////////////////////
+        //Creating the player #2 icon
+        BufferedImage playerTwoImg = null;
+        try {
+            playerTwoImg = ImageIO.read(new File("Labyrinth/res/PlayerImages/yellowdot.png")); // Doesnt exist
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        Image currentPlayerTwoImg = playerTwoImg.getScaledInstance(50,50, Image.SCALE_SMOOTH);
+        ImageIcon playerTwoIcon = new ImageIcon(currentPlayerTwoImg);
+
+        System.out.println();
+        System.out.println(board.getDeck().getPlayers().get(0));
+        board.getDeck().getPlayers().get(0).setIcon(playerTwoIcon);
+        board.getDeck().getPlayers().get(0).setBounds(10, 10, 80, 80);
+        fixedBoard.add(board.getDeck().getPlayers().get(0));
+        board.getDeck().getPlayers().get(0).setVisible(true);
+
+        ////////////////////////////////////////////////////
+
+        //////////////////////////////////////////////////
+        //Creating the player #3 icon
+        BufferedImage playerThreeImg = null;
+        try {
+            playerThreeImg = ImageIO.read(new File("Labyrinth/res/PlayerImages/bluedot.png"));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        Image currentPlayerThreeImg = playerThreeImg.getScaledInstance(50,50, Image.SCALE_SMOOTH);
+        ImageIcon playerThreeIcon = new ImageIcon(currentPlayerThreeImg);
+
+        System.out.println();
+        System.out.println(board.getDeck().getPlayers().get(0));
+        board.getDeck().getPlayers().get(0).setIcon(playerThreeIcon);
+        board.getDeck().getPlayers().get(0).setBounds(10, 10, 80, 80);
+        fixedBoard.add(board.getDeck().getPlayers().get(0));
+        board.getDeck().getPlayers().get(0).setVisible(true);
+
+        ////////////////////////////////////////////////////
+
+        //////////////////////////////////////////////////
+        //Creating the player #4 icon
+        BufferedImage playerFourImg = null;
+        try {
+            playerFourImg = ImageIO.read(new File("Labyrinth/res/PlayerImages/greendot.png")); // Doesnt exist
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        Image currentPlayerFourImg = playerFourImg.getScaledInstance(50,50, Image.SCALE_SMOOTH);
+        ImageIcon playerFourIcon = new ImageIcon(currentPlayerFourImg);
+
+        System.out.println();
+        System.out.println(board.getDeck().getPlayers().get(0));
+        board.getDeck().getPlayers().get(0).setIcon(playerFourIcon);
+        board.getDeck().getPlayers().get(0).setBounds(10, 10, 80, 80);
+        fixedBoard.add(board.getDeck().getPlayers().get(0));
+        board.getDeck().getPlayers().get(0).setVisible(true);
+
+        ////////////////////////////////////////////////////
+
 
 //        //Handing out the cards for each player
 //        for(int x = 0; x < 4; x++){
