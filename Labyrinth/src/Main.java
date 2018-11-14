@@ -14,7 +14,6 @@ public class Main {
 
     public static void main(String[] args) throws IOException, FontFormatException {
         // new HomePageGUI();
-        Player[] players = new Player[4];
 
         // Creates a new setup
         // Setup s = new Setup();

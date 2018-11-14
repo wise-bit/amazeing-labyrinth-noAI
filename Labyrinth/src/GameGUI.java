@@ -27,18 +27,27 @@ public class GameGUI extends JFrame implements ActionListener {
     private JLabel[] playerColour = new JLabel[4];
     private JLabel[] playerName = new JLabel[4];
 
+    private JButton shiftColumn2Button = new JButton();
+    
     public GameGUI() throws IOException {
 
+    	
+    	
         setLayout(null);
         setBounds(0, 0, board.getDim().width, board.getDim().height);
         this.setTitle("aMAZEing Labyrinth");
 
+        shiftColumn2Button.setBounds(580, 840, 50, 50);
+        shiftColumn2Button.addActionListener(this);
+    	add(shiftColumn2Button);
+    	
         // setContentPane(fixedBoard);
 
         // Creates a scaleable image
         BufferedImage img = null;
         try {
-            img = ImageIO.read(new File("Labyrinth/res/blogamazeingboard.jpg"));
+            // img = ImageIO.read(new File("Labyrinth/res/blogamazeingboard.jpg"));
+            img = ImageIO.read(new File("Labyrinth/res/white.jpg")); // TODO: Switch Back
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -155,7 +164,7 @@ public class GameGUI extends JFrame implements ActionListener {
         //Creating the player #4 icon
         BufferedImage playerFourImg = null;
         try {
-            playerFourImg = ImageIO.read(new File("Labyrinth/res/PlayerImagesOnBoard/bluedot.png")); // Doesnt exist
+            playerFourImg = ImageIO.read(new File("Labyrinth/res/PlayerImagesOnBoard/bluedot.png"));
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -163,6 +172,7 @@ public class GameGUI extends JFrame implements ActionListener {
         ImageIcon playerFourIcon = new ImageIcon(currentPlayerFourImg);
 
         System.out.println();
+
         System.out.println(board.getDeck().getPlayers().get(3));
         board.getDeck().getPlayers().get(3).setIcon(playerFourIcon);
         board.getDeck().getPlayers().get(3).setBounds(393, 393, 20, 20);
@@ -236,6 +246,12 @@ public class GameGUI extends JFrame implements ActionListener {
             setVisible(true);
         }
         ////////////////////////////////////////////////////
+      
+        // System.out.println(board.getDeck().getPlayers().get(0));
+        // board.getDeck().getPlayers().get(0).setIcon(playerFourIcon);
+        // board.getDeck().getPlayers().get(0).setBounds(10, fixedBoard.getY()-10, 50, 50);
+        // fixedBoard.add(board.getDeck().getPlayers().get(0));
+        // board.getDeck().getPlayers().get(0).setVisible(true);
 
         ////////////////////////////////////////////////////
         //Dealing the hand out for player FOUR
@@ -265,7 +281,8 @@ public class GameGUI extends JFrame implements ActionListener {
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         addDots();
         setVisible(true);
-        setExtendedState(getExtendedState() | JFrame.MAXIMIZED_BOTH);
+        // setExtendedState(getExtendedState() | JFrame.MAXIMIZED_BOTH);
+        setSize(1440, 900);
         repaint();
 
     }
@@ -320,9 +337,19 @@ public class GameGUI extends JFrame implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
+    	
         if(e.getSource() == instructions) {
             new Instructions();
             setVisible(true);
         }
+        
+        if (e.getSource() == shiftColumn2Button) {
+        	
+        	board.getSet()[7][2].setBounds(18 + 60 * 2, 25 + 60 * 7, 50, 50);
+        	fixedBoard.add(board.getSet()[7][2]);
+        	board.shiftBoardTiles(7, 2, 3);
+        	
+        }
+        	
     }
 }

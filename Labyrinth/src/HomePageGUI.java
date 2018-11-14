@@ -85,7 +85,8 @@ public class HomePageGUI extends JFrame implements ActionListener {
 
         //Makes every componet of the home screen visible
         setVisible(true);
-        setExtendedState(getExtendedState() | JFrame.MAXIMIZED_BOTH);
+        // setExtendedState(getExtendedState() | JFrame.MAXIMIZED_BOTH);
+        setSize(1440, 900);
 //      homeScreenMusic();
         repaint();
 
