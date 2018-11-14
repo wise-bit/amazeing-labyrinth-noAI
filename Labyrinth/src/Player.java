@@ -22,6 +22,12 @@ public class Player extends JLabel {
     private int rows;
     private int columns;
 
+    // for traversal of movePlayer
+    public static final int LEFT = 0;
+    public static final int RIGHT = 1;
+    public static final int UP = 2;
+    public static final int DOWN = 3;
+
     //Constructor Method
     public Player(String[] playerHand, String playerName, String playerColour, int rows, int columns) throws FileNotFoundException {
         this.playerHand = playerHand;
@@ -112,4 +118,59 @@ public class Player extends JLabel {
             }
         }
     }
+
+    public boolean movePlayer(int row, int column, int move){
+
+        if (row == getRows() && column == getColumns()) {
+            return false;
+        } else if (row == getRows() && column == getColumns() && move > 1) {
+            return true;
+        } else {
+//            System.out.printf("Total moves: %d - press 'ENTER' to continue...\n", move);
+//            System.in.read();
+            for (int count = 0; count < 4; count++) {
+                switch (count) {
+                    case LEFT:
+                        if (validMove(row, column-1)) {
+                            if (movePlayer(row, column-1, move+1)) {
+                                return true;
+                            }
+                        }
+                        break;
+                    case RIGHT:
+                        if (validMove(row, column+1)) {
+                            if (movePlayer(row, column+1, move+1)) {
+                                return true;
+                            }
+                        }
+                        break;
+                    case UP:
+                        if (validMove(row - 1, column)) {
+                            if (movePlayer(row - 1, column, move+1)) {
+                                return true;
+                            }
+                        }
+                        break;
+                    case DOWN:
+                        if (validMove(row + 1, column)) {
+                            if (movePlayer(row + 1, column, move+1)) {
+                                return true;
+                            }
+                        }
+                        break;
+                }
+            }
+        }
+        return false;
+
+    }
+
+    public static boolean validMove(int row, int column) {
+        try {
+            return MAZE[row][column] == s;
+        } catch (Exception e) {
+            return false;
+        }
+    }
+
 }
