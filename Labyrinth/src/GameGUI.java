@@ -23,6 +23,9 @@ public class GameGUI extends JFrame implements ActionListener {
     private JMenuItem save = new JMenuItem("Save");
     private JMenuItem load = new JMenuItem("Load");
     private Player[] player = new Player[4];
+    private ImageIcon[] dots = new ImageIcon[4];
+    private JLabel[] playerColour = new JLabel[4];
+    private JLabel[] playerName = new JLabel[4];
 
     public GameGUI() throws IOException {
 
@@ -88,85 +91,85 @@ public class GameGUI extends JFrame implements ActionListener {
             }
         }
 
-//        //////////////////////////////////////////////////
-//        //Creating the player #1 icon
-//        BufferedImage playerOneImg = null;
-//        try {
-//            playerOneImg = ImageIO.read(new File("Labyrinth/res/PlayerImages/bluedot.png"));
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
-//        Image currentPlayerOneImg = playerOneImg.getScaledInstance(50,50, Image.SCALE_SMOOTH);
-//        ImageIcon playerOneIcon = new ImageIcon(currentPlayerOneImg);
-//
-//        System.out.println();
-//        System.out.println(board.getDeck().getPlayers().get(0));
-//        board.getDeck().getPlayers().get(0).setIcon(playerOneIcon);
-//        board.getDeck().getPlayers().get(0).setBounds(10, 10, 80, 80);
-//        fixedBoard.add(board.getDeck().getPlayers().get(0));
-//        board.getDeck().getPlayers().get(0).setVisible(true);
-//
-//        ////////////////////////////////////////////////////
-//
-//        //////////////////////////////////////////////////
-//        //Creating the player #2 icon
-//        BufferedImage playerTwoImg = null;
-//        try {
-//            playerTwoImg = ImageIO.read(new File("Labyrinth/res/PlayerImages/greendot.png")); // Doesnt exist
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
-//        Image currentPlayerTwoImg = playerTwoImg.getScaledInstance(50,50, Image.SCALE_SMOOTH);
-//        ImageIcon playerTwoIcon = new ImageIcon(currentPlayerTwoImg);
-//
-//        System.out.println();
-//        System.out.println(board.getDeck().getPlayers().get(0));
-//        board.getDeck().getPlayers().get(0).setIcon(playerTwoIcon);
-//        board.getDeck().getPlayers().get(0).setBounds(10, 10, 80, 80);
-//        fixedBoard.add(board.getDeck().getPlayers().get(0));
-//        board.getDeck().getPlayers().get(0).setVisible(true);
-//
-//        ////////////////////////////////////////////////////
-//
-//        //////////////////////////////////////////////////
-//        //Creating the player #3 icon
-//        BufferedImage playerThreeImg = null;
-//        try {
-//            playerThreeImg = ImageIO.read(new File("Labyrinth/res/PlayerImages/orangedot.png"));
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
-//        Image currentPlayerThreeImg = playerThreeImg.getScaledInstance(50,50, Image.SCALE_SMOOTH);
-//        ImageIcon playerThreeIcon = new ImageIcon(currentPlayerThreeImg);
-//
-//        System.out.println();
-//        System.out.println(board.getDeck().getPlayers().get(0));
-//        board.getDeck().getPlayers().get(0).setIcon(playerThreeIcon);
-//        board.getDeck().getPlayers().get(0).setBounds(10, 10, 80, 80);
-//        fixedBoard.add(board.getDeck().getPlayers().get(0));
-//        board.getDeck().getPlayers().get(0).setVisible(true);
-//
-//        ////////////////////////////////////////////////////
-//
-//        //////////////////////////////////////////////////
-//        //Creating the player #4 icon
-//        BufferedImage playerFourImg = null;
-//        try {
-//            playerFourImg = ImageIO.read(new File("Labyrinth/res/bluedot.png")); // Doesnt exist
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
-//        Image currentPlayerFourImg = playerFourImg.getScaledInstance(50,50, Image.SCALE_SMOOTH);
-//        ImageIcon playerFourIcon = new ImageIcon(currentPlayerFourImg);
-//
-//        System.out.println();
-//        System.out.println(board.getDeck().getPlayers().get(0));
-//        board.getDeck().getPlayers().get(0).setIcon(playerFourIcon);
-//        board.getDeck().getPlayers().get(0).setBounds(10, 10, 80, 80);
-//        fixedBoard.add(board.getDeck().getPlayers().get(0));
-//        board.getDeck().getPlayers().get(0).setVisible(true);
-//
-//      ////////////////////////////////////////////////////
+        //////////////////////////////////////////////////
+        //Creating the player #1 icon
+        BufferedImage playerOneImg = null;
+        try {
+            playerOneImg = ImageIO.read(new File("Labyrinth/res/PlayerImagesOnBoard/reddot.png"));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        Image currentPlayerOneImg = playerOneImg.getScaledInstance(20,20, Image.SCALE_SMOOTH);
+        ImageIcon playerOneIcon = new ImageIcon(currentPlayerOneImg);
+
+        System.out.println();
+        System.out.println(board.getDeck().getPlayers().get(0));
+        board.getDeck().getPlayers().get(0).setIcon(playerOneIcon);
+        board.getDeck().getPlayers().get(0).setBounds(35, 10, 80, 80);
+        fixedBoard.add(board.getDeck().getPlayers().get(0));
+        board.getDeck().getPlayers().get(0).setVisible(true);
+
+        ////////////////////////////////////////////////////
+
+        //////////////////////////////////////////////////
+        //Creating the player #2 icon
+        BufferedImage playerTwoImg = null;
+        try {
+            playerTwoImg = ImageIO.read(new File("Labyrinth/res/PlayerImagesOnBoard/greendot.png")); // Doesnt exist
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        Image currentPlayerTwoImg = playerTwoImg.getScaledInstance(20,20, Image.SCALE_SMOOTH);
+        ImageIcon playerTwoIcon = new ImageIcon(currentPlayerTwoImg);
+
+        System.out.println();
+        System.out.println(board.getDeck().getPlayers().get(1));
+        board.getDeck().getPlayers().get(1).setIcon(playerTwoIcon);
+        board.getDeck().getPlayers().get(1).setBounds(38, 366, 80, 80);
+        fixedBoard.add(board.getDeck().getPlayers().get(1));
+        board.getDeck().getPlayers().get(1).setVisible(true);
+
+        ////////////////////////////////////////////////////
+
+        //////////////////////////////////////////////////
+        //Creating the player #3 icon
+        BufferedImage playerThreeImg = null;
+        try {
+            playerThreeImg = ImageIO.read(new File("Labyrinth/res/PlayerImagesOnBoard/yellowdot.png"));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        Image currentPlayerThreeImg = playerThreeImg.getScaledInstance(20,20, Image.SCALE_SMOOTH);
+        ImageIcon playerThreeIcon = new ImageIcon(currentPlayerThreeImg);
+
+        System.out.println();
+        System.out.println(board.getDeck().getPlayers().get(2));
+        board.getDeck().getPlayers().get(2).setIcon(playerThreeIcon);
+        board.getDeck().getPlayers().get(2).setBounds(390, 37, 20, 20);
+        fixedBoard.add(board.getDeck().getPlayers().get(2));
+        board.getDeck().getPlayers().get(2).setVisible(true);
+
+        ////////////////////////////////////////////////////
+
+        //////////////////////////////////////////////////
+        //Creating the player #4 icon
+        BufferedImage playerFourImg = null;
+        try {
+            playerFourImg = ImageIO.read(new File("Labyrinth/res/PlayerImagesOnBoard/bluedot.png")); // Doesnt exist
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        Image currentPlayerFourImg = playerFourImg.getScaledInstance(20,20, Image.SCALE_SMOOTH);
+        ImageIcon playerFourIcon = new ImageIcon(currentPlayerFourImg);
+
+        System.out.println();
+        System.out.println(board.getDeck().getPlayers().get(3));
+        board.getDeck().getPlayers().get(3).setIcon(playerFourIcon);
+        board.getDeck().getPlayers().get(3).setBounds(393, 393, 20, 20);
+        fixedBoard.add(board.getDeck().getPlayers().get(3));
+        board.getDeck().getPlayers().get(3).setVisible(true);
+
+      ////////////////////////////////////////////////////
 
         ////////////////////////////////////////////////////
         //Dealing the hand out for player ONE
@@ -235,7 +238,7 @@ public class GameGUI extends JFrame implements ActionListener {
         ////////////////////////////////////////////////////
 
         ////////////////////////////////////////////////////
-        //Dealing the hand out for player ONE
+        //Dealing the hand out for player FOUR
         String[] playerFourHand = board.getDeck().getPlayers().get(3).getPlayerHand();
 
         for(int z = 0; z < 5; z++){
@@ -256,8 +259,11 @@ public class GameGUI extends JFrame implements ActionListener {
         }
         ////////////////////////////////////////////////////
 
+        System.out.println(board.getDeck().getPlayers().get(0).getPlayerName());
+
         //Closes program if the exit option is clicked.
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        addDots();
         setVisible(true);
         setExtendedState(getExtendedState() | JFrame.MAXIMIZED_BOTH);
         repaint();
@@ -285,16 +291,38 @@ public class GameGUI extends JFrame implements ActionListener {
         file.add(load);
     }
 
+    //Adds the dots that the player is associated with in the game
+    public void addDots(){
+        dots[0] = new ImageIcon("Labyrinth/res/PlayerImages/bluedot.png");
+        playerColour[0] = new JLabel(dots[0]);
+        playerColour[0].setBounds(10, 10, 80, 80);
+        add(playerColour[0]);
+
+        dots[1] = new ImageIcon("Labyrinth/res/PlayerImages/greendot.png");
+        playerColour[1] = new JLabel(dots[1]);
+        playerColour[1].setBounds(10, 310, 80, 80);
+        add(playerColour[1]);
+
+        dots[2] = new ImageIcon("Labyrinth/res/PlayerImages/yellowdot.png");
+        playerColour[2] = new JLabel(dots[2]);
+        playerColour[2].setBounds(1000, 10, 80, 80);
+        add(playerColour[2]);
+
+        dots[3] = new ImageIcon("Labyrinth/res/PlayerImages/reddot.png");
+        playerColour[3] = new JLabel(dots[3]);
+        playerColour[3].setBounds(1000, 310, 80, 80);
+        add(playerColour[3]);
+    }
+
+    public void addNames(){
+        //playerName[0] = new JLabel(board.getDeck().getPlayers().get(0).getPlayerName());
+    }
+
     @Override
     public void actionPerformed(ActionEvent e) {
         if(e.getSource() == instructions) {
-            try {
-                new HomePageGUI();
-            } catch (IOException e1) {
-                e1.printStackTrace();
-            } catch (FontFormatException e1) {
-                e1.printStackTrace();
-            }
+            new Instructions();
+            setVisible(true);
         }
     }
 }
