@@ -128,8 +128,6 @@ public class Player extends JLabel {
         } else if (row == getRows() && column == getColumns() && move > 1) {
             return true;
         } else {
-//            System.out.printf("Total moves: %d - press 'ENTER' to continue...\n", move);
-//            System.in.read();
             for (int count = 0; count < 4; count++) {
                 switch (count) {
                     case LEFT:
