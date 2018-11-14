@@ -1,6 +1,7 @@
 import javax.swing.*;
+import java.awt.*;
 
-public class Instructions extends JFrame{
+public class Instructions {
 
     private String instructions = "The players of Labyrinth must search the Labyrinth for your magical " +
             "objects and characters by carefully moving through the constantly changing maze. " +
@@ -15,9 +16,14 @@ public class Instructions extends JFrame{
     private JOptionPane optionPane = new JOptionPane();
 
     public Instructions() {
-        setSize(300, 300);
-        setDefaultCloseOperation(EXIT_ON_CLOSE);
-        optionPane.add(scrollPane);
-        setVisible(true);
+
+        JTextArea textArea = new JTextArea(instructions);
+        JScrollPane scrollPane = new JScrollPane(textArea);
+        textArea.setLineWrap(true);
+        textArea.setWrapStyleWord(true);
+        scrollPane.setPreferredSize( new Dimension( 200, 200 ) );
+        JOptionPane.showMessageDialog(textArea, scrollPane, "Instructions", JOptionPane.INFORMATION_MESSAGE);
+
     }
 }
+
