@@ -27,12 +27,14 @@ public class GameGUI extends JFrame implements ActionListener, MouseListener {
     private JLabel[] playerColour = new JLabel[4];
     private JLabel[] playerName = new JLabel[4];
     private int currentPlayer = 0;
+    private JButton[] topButtons = new JButton[3];
+    private JButton[] bottomButtons = new JButton[3];
+    private JButton[] leftButtons = new JButton[3];
+    private JButton[] rightButtons = new JButton[3];
 
     private JButton shiftColumn2Button = new JButton();
     
     public GameGUI() throws IOException {
-
-    	
     	
         setLayout(null);
         setBounds(0, 0, board.getDim().width, board.getDim().height);
@@ -47,8 +49,8 @@ public class GameGUI extends JFrame implements ActionListener, MouseListener {
         // Creates a scaleable image
         BufferedImage img = null;
         try {
-            // img = ImageIO.read(new File("Labyrinth/res/blogamazeingboard.jpg"));
-            img = ImageIO.read(new File("Labyrinth/res/white.jpg")); // TODO: Switch Back
+            // img = ImageIO.read(new File("Labyrinth/res/white.jpg"));
+            img = ImageIO.read(new File("Labyrinth/res/blogamazeingboard.jpg")); // TODO: Switch Back
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -190,7 +192,7 @@ public class GameGUI extends JFrame implements ActionListener, MouseListener {
         fixedBoard.add(board.getDeck().getPlayers().get(3));
         board.getDeck().getPlayers().get(3).setVisible(true);
 
-      ////////////////////////////////////////////////////
+        ////////////////////////////////////////////////////
 
         ////////////////////////////////////////////////////
         //Dealing the hand out for player ONE
@@ -283,6 +285,42 @@ public class GameGUI extends JFrame implements ActionListener, MouseListener {
             card.setBounds(1000 + (z * 70), 400, 80, 150);
             add(card);
             setVisible(true);
+        }
+        ////////////////////////////////////////////////////
+
+        ////////////////////////////////////////////////////
+        //Buttons to shift the top columns
+        for(int t = 0; t < 3; t++) {
+            topButtons[t] = new JButton();
+            topButtons[t].setBounds(561 + (t * 117), 40, 50, 50);
+            add(topButtons[t]);
+        }
+        ////////////////////////////////////////////////////
+
+        ////////////////////////////////////////////////////
+        //Buttons to shift the bottom columns
+        for(int b = 0; b < 3; b++) {
+            bottomButtons[b] = new JButton();
+            bottomButtons[b].setBounds(565 + (b * 117), 540, 50, 50);
+            add(bottomButtons[b]);
+        }
+        ////////////////////////////////////////////////////
+
+        ////////////////////////////////////////////////////
+        //Buttons to shift the left side rows
+        for(int l = 0; l < 3; l++) {
+            leftButtons[l] = new JButton();
+            leftButtons[l].setBounds(430, 175 + (l * 117), 50, 50);
+            add(leftButtons[l]);
+        }
+        ////////////////////////////////////////////////////
+
+        ////////////////////////////////////////////////////
+        //Buttons to shift the right side rows
+        for(int r = 0; r < 3; r++){
+            rightButtons[r] = new JButton();
+            rightButtons[r].setBounds(931, 175 + (r * 117), 50, 50);
+            add(rightButtons[r]);
         }
         ////////////////////////////////////////////////////
 
