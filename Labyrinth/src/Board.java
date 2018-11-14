@@ -13,6 +13,7 @@ public class Board {
 	private int[][] tileset;
 
 	private Player[] playersArray;
+    Deck deck;
 
 	private final int RIGHT = 1;
 	private final int LEFT = 2;
@@ -23,11 +24,14 @@ public class Board {
 
 	private Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
 
+	public ExtraMethods extra = new ExtraMethods();
 
 	public Board() throws FileNotFoundException{
 		
 		ExtraMethods extra = new ExtraMethods();
 		set = extra.s.getBoard();
+        makeDeck(4);
+		//displayTilesStart();
 
 		Tile[][] set = extra.s.getBoard();
         for (int i = 0; i < 9; i++){
@@ -37,9 +41,19 @@ public class Board {
                 }
             }
         }
-
 	}
-	
+
+    private void displayTilesStart() {
+
+    	for (int i = 0; i < set.length; i++) {
+    		
+    		for (int j = 0; j < set[i].length; j++) {
+    			
+    		//	set[i][j].setBounds(r);
+    		}
+    	}
+	}
+
 	public void shiftBoardTiles(int rowToShift, int columnToShift, int directionOfShift){
 
 		// Checks if any player is on the row/column being shifted (depending on direction of shift)
@@ -228,4 +242,16 @@ public class Board {
 	public void setDim(Dimension dim) {
 		this.dim = dim;
 	}
+
+    public void setDeck(Deck deck) {
+        this.deck = deck;
+    }
+
+    public Deck getDeck() {
+        return deck;
+    }
+
+    public void makeDeck(int players) throws FileNotFoundException {
+        deck = new Deck(players);
+    }
 }

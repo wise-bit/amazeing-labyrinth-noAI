@@ -96,7 +96,8 @@ public class PlayerGUI extends JFrame implements ActionListener {
 
         //Makes all the attributes of the screen visible
         setVisible(true);
-        setExtendedState(getExtendedState() | JFrame.MAXIMIZED_BOTH);
+        // setExtendedState(getExtendedState() | JFrame.MAXIMIZED_BOTH);
+        setSize(1440, 900);
         repaint();
     }
 
@@ -214,6 +215,7 @@ public class PlayerGUI extends JFrame implements ActionListener {
                 remove(playerTitle[3]);
                 remove(playerColour[3]);
                 remove(names[3]);
+
             } else {
                 reAddPlayerThreeSetup();
             }
@@ -236,11 +238,6 @@ public class PlayerGUI extends JFrame implements ActionListener {
                 e.printStackTrace();
             }
         }
-
-        if (event.getSource() == threePlayers)
-            playerFourSetup();
-        setVisible(false);
-
     }
 
     // This method checks if a specific method is found on the frame/panel

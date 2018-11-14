@@ -12,6 +12,7 @@ public class ExtraMethods {
     Tile[][] set = s.getBoard();
 
     public ExtraMethods() throws FileNotFoundException {
+
     }
 
     public void listFonts() {

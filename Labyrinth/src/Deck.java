@@ -25,20 +25,21 @@ public class Deck {
                 row = 1;
                 column = 1;
             } else if (x == 1) {
-                color = "blue";
+                color = "yellow";
                 row = 7;
                 column = 7;
             } else if (x == 2) {
-                color = "green";
+                color = "blue";
                 row = 1;
                 column = 7;
             } else if (x == 3) {
-                color = "orange";
+                color = "green";
                 row = 7;
                 column = 1;
             }
 
             Player player = new Player(newDeck(), name, color, row, column);
+            players.add(player);
 
         }
 

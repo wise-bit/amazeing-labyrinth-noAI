@@ -78,7 +78,6 @@ public class HomePageGUI extends JFrame implements ActionListener {
         add(start);
         start.addActionListener(this);
 
-        // TODO: remove weird white lines around
         // Makes button bigger when hovered over
         start.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
@@ -94,7 +93,8 @@ public class HomePageGUI extends JFrame implements ActionListener {
 
         //Makes every componet of the home screen visible
         setVisible(true);
-        setExtendedState(getExtendedState() | JFrame.MAXIMIZED_BOTH);
+        // setExtendedState(getExtendedState() | JFrame.MAXIMIZED_BOTH);
+        setSize(1440, 900);
 //      homeScreenMusic();
         repaint();
 

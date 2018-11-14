@@ -161,6 +161,18 @@ public class Tile extends JLabel {
 
     }
 
+    // Rotates the tile clockwise by one step
+    public void rotateClockwise() {
+        rotate();
+    }
+
+    // Rotates the tile counter-clockwise by one step
+    public void rotateCounterClockwise() {
+        for (int i = 0; i < 3; i++){
+            rotate();
+        }
+    }
+
     // Rotates the tile n number of times as governed by getRotation()
     public void orientation(){
 
