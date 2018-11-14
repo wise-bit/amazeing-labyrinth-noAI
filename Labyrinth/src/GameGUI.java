@@ -43,7 +43,8 @@ public class GameGUI extends JFrame implements ActionListener {
         // Creates a scaleable image
         BufferedImage img = null;
         try {
-            img = ImageIO.read(new File("Labyrinth/res/blogamazeingboard.jpg"));
+            // img = ImageIO.read(new File("Labyrinth/res/blogamazeingboard.jpg"));
+            img = ImageIO.read(new File("Labyrinth/res/white.jpg")); // TODO: Switch Back
         } catch (IOException e) {
             e.printStackTrace();
         }
