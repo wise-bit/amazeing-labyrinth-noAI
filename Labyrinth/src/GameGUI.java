@@ -99,7 +99,7 @@ public class GameGUI extends JFrame implements ActionListener {
         ImageIcon playerOneIcon = new ImageIcon(currentPlayerOneImg);
 
         setBounds(10, 10, 80, 80);
-        fixedBoard.add(playerOneIcon);
+        //fixedBoard.add(playerOneIcon);
         setVisible(true);
 
 //        //Handing out the cards for each player
