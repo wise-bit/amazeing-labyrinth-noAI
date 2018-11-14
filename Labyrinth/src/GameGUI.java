@@ -19,6 +19,9 @@ public class GameGUI extends JFrame implements ActionListener {
     private JMenuBar menuBar = new JMenuBar();
     private JMenu help = new JMenu("Help");
     private JMenuItem instructions = new JMenuItem("Instructions");
+    private JMenu file = new JMenu("File");
+    private JMenuItem save = new JMenuItem("Save");
+    private JMenuItem load = new JMenuItem("Load");
 
     public GameGUI() throws IOException {
 
@@ -38,7 +41,7 @@ public class GameGUI extends JFrame implements ActionListener {
         Image dimg = img.getScaledInstance(board.getDim().height/2, board.getDim().height/2, Image.SCALE_SMOOTH);
         ImageIcon imageIcon = new ImageIcon(dimg);
         fixedBoard = new JLabel(imageIcon);
-        fixedBoard.setBounds(board.getDim().width/4,board.getDim().height/4,board.getDim().height/2,board.getDim().height/2);
+        fixedBoard.setBounds(board.getDim().width/3,board.getDim().height/10,board.getDim().height/2,board.getDim().height/2);
         fixedBoard.setVisible(true);
         add(fixedBoard);
         // Main fixed board image ends here
@@ -46,7 +49,10 @@ public class GameGUI extends JFrame implements ActionListener {
         //Creates the menu bar
         setJMenuBar(menuBar);
         menuBar.add(help);
+        menuBar.add(file);
         help.add(instructions);
+        file.add(save);
+        file.add(load);
 
         // Places the other tiles
         for (int i = 0; i < 9; i++){
@@ -71,7 +77,7 @@ public class GameGUI extends JFrame implements ActionListener {
                     board.getSet()[i][j].setIcon(tileIcon);
 
                     System.out.println(board.getSet()[i][j]);
-                    board.getSet()[i][j].setBounds(18 + 60 * (j- 1),25 + 60 * (i - 1),50,50); // TODO: Chnage
+                    board.getSet()[i][j].setBounds(18 + 60 * (j- 1),22 + 60 * (i - 1),50,50); // TODO: Chnage
 
                     fixedBoard.add(board.getSet()[i][j]);
                     board.getSet()[i][j].setVisible(true);
@@ -106,6 +112,15 @@ public class GameGUI extends JFrame implements ActionListener {
 
         JMenuItem instructions = new JMenuItem("Instructions");
         help.add(instructions);
+
+        JMenu file = new JMenu("File");
+        menuBar.add(file);
+
+        JMenuItem save = new JMenuItem("Save");
+        file.add(save);
+
+        JMenuItem load = new JMenuItem("Load");
+        file.add(load);
     }
 
     @Override
