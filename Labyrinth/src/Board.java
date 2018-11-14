@@ -8,10 +8,6 @@ import java.io.FileNotFoundException;
 
 
 public class Board {
-
-	// DECK IS ARRAY OF STRINGS--  CHECK SLACK
-	// CREATE DECK
-
 	
 	private Tile[][] set;
 	private int[][] tileset;
@@ -23,13 +19,16 @@ public class Board {
 	private final int LEFT = 2;
 	private final int UP = 3;
 	private final int DOWN = 4;
-	private Tile tileForPlayer;
+	
+	private Tile tileForPlayer = new Tile("Empty", true, 'i', 0, 0, 0);
 
 	private Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
 
 	public ExtraMethods extra = new ExtraMethods();
 
 	public Board() throws FileNotFoundException{
+		
+		ExtraMethods extra = new ExtraMethods();
 		set = extra.s.getBoard();
         makeDeck(4);
 		//displayTilesStart();
@@ -58,16 +57,23 @@ public class Board {
 	public void shiftBoardTiles(int rowToShift, int columnToShift, int directionOfShift){
 
 		// Checks if any player is on the row/column being shifted (depending on direction of shift)
-		checkTileOccupied(rowToShift, columnToShift, directionOfShift);
+		//checkTileOccupied(rowToShift, columnToShift, directionOfShift);
 
 		if (directionOfShift == RIGHT){
 
 			set[rowToShift][0] = getTileForPlayer();
-
-			for (int i = 1; i <=  7; i++) {
+			
+			set[rowToShift][0].setRow(rowToShift);
+			set[rowToShift][0].setColumn(0);
+			
+			set[rowToShift][8] = set[rowToShift][7];
+			
+			for (int i = 7; i >=  1; i--) {
 
 				set[rowToShift][i] = set[rowToShift ][i - 1];
 				set[rowToShift][i].setColumn(i);
+				
+				set[rowToShift][i].setLocation(set[rowToShift][i].getX() + 50, set[rowToShift][i].getY());
 
 			}
 			
@@ -79,11 +85,18 @@ public class Board {
 		else if (directionOfShift == LEFT){
 
 			set[rowToShift][8] = getTileForPlayer();
+			
+			set[rowToShift][8].setRow(rowToShift);
+			set[rowToShift][8].setColumn(8);
+			
+			
+			set[rowToShift][0] = set[rowToShift][1];
+			
+			for (int i = 1; i <=  7; i++) {
 
-			for (int i = 7; i >=  1; i--) {
-
-				set[rowToShift][i] = set[rowToShift][i - 1];
+				set[rowToShift][i] = set[rowToShift][i + 1];
 				set[rowToShift][i].setColumn(i);
+				set[rowToShift][i].setLocation(set[rowToShift][i].getX() - 50, set[rowToShift][i].getY());
 
 			}
 
@@ -95,11 +108,18 @@ public class Board {
 		else if (directionOfShift == UP) {
 
 			set[8][columnToShift] = getTileForPlayer();
+			
+			set[8][columnToShift].setRow(8);
+			set[8][columnToShift].setColumn(columnToShift);
+			
+			set[0][columnToShift] = set[1][columnToShift];
+			
+			for (int i = 1; i <= 7; i++) {
 
-			for (int i = 7; i <= 1; i--) {
-
-				set[i][columnToShift] = set[i - 1][columnToShift];
+				set[i][columnToShift] = set[i + 1][columnToShift];
 				set[i][columnToShift].setRow(i);
+				
+				set[i][columnToShift].setLocation(set[i][columnToShift].getX(), set[i][columnToShift].getY() - 50);
 
 			}
 			setTileForPlayer(set[0][columnToShift]);
@@ -110,11 +130,17 @@ public class Board {
 		else if (directionOfShift == DOWN) {
 
 			set[0][columnToShift] = getTileForPlayer();
-
-			for (int i = 1; i <= 7; i++) {
+			
+			set[0][columnToShift].setRow(0);
+			set[8][columnToShift].setColumn(columnToShift);
+			
+			set[8][columnToShift] = set[7][columnToShift];
+			for (int i = 7; i >= 1; i--) {
 
 				set[i][columnToShift] = set[i - 1][columnToShift];
 				set[i][columnToShift].setRow(i);
+				
+				set[i][columnToShift].setLocation(set[i][columnToShift].getX(), set[i][columnToShift].getY() + 50);
 			}
 
 			setTileForPlayer(set[8][columnToShift]);
@@ -123,7 +149,7 @@ public class Board {
 			set[8][columnToShift] = null;
 		}
 		
-		checkIfPlayerOverflowed();
+		//checkIfPlayerOverflowed();
 
 	}
 
