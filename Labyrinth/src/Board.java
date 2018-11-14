@@ -17,6 +17,7 @@ public class Board {
 	private int[][] tileset;
 
 	private Player[] playersArray;
+    Deck deck;
 
 	private final int RIGHT = 1;
 	private final int LEFT = 2;
@@ -30,6 +31,7 @@ public class Board {
 
 	public Board() throws FileNotFoundException{
 		set = extra.s.getBoard();
+        makeDeck(4);
 		//displayTilesStart();
 
 		Tile[][] set = extra.s.getBoard();
@@ -214,4 +216,16 @@ public class Board {
 	public void setDim(Dimension dim) {
 		this.dim = dim;
 	}
+
+    public void setDeck(Deck deck) {
+        this.deck = deck;
+    }
+
+    public Deck getDeck() {
+        return deck;
+    }
+
+    public void makeDeck(int players) throws FileNotFoundException {
+        deck = new Deck(players);
+    }
 }
