@@ -20,12 +20,20 @@ public class GameGUI extends JFrame implements ActionListener {
     private JMenu help = new JMenu("Help");
     private JMenuItem instructions = new JMenuItem("Instructions");
 
+    private JButton shiftColumn2Button = new JButton();
+    
     public GameGUI() throws IOException {
 
+    	
+    	
         setLayout(null);
         setBounds(0, 0, board.getDim().width, board.getDim().height);
         this.setTitle("aMAZEing Labyrinth");
 
+        shiftColumn2Button.setBounds(580, 840, 50, 50);
+        shiftColumn2Button.addActionListener(this);
+    	add(shiftColumn2Button);
+    	
         // setContentPane(fixedBoard);
 
         // Creates a scaleable image
@@ -110,6 +118,7 @@ public class GameGUI extends JFrame implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
+    	
         if(e.getSource() == instructions) {
             try {
                 new HomePageGUI();
@@ -119,5 +128,14 @@ public class GameGUI extends JFrame implements ActionListener {
                 e1.printStackTrace();
             }
         }
+        
+        if (e.getSource() == shiftColumn2Button) {
+        	
+        	board.getSet()[7][2].setBounds(18 + 60 * 2, 25 + 60 * 7, 50, 50);
+        	fixedBoard.add(board.getSet()[7][2]);
+        	board.shiftBoardTiles(7, 2, 3);
+        	
+        }
+        	
     }
 }
