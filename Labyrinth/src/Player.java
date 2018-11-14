@@ -128,8 +128,6 @@ public class Player extends JLabel {
         } else if (row == getRows() && column == getColumns() && move > 1) {
             return true;
         } else {
-//            System.out.printf("Total moves: %d - press 'ENTER' to continue...\n", move);
-//            System.in.read();
             for (int count = 0; count < 4; count++) {
                 switch (count) {
                     case LEFT:
@@ -174,9 +172,9 @@ public class Player extends JLabel {
             else if (count == DOWN)
                 return extra.s.fullBinaryBoard()[row+1][column] == 1 && extra.s.fullBinaryBoard()[row+2][column] == 1 && extra.s.fullBinaryBoard()[row+3][column] == 1 && row < 24;
             else if (count == LEFT)
-                return extra.s.fullBinaryBoard()[row][column-1] == 1 && extra.s.fullBinaryBoard()[row][column-2] == 1 && extra.s.fullBinaryBoard()[row][column-3] == 1;
+                return extra.s.fullBinaryBoard()[row][column-1] == 1 && extra.s.fullBinaryBoard()[row][column-2] == 1 && extra.s.fullBinaryBoard()[row][column-3] == 1 && column > 3;
             else if (count == RIGHT)
-                return extra.s.fullBinaryBoard()[row][column+1] == 1 && extra.s.fullBinaryBoard()[row][column+2] == 1 && extra.s.fullBinaryBoard()[row][column+3] == 1;
+                return extra.s.fullBinaryBoard()[row][column+1] == 1 && extra.s.fullBinaryBoard()[row][column+2] == 1 && extra.s.fullBinaryBoard()[row][column+3] == 1 && column < 24;
             else
                 return false;
 

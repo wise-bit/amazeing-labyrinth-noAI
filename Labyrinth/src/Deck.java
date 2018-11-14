@@ -39,6 +39,7 @@ public class Deck {
             }
 
             Player player = new Player(newDeck(), name, color, row, column);
+            players.add(player);
 
         }
 
