@@ -72,7 +72,7 @@ public class GameGUI extends JFrame implements ActionListener {
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
-                    Image currentTileImage = tileImg.getScaledInstance(50,50, Image.SCALE_SMOOTH);// TODO: Change
+                    Image currentTileImage = tileImg.getScaledInstance(50,50, Image.SCALE_SMOOTH);
                     ImageIcon tileIcon = new ImageIcon(currentTileImage);
 
                     board.getSet()[i][j].setIcon(tileIcon);
@@ -97,6 +97,7 @@ public class GameGUI extends JFrame implements ActionListener {
         }
         Image currentPlayerOneImg = playerOneImg.getScaledInstance(50,50, Image.SCALE_SMOOTH);// TODO: Change
         ImageIcon playerOneIcon = new ImageIcon(currentPlayerOneImg);
+
         setBounds(10, 10, 80, 80);
         fixedBoard.add(playerOneIcon);
         setVisible(true);

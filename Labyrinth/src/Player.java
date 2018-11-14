@@ -22,6 +22,14 @@ public class Player extends JLabel {
     private int rows;
     private int columns;
 
+    private ExtraMethods extra = new ExtraMethods();
+
+    // for traversal of movePlayer
+    public static final int LEFT = 0;
+    public static final int RIGHT = 1;
+    public static final int UP = 2;
+    public static final int DOWN = 3;
+
     //Constructor Method
     public Player(String[] playerHand, String playerName, String playerColour, int rows, int columns) throws FileNotFoundException {
         this.playerHand = playerHand;
@@ -112,4 +120,69 @@ public class Player extends JLabel {
             }
         }
     }
+
+    public boolean movePlayer(int row, int column, int move){
+
+        if (row == getRows() && column == getColumns()) {
+            return false;
+        } else if (row == getRows() && column == getColumns() && move > 1) {
+            return true;
+        } else {
+//            System.out.printf("Total moves: %d - press 'ENTER' to continue...\n", move);
+//            System.in.read();
+            for (int count = 0; count < 4; count++) {
+                switch (count) {
+                    case LEFT:
+                        if (validMove(row, column-3, count)) {
+                            if (movePlayer(row, column-3, move+3)) {
+                                return true;
+                            }
+                        }
+                        break;
+                    case RIGHT:
+                        if (validMove(row, column+3, count)) {
+                            if (movePlayer(row, column+3, move+3)) {
+                                return true;
+                            }
+                        }
+                        break;
+                    case UP:
+                        if (validMove(row - 3, column, count)) {
+                            if (movePlayer(row - 3, column, move+3)) {
+                                return true;
+                            }
+                        }
+                        break;
+                    case DOWN:
+                        if (validMove(row + 3, column, count)) {
+                            if (movePlayer(row + 3, column, move+3)) {
+                                return true;
+                            }
+                        }
+                        break;
+                }
+            }
+        }
+        return false;
+
+    }
+
+    public boolean validMove(int row, int column, int count) {
+        try {
+            if (count == UP)
+                return extra.s.fullBinaryBoard()[row-1][column] == 1 && extra.s.fullBinaryBoard()[row-2][column] == 1 && extra.s.fullBinaryBoard()[row-3][column] == 1 && row > 3;
+            else if (count == DOWN)
+                return extra.s.fullBinaryBoard()[row+1][column] == 1 && extra.s.fullBinaryBoard()[row+2][column] == 1 && extra.s.fullBinaryBoard()[row+3][column] == 1 && row < 24;
+            else if (count == LEFT)
+                return extra.s.fullBinaryBoard()[row][column-1] == 1 && extra.s.fullBinaryBoard()[row][column-2] == 1 && extra.s.fullBinaryBoard()[row][column-3] == 1;
+            else if (count == RIGHT)
+                return extra.s.fullBinaryBoard()[row][column+1] == 1 && extra.s.fullBinaryBoard()[row][column+2] == 1 && extra.s.fullBinaryBoard()[row][column+3] == 1;
+            else
+                return false;
+
+        } catch (Exception e) {
+            return false;
+        }
+    }
+
 }

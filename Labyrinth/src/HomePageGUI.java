@@ -78,7 +78,6 @@ public class HomePageGUI extends JFrame implements ActionListener {
         add(start);
         start.addActionListener(this);
 
-        // TODO: remove weird white lines around
         // Makes button bigger when hovered over
         start.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
