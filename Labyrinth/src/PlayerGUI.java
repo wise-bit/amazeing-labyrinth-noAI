@@ -96,7 +96,8 @@ public class PlayerGUI extends JFrame implements ActionListener {
 
         //Makes all the attributes of the screen visible
         setVisible(true);
-        setExtendedState(getExtendedState() | JFrame.MAXIMIZED_BOTH);
+        // setExtendedState(getExtendedState() | JFrame.MAXIMIZED_BOTH);
+        setSize(1440, 900);
         repaint();
     }
 

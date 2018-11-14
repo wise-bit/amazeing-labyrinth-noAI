@@ -92,7 +92,7 @@ public class GameGUI extends JFrame implements ActionListener {
         //Creating the player #1 icon
         BufferedImage playerOneImg = null;
         try {
-            playerOneImg = ImageIO.read(new File("Labyrinth/res/PlayerImages/bluedot.png"));
+            playerOneImg = ImageIO.read(new File("Labyrinth/res/PlayerImages/reddot.png"));
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -112,7 +112,7 @@ public class GameGUI extends JFrame implements ActionListener {
         //Creating the player #2 icon
         BufferedImage playerTwoImg = null;
         try {
-            playerTwoImg = ImageIO.read(new File("Labyrinth/res/PlayerImages/greendot.png")); // Doesnt exist
+            playerTwoImg = ImageIO.read(new File("Labyrinth/res/PlayerImages/yellowdot.png"));
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -132,7 +132,7 @@ public class GameGUI extends JFrame implements ActionListener {
         //Creating the player #3 icon
         BufferedImage playerThreeImg = null;
         try {
-            playerThreeImg = ImageIO.read(new File("Labyrinth/res/PlayerImages/orangedot.png"));
+            playerThreeImg = ImageIO.read(new File("Labyrinth/res/PlayerImages/bluedot.png"));
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -152,7 +152,7 @@ public class GameGUI extends JFrame implements ActionListener {
         //Creating the player #4 icon
         BufferedImage playerFourImg = null;
         try {
-            playerFourImg = ImageIO.read(new File("Labyrinth/res/bluedot.png")); // Doesnt exist
+            playerFourImg = ImageIO.read(new File("Labyrinth/res/PlayerImages/greendot.png"));
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -162,7 +162,7 @@ public class GameGUI extends JFrame implements ActionListener {
         System.out.println();
         System.out.println(board.getDeck().getPlayers().get(0));
         board.getDeck().getPlayers().get(0).setIcon(playerFourIcon);
-        board.getDeck().getPlayers().get(0).setBounds(10, 10, 80, 80);
+        board.getDeck().getPlayers().get(0).setBounds(10, fixedBoard.getY()-10, 50, 50);
         fixedBoard.add(board.getDeck().getPlayers().get(0));
         board.getDeck().getPlayers().get(0).setVisible(true);
 
@@ -180,7 +180,8 @@ public class GameGUI extends JFrame implements ActionListener {
         //Closes program if the exit option is clicked.
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setVisible(true);
-        setExtendedState(getExtendedState() | JFrame.MAXIMIZED_BOTH);
+        // setExtendedState(getExtendedState() | JFrame.MAXIMIZED_BOTH);
+        setSize(1440, 900);
         repaint();
 
     }
