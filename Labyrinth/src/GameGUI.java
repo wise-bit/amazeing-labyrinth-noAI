@@ -22,6 +22,7 @@ public class GameGUI extends JFrame implements ActionListener {
     private JMenu file = new JMenu("File");
     private JMenuItem save = new JMenuItem("Save");
     private JMenuItem load = new JMenuItem("Load");
+    private Player[] player = new Player[4];
 
     public GameGUI() throws IOException {
 
@@ -86,6 +87,19 @@ public class GameGUI extends JFrame implements ActionListener {
                 }
             }
         }
+
+        //Creating the player #1 icon
+        BufferedImage playerOneImg = null;
+        try {
+            playerOneImg = ImageIO.read(new File("Labyrinth/res/PlayerImages/bluedot.png"));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        Image currentPlayerOneImg = playerOneImg.getScaledInstance(50,50, Image.SCALE_SMOOTH);// TODO: Change
+        ImageIcon playerOneIcon = new ImageIcon(currentPlayerOneImg);
+        setBounds(10, 10, 80, 80);
+        fixedBoard.add(playerOneIcon);
+        setVisible(true);
 
 //        //Handing out the cards for each player
 //        for(int x = 0; x < 4; x++){

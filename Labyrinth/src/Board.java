@@ -40,10 +40,8 @@ public class Board {
                 }
             }
         }
-
 	}
-	
-	
+
     private void displayTilesStart() {
 
     	for (int i = 0; i < set.length; i++) {
@@ -53,10 +51,7 @@ public class Board {
     		//	set[i][j].setBounds(r);
     		}
     	}
-
 	}
-	
-    
 
 	public void shiftBoardTiles(int rowToShift, int columnToShift, int directionOfShift){
 
