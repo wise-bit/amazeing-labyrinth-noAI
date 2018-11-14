@@ -112,7 +112,7 @@ public class GameGUI extends JFrame implements ActionListener {
         //Creating the player #2 icon
         BufferedImage playerTwoImg = null;
         try {
-            playerTwoImg = ImageIO.read(new File("Labyrinth/res/PlayerImages/yellowdot.png")); // Doesnt exist
+            playerTwoImg = ImageIO.read(new File("Labyrinth/res/PlayerImages/greendot.png")); // Doesnt exist
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -132,7 +132,7 @@ public class GameGUI extends JFrame implements ActionListener {
         //Creating the player #3 icon
         BufferedImage playerThreeImg = null;
         try {
-            playerThreeImg = ImageIO.read(new File("Labyrinth/res/PlayerImages/bluedot.png"));
+            playerThreeImg = ImageIO.read(new File("Labyrinth/res/PlayerImages/orangedot.png"));
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -152,7 +152,7 @@ public class GameGUI extends JFrame implements ActionListener {
         //Creating the player #4 icon
         BufferedImage playerFourImg = null;
         try {
-            playerFourImg = ImageIO.read(new File("Labyrinth/res/PlayerImages/greendot.png")); // Doesnt exist
+            playerFourImg = ImageIO.read(new File("Labyrinth/res/bluedot.png")); // Doesnt exist
         } catch (IOException e) {
             e.printStackTrace();
         }
