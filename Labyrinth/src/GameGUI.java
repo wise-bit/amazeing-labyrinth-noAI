@@ -12,7 +12,7 @@ import java.awt.event.*;
 import java.awt.image.BufferedImage;
 import java.io.*;
 
-public class GameGUI extends JFrame implements ActionListener {
+public class GameGUI extends JFrame implements ActionListener, MouseListener {
 
     Board board = new Board();
     private JLabel fixedBoard;
@@ -26,6 +26,7 @@ public class GameGUI extends JFrame implements ActionListener {
     private ImageIcon[] dots = new ImageIcon[4];
     private JLabel[] playerColour = new JLabel[4];
     private JLabel[] playerName = new JLabel[4];
+    private int currentPlayer = 0;
 
     private JButton shiftColumn2Button = new JButton();
     
@@ -91,12 +92,22 @@ public class GameGUI extends JFrame implements ActionListener {
 
                     // System.out.println(board.getSet()[i][j]);
                     board.getSet()[i][j].setBounds(18 + 60 * (j- 1),22 + 60 * (i - 1),50,50);
+                    board.getSet()[i][j].addMouseListener(this);
 
                     fixedBoard.add(board.getSet()[i][j]);
                     board.getSet()[i][j].setVisible(true);
 
                     // new tile creation ends here
+                } else if (board.getSet()[i][j] != null ) {
+
+                    board.getSet()[i][j].setBounds(18 + 60 * (j- 1),22 + 60 * (i - 1),50,50);
+                    board.getSet()[i][j].addMouseListener(this);
+
+                    fixedBoard.add(board.getSet()[i][j]);
+                    board.getSet()[i][j].setVisible(true);
+
                 }
+
             }
         }
 
@@ -352,4 +363,46 @@ public class GameGUI extends JFrame implements ActionListener {
         }
         	
     }
+
+    @Override
+    public void mouseClicked(MouseEvent e) {
+        int currentRow = board.getDeck().getPlayers().get(currentPlayer).getRows();
+        int currentColumn = board.getDeck().getPlayers().get(currentPlayer).getColumns();
+        for (int i = 0; i < 9; i++) {
+            for (int j = 0; j < 9; j++) {
+                if (e.getSource() == board.getSet()[i][j]) {
+                    // System.out.printf("Label (%d, %d) was clicked\n", i, j);
+                    board.extra.s.binaryBoardPrinter();
+                    System.out.println();
+                    if (board.getDeck().getPlayers().get(currentPlayer).movePlayer(i,j, 0) == true){
+                        board.getDeck().getPlayers().get(currentPlayer).setRows(i);
+                        board.getDeck().getPlayers().get(currentPlayer).setColumns(j);
+                        board.getDeck().getPlayers().get(currentPlayer).validate();
+                        board.getDeck().getPlayers().get(currentPlayer).repaint();
+                    }
+                }
+            }
+        }
+    }
+
+    @Override
+    public void mousePressed(MouseEvent e) {
+
+    }
+
+    @Override
+    public void mouseReleased(MouseEvent e) {
+
+    }
+
+    @Override
+    public void mouseEntered(MouseEvent e) {
+
+    }
+
+    @Override
+    public void mouseExited(MouseEvent e) {
+
+    }
+
 }

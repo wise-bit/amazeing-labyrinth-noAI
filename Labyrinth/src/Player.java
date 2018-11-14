@@ -180,6 +180,7 @@ public class Player extends JLabel {
     }
 
     public boolean validMove(int row, int column, int count) {
+        // TODO: Error in binary board
         try {
             if (count == UP)
                 return extra.s.fullBinaryBoard()[row-1][column] == 1 && extra.s.fullBinaryBoard()[row-2][column] == 1 && extra.s.fullBinaryBoard()[row-3][column] == 1 && row > 3;

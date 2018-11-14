@@ -42,9 +42,9 @@ public class Main {
 //            System.out.print(list.get(i) + ", ");
 
         // new HomePageGUI();
-        // new GameGUI();
+        new GameGUI();
         // new UX().save(s.getBoard());
-        new Instructions();
+        // new Instructions();
 
     }
 }
