@@ -28,9 +28,19 @@ public class Board {
 
 
 	public Board() throws FileNotFoundException{
-		Setup setupStart = new Setup();
-		set = setupStart.getBoard();
+		ExtraMethods extra = new ExtraMethods();
+		set = extra.s.getBoard();
 		//displayTilesStart();
+
+		Tile[][] set = extra.s.getBoard();
+        for (int i = 0; i < 9; i++){
+            for (int j = 0; j < 9; j++){
+                if (set[i][j] != null && set[i][j].isMoveable()) {
+                    System.out.println(set[i][j].makeFileName());
+                }
+            }
+        }
+
 	}
 	
 	

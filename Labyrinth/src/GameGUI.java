@@ -38,7 +38,7 @@ public class GameGUI extends JFrame implements ActionListener {
         Image dimg = img.getScaledInstance(board.getDim().height/2, board.getDim().height/2, Image.SCALE_SMOOTH);
         ImageIcon imageIcon = new ImageIcon(dimg);
         fixedBoard = new JLabel(imageIcon);
-        fixedBoard.setBounds(board.getDim().width/4,board.getDim().height/4,board.getDim().width/2,board.getDim().height/2);
+        fixedBoard.setBounds(board.getDim().width/4,board.getDim().height/4,board.getDim().height/2,board.getDim().height/2);
         fixedBoard.setVisible(true);
         add(fixedBoard);
         // Main fixed board image ends here
@@ -50,7 +50,9 @@ public class GameGUI extends JFrame implements ActionListener {
 
         // Places the other tiles
         for (int i = 0; i < 9; i++){
+
             for (int j = 0; j < 9; j++){
+
                 // Only if the tile is not a null
                 if (board.getSet()[i][j] != null && board.getSet()[i][j].isMoveable()){
                     // new tile creation begins here
@@ -67,8 +69,11 @@ public class GameGUI extends JFrame implements ActionListener {
                     ImageIcon tileIcon = new ImageIcon(currentTileImage);
 
                     board.getSet()[i][j].setIcon(tileIcon);
-                    board.getSet()[i][j].setBounds(10,10,50,50); // TODO: Chnage
-                    add(board.getSet()[i][j]);
+
+                    System.out.println(board.getSet()[i][j]);
+                    board.getSet()[i][j].setBounds(18 + 60 * (j- 1),25 + 60 * (i - 1),50,50); // TODO: Chnage
+
+                    fixedBoard.add(board.getSet()[i][j]);
                     board.getSet()[i][j].setVisible(true);
 
                     // new tile creation ends here

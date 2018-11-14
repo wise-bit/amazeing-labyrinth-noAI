@@ -4,8 +4,15 @@
 
 
 import java.awt.GraphicsEnvironment;
+import java.io.FileNotFoundException;
 
 public class ExtraMethods {
+
+    Setup s = new Setup();
+    Tile[][] set = s.getBoard();
+
+    public ExtraMethods() throws FileNotFoundException {
+    }
 
     public void listFonts() {
         String fonts[] = GraphicsEnvironment.getLocalGraphicsEnvironment().getAvailableFontFamilyNames();

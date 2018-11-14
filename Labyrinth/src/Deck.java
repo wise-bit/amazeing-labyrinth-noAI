@@ -7,9 +7,9 @@ import java.util.*;
 
 public class Deck {
 
-    Setup setup = new Setup();
     private ArrayList<Player> players = new ArrayList<Player>();
-    private ArrayList<String> cardsList = setup.listOfTreasures();
+    ExtraMethods extra = new ExtraMethods();
+    private ArrayList<String> cardsList = extra.s.listOfTreasures();
 
     public Deck(int numOfPlayers) throws FileNotFoundException {
 

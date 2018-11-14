@@ -150,7 +150,7 @@ public class Setup extends JFrame {
                     new Tile(attribs[0], Boolean.parseBoolean(attribs[1]), attribs[2].charAt(0), row, column, Integer.parseInt(attribs[5]));
 
             // Removes this space from the list of open spaces
-            this.counter.remove(new Integer(row * 7 + column));
+            this.counter.remove(new Integer(row * 9 + column));
 
             // Print line for debugging purposes
             // System.out.println(this.board[row][column]);
@@ -175,6 +175,10 @@ public class Setup extends JFrame {
 
                 this.board[row][column] =
                         new Tile(attribs[0], Boolean.parseBoolean(attribs[1]), attribs[2].charAt(0), row, column, 4);
+
+
+            } else {
+                System.out.println(row + " " + column);
             }
 
             counter.remove(0);
@@ -186,6 +190,7 @@ public class Setup extends JFrame {
     public void otherTiles(){
 
         for (int i = 1; i < 8; i++) {
+
             for (int j = 1; j < 8; j++) {
 
                 if (i == 1 && j == 1) this.board[i][j] = new Tile("Start1", false, 'l', i, j, 1);

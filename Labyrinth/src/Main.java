@@ -17,17 +17,17 @@ public class Main {
         Player[] players = new Player[4];
 
         // Creates a new setup
-        Setup s = new Setup();
-
-        // Prints all tiles
-        Tile[][] set = s.getBoard();
-        for (int i = 0; i < 9; i++){
-            for (int j = 0; j < 9; j++){
-                if (set[i][j] != null && set[i][j].isMoveable()) {
-                    System.out.println(set[i][j].makeFileName());
-                }
-            }
-        }
+        // Setup s = new Setup();
+//
+//        // Prints all tiles
+//        Tile[][] set = s.getBoard();
+//        for (int i = 0; i < 9; i++){
+//            for (int j = 0; j < 9; j++){
+//                if (set[i][j] != null && set[i][j].isMoveable()) {
+//                    System.out.println(set[i][j].makeFileName());
+//                }
+//            }
+//        }
 
         // Generates binary maze
 //        for (int i = 0; i < 27; i++){
@@ -47,5 +47,4 @@ public class Main {
         // new UX().save(s.getBoard());
 
     }
-  
 }
