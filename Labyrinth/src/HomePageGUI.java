@@ -14,9 +14,8 @@ import javax.swing.*;
 public class HomePageGUI extends JFrame implements ActionListener {
 
     //Home Screen Components
-    private JLabel preGameTitle = new JLabel("A-MAZE-ING", SwingConstants.CENTER);
-    private JLabel gameTitle = new JLabel ("LABYRINTH", SwingConstants.CENTER);;
-    private JButton start = new JButton ("Start!");;
+    private JLabel gameTitle = new JLabel("A-MAZE-ING LABYRINTH", SwingConstants.CENTER);
+    private JButton start = new JButton ("Start");;
     private JLabel picture1 = new JLabel (new ImageIcon("Labyrinth/res/pic1.png"));
     private Font font = new Font("Sylfaen", Font.BOLD, 80); // Freestyle Script, Matura MT Script Capitals, French Script MT
 
@@ -41,18 +40,11 @@ public class HomePageGUI extends JFrame implements ActionListener {
         //Closes program if the exit option is clicked.
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-        //Adds the title and sets the font
         gameTitle.setForeground(Color.WHITE);
         gameTitle.setFont(font);
-        gameTitle.setSize(dim.width,(int) (dim.height/3));
+        gameTitle.setSize(dim.width,(int) (dim.height/5));
         add(gameTitle);
         gameTitle.setVisible(true);
-
-        preGameTitle.setForeground(Color.WHITE);
-        preGameTitle.setFont(font);
-        preGameTitle.setSize(dim.width,(int) (dim.height/5));
-        add(preGameTitle);
-        preGameTitle.setVisible(true);
 
 //        try{
 //            Font font = Font.createFont(Font.TRUETYPE_FONT, HomePageGUI.class.getResourceAsStream("Labyrinth/res/Bikarosta-Script.ttf"));
@@ -74,14 +66,14 @@ public class HomePageGUI extends JFrame implements ActionListener {
         start.setFont(new Font("Segoe Script" , Font.PLAIN, 50));
         start.setForeground(Color.WHITE);
         // start.setBackground(new Color(59, 89, 182));
-        start.setBounds(dim.width/2 - 275/2, dim.height - dim.height/5, 275, 120);
+        start.setBounds(582, 670, 275, 120);
         add(start);
         start.addActionListener(this);
 
         // Makes button bigger when hovered over
         start.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
-                start.setForeground(Color.YELLOW);
+                start.setForeground(Color.WHITE);
                 start.setFont(new Font("Segoe Script" , Font.PLAIN, 80));
             }
 

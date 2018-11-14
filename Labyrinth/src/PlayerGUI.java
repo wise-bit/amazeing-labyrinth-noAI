@@ -137,7 +137,7 @@ public class PlayerGUI extends JFrame implements ActionListener {
     }
 
     public void playerThreeSetup() {
-        dots[2] = new ImageIcon("Labyrinth/res/PlayerImages/orangedot.png");
+        dots[2] = new ImageIcon("Labyrinth/res/PlayerImages/yellowdot.png");
         playerColour[2] = new JLabel(dots[2]);
         playerColour[2].setBounds(850, 320, 80, 80);
         add(playerColour[2]);
@@ -232,6 +232,7 @@ public class PlayerGUI extends JFrame implements ActionListener {
         repaint();
 
         if (event.getSource() == next) {
+            this.setVisible(false);
             try {
                 new GameGUI();
             } catch (IOException e) {
