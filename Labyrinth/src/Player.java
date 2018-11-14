@@ -22,6 +22,8 @@ public class Player extends JLabel {
     private int rows;
     private int columns;
 
+    private ExtraMethods extra = new ExtraMethods();
+
     // for traversal of movePlayer
     public static final int LEFT = 0;
     public static final int RIGHT = 1;
@@ -131,29 +133,29 @@ public class Player extends JLabel {
             for (int count = 0; count < 4; count++) {
                 switch (count) {
                     case LEFT:
-                        if (validMove(row, column-1)) {
-                            if (movePlayer(row, column-1, move+1)) {
+                        if (validMove(row, column-3, count)) {
+                            if (movePlayer(row, column-3, move+3)) {
                                 return true;
                             }
                         }
                         break;
                     case RIGHT:
-                        if (validMove(row, column+1)) {
-                            if (movePlayer(row, column+1, move+1)) {
+                        if (validMove(row, column+3, count)) {
+                            if (movePlayer(row, column+3, move+3)) {
                                 return true;
                             }
                         }
                         break;
                     case UP:
-                        if (validMove(row - 1, column)) {
-                            if (movePlayer(row - 1, column, move+1)) {
+                        if (validMove(row - 3, column, count)) {
+                            if (movePlayer(row - 3, column, move+3)) {
                                 return true;
                             }
                         }
                         break;
                     case DOWN:
-                        if (validMove(row + 1, column)) {
-                            if (movePlayer(row + 1, column, move+1)) {
+                        if (validMove(row + 3, column, count)) {
+                            if (movePlayer(row + 3, column, move+3)) {
                                 return true;
                             }
                         }
@@ -165,9 +167,19 @@ public class Player extends JLabel {
 
     }
 
-    public static boolean validMove(int row, int column) {
+    public boolean validMove(int row, int column, int count) {
         try {
-            return MAZE[row][column] == s;
+            if (count == UP)
+                return extra.s.fullBinaryBoard()[row-1][column] == 1 && extra.s.fullBinaryBoard()[row-2][column] == 1 && extra.s.fullBinaryBoard()[row-3][column] == 1 && row > 3;
+            else if (count == DOWN)
+                return extra.s.fullBinaryBoard()[row+1][column] == 1 && extra.s.fullBinaryBoard()[row+2][column] == 1 && extra.s.fullBinaryBoard()[row+3][column] == 1 && row < 24;
+            else if (count == LEFT)
+                return extra.s.fullBinaryBoard()[row][column-1] == 1 && extra.s.fullBinaryBoard()[row][column-2] == 1 && extra.s.fullBinaryBoard()[row][column-3] == 1;
+            else if (count == RIGHT)
+                return extra.s.fullBinaryBoard()[row][column+1] == 1 && extra.s.fullBinaryBoard()[row][column+2] == 1 && extra.s.fullBinaryBoard()[row][column+3] == 1;
+            else
+                return false;
+
         } catch (Exception e) {
             return false;
         }

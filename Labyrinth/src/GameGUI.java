@@ -65,13 +65,11 @@ public class GameGUI extends JFrame implements ActionListener {
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
-                    Image currentTileImage = tileImg.getScaledInstance(50,50, Image.SCALE_SMOOTH);// TODO: Change
+                    Image currentTileImage = tileImg.getScaledInstance(50,50, Image.SCALE_SMOOTH);
                     ImageIcon tileIcon = new ImageIcon(currentTileImage);
 
                     board.getSet()[i][j].setIcon(tileIcon);
-
-                    System.out.println(board.getSet()[i][j]);
-                    board.getSet()[i][j].setBounds(18 + 60 * (j- 1),25 + 60 * (i - 1),50,50); // TODO: Chnage
+                    board.getSet()[i][j].setBounds(18 + 60 * (j- 1),25 + 60 * (i - 1),50,50);
 
                     fixedBoard.add(board.getSet()[i][j]);
                     board.getSet()[i][j].setVisible(true);
@@ -80,6 +78,27 @@ public class GameGUI extends JFrame implements ActionListener {
                 }
             }
         }
+
+        //Creating the player #1 icon
+        BufferedImage playerOneImg = null;
+        try {
+            playerOneImg = ImageIO.read(new File("Labyrinth/res/PlayerImages/bluedot.png"));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        Image currentPlayerOneImg = playerOneImg.getScaledInstance(50,50, Image.SCALE_SMOOTH);// TODO: Change
+        ImageIcon playerOneIcon = new ImageIcon(currentPlayerOneImg);
+
+        // board.setBounds(10, 10, 80, 80);
+        // fixedBoard.add(playerOneIcon);
+        setVisible(true);
+
+//        //Handing out the cards for each player
+//        for(int x = 0; x < 4; x++){
+//            board.getDeck().getPlayers().get(x).getPlayerName();
+//            System.out.println();
+//        }
+
 
 //        //Handing out the cards for each player
 //        for(int x = 0; x < 4; x++){
