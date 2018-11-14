@@ -26,9 +26,9 @@ public class Board {
 
 	private Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
 
+	public ExtraMethods extra = new ExtraMethods();
 
 	public Board() throws FileNotFoundException{
-		ExtraMethods extra = new ExtraMethods();
 		set = extra.s.getBoard();
 		//displayTilesStart();
 

@@ -98,9 +98,9 @@ public class GameGUI extends JFrame implements ActionListener {
         Image currentPlayerOneImg = playerOneImg.getScaledInstance(50,50, Image.SCALE_SMOOTH);// TODO: Change
         ImageIcon playerOneIcon = new ImageIcon(currentPlayerOneImg);
 
-        setBounds(10, 10, 80, 80);
-        fixedBoard.add(playerOneIcon);
-        setVisible(true);
+        board.extra.getDeck().getPlayers().get(0).setBounds(10, 10, 80, 80);
+        fixedBoard.add(board.extra.getDeck().getPlayers().get(0));
+        board.extra.getDeck().getPlayers().get(0).setVisible(true);
 
 //        //Handing out the cards for each player
 //        for(int x = 0; x < 4; x++){
