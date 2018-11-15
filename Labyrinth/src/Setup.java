@@ -5,14 +5,12 @@ Author: Satrajit Chatterjee
 import javax.swing.*;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.*;
 
 public class Setup extends JFrame {
 
     private Random rand = new Random();
-
-    private Tile[][] board;
-    private int[][] binary;
 
     //// Variable initializations
 
@@ -21,10 +19,18 @@ public class Setup extends JFrame {
     private ArrayList<Integer> counter = new ArrayList<Integer>();
 
     // Declares the file with all the treasures listed, with all the attributes
-    private File text = new File("Labyrinth/res/treasures.txt");
+    private static File text = new File("Labyrinth/res/treasures.txt");
 
     // Initializes scanner
-    Scanner file = new Scanner(text);
+    static Scanner file;
+
+    static {
+        try {
+            file = new Scanner(text);
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+    }
 
     // i and L shaped tiles count from the instructions manual
     private int lCount = 9;
@@ -35,7 +41,8 @@ public class Setup extends JFrame {
 
 
     // Constructor which calls the initialization method
-    public Setup() throws FileNotFoundException {
+    public Setup() throws IOException {
+        init();
     }
 
     // Returns the counter ArrayList keeping track of empty spaces
@@ -53,13 +60,10 @@ public class Setup extends JFrame {
 
 
     // Returns the board set up by the class using tiles
-    public Tile[][] getBoard() {
-        return board;
-    }
 
     // Kept for modifying board for debugging purposes
     public void setBoard(Tile[][] board) {
-        this.board = board;
+        Main.board = board;
     }
 
     // The contents of the treasure list file
@@ -73,13 +77,13 @@ public class Setup extends JFrame {
     }
 
     // Accesses the Scanner object file
-    public Scanner getFile() {
+    public static Scanner getFile() {
         return file;
     }
 
     // Modifies the Scanner object file
-    public void setFile(Scanner file) {
-        this.file = file;
+    public static void setFile(Scanner file) {
+        Setup.file = file;
     }
 
 
@@ -87,7 +91,7 @@ public class Setup extends JFrame {
 
 
     // This returns a string array with the names of all treasures
-    public ArrayList<String> listOfTreasures() throws FileNotFoundException {
+    public static ArrayList<String> listOfTreasures() throws FileNotFoundException {
 
         // Initializes list
         ArrayList<String> list = new ArrayList<String>();
@@ -110,7 +114,7 @@ public class Setup extends JFrame {
     // Goes through all of the lines of the file each time to ensure they are all categorized correctly
     public void init() throws FileNotFoundException {
 
-        board = new Tile[9][9];
+        Main.board = new Tile[9][9];
         initializeCounter();
 
         file = new Scanner(text);
@@ -128,8 +132,8 @@ public class Setup extends JFrame {
         otherTiles();
         setBinary(fullBinaryBoard());
 
-        // System.out.println(iCount + " " + lCount + " " + Arrays.toString(counter.toArray()));
         System.out.println("New initialization");
+        binaryBoardPrinter();
 
     }
 
@@ -147,14 +151,14 @@ public class Setup extends JFrame {
             int column = Integer.parseInt(attribs[4]);
 
             // Adds the new Tile object to the respective row and column position, inputting all characteristics
-            this.board[row][column] =
+            Main.board[row][column] =
                     new Tile(attribs[0], Boolean.parseBoolean(attribs[1]), attribs[2].charAt(0), row, column, Integer.parseInt(attribs[5]));
 
             // Removes this space from the list of open spaces
             this.counter.remove(new Integer(row * 9 + column));
 
             // Print line for debugging purposes
-            // System.out.println(this.board[row][column]);
+            // System.out.println(Main.board[row][column]);
 
         }
     }
@@ -172,9 +176,9 @@ public class Setup extends JFrame {
             int row = getCounter().get(0)/9;
             int column = getCounter().get(0)%9;
 
-            if (getBoard()[row][column] == null) {
+            if (Main.board[row][column] == null) {
 
-                this.board[row][column] =
+                Main.board[row][column] =
                         new Tile(attribs[0], Boolean.parseBoolean(attribs[1]), attribs[2].charAt(0), row, column, 4);
 
 
@@ -194,28 +198,28 @@ public class Setup extends JFrame {
 
             for (int j = 1; j < 8; j++) {
 
-                if (i == 1 && j == 1) this.board[i][j] = new Tile("Start1", false, 'l', i, j, 1);
-                else if (i == 1 && j == 7) this.board[i][j] = new Tile("Start2", false, 'l', i, j, 2);
-                else if (i == 7 && j == 1) this.board[i][j] = new Tile("Start3", false, 'l', i, j, 0);
-                else if (i == 7 && j == 7) this.board[i][j] = new Tile("Start4", false, 'l', i, j, 3);
+                if (i == 1 && j == 1) Main.board[i][j] = new Tile("Start1", false, 'l', i, j, 1);
+                else if (i == 1 && j == 7) Main.board[i][j] = new Tile("Start2", false, 'l', i, j, 2);
+                else if (i == 7 && j == 1) Main.board[i][j] = new Tile("Start3", false, 'l', i, j, 0);
+                else if (i == 7 && j == 7) Main.board[i][j] = new Tile("Start4", false, 'l', i, j, 3);
 
-                else if (getBoard()[i][j] == null) {
+                else if (Main.board[i][j] == null) {
 
                     if (rand.nextBoolean()){
                         if (isIAvailable()){
                             useI();
-                            this.board[i][j] = new Tile("Empty", true, 'i', i, j, 4);
+                            Main.board[i][j] = new Tile("Empty", true, 'i', i, j, 4);
                         } else {
                             useL();
-                            this.board[i][j] = new Tile("Empty", true, 'l', i, j, 4);
+                            Main.board[i][j] = new Tile("Empty", true, 'l', i, j, 4);
                         }
                     } else {
                         if (isLAvailable()){
                             useL();
-                            this.board[i][j] = new Tile("Empty", true, 'l', i, j, 4);
+                            Main.board[i][j] = new Tile("Empty", true, 'l', i, j, 4);
                         } else {
                             useI();
-                            this.board[i][j] = new Tile("Empty", true, 'i', i, j, 4);
+                            Main.board[i][j] = new Tile("Empty", true, 'i', i, j, 4);
                         }
                     }
 
@@ -272,12 +276,12 @@ public class Setup extends JFrame {
 
     // TODO: Check functionality
     // Creates a binary representation of the board to check if the player can move to a certain position
-    public int[][] fullBinaryBoard(){
+    public static int[][] fullBinaryBoard(){
         int[][] binaryBoard = new int[27][27];
 
         for (int i = 3; i < 24; i++){
             for (int j = 3; j < 24; j++){
-                binaryBoard[i][j] = board[i/3][j/3].getIntLayout()[i%3][j%3];
+                binaryBoard[i][j] = Main.board[i/3][j/3].getIntLayout()[i%3][j%3];
             }
         }
 
@@ -286,14 +290,14 @@ public class Setup extends JFrame {
     }
 
     public void setBinary(int[][] fullBinaryBoard){
-        binary = fullBinaryBoard;
+        Main.binary = fullBinaryBoard;
     }
 
     public int[][] getBinary() {
-        return binary;
+        return Main.binary;
     }
 
-    public void binaryBoardPrinter(){
+    public static void binaryBoardPrinter(){
         int[][] temp = fullBinaryBoard();
         for (int i = 0; i < 27; i++){
             for (int j = 0; j < 27; j++){

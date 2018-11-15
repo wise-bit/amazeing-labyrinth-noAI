@@ -8,12 +8,11 @@ import java.io.FileNotFoundException;
 
 
 public class Board {
-	
-	private Tile[][] set;
+
+	public static Tile[][] set;
 	private int[][] tileset;
 
 	private Player[] playersArray;
-    Deck deck;
 
 	private final int RIGHT = 1;
 	private final int LEFT = 2;
@@ -22,18 +21,23 @@ public class Board {
 	
 	private Tile tileForPlayer = new Tile("Empty", true, 'i', 1, 1, 0);
 
-	private Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
 
-	public ExtraMethods extra = new ExtraMethods();
+	private static final int RIGHT = 1;
+	private static final int LEFT = 2;
+	private static final int UP = 3;
+	private static final int DOWN = 4;
+	
+	private static Tile tileForPlayer = new Tile("Empty", true, 'i', 0, 0, 0);
+
+	public static Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
 
 	public Board() throws FileNotFoundException{
-		extra.s.init();
-		extra.s.binaryBoardPrinter();
-		set = extra.s.getBoard();
+		Setup.binaryBoardPrinter();
+		set = Main.board;
         makeDeck(4);
 		//displayTilesStart();
 
-		Tile[][] set = extra.s.getBoard();
+		Tile[][] set = Main.board;
         for (int i = 0; i < 9; i++){
             for (int j = 0; j < 9; j++){
                 if (set[i][j] != null && set[i][j].isMoveable()) {
@@ -45,110 +49,109 @@ public class Board {
 
     private void displayTilesStart() {
 
-    	for (int i = 0; i < set.length; i++) {
+    	for (int i = 0; i < Main.board.length; i++) {
     		
-    		for (int j = 0; j < set[i].length; j++) {
+    		for (int j = 0; j < Main.board[i].length; j++) {
     			
-    		//	set[i][j].setBounds(r);
+    		//	Main.board[i][j].setBounds(r);
     		}
     	}
 	}
 
-	public void shiftBoardTiles(int rowToShift, int columnToShift, int directionOfShift){
+	public static void shiftBoardTiles(int rowToShift, int columnToShift, int directionOfShift){
 
 		// Checks if any player is on the row/column being shifted (depending on direction of shift)
 		//checkTileOccupied(rowToShift, columnToShift, directionOfShift);
 
 		if (directionOfShift == RIGHT){
 
-			set[rowToShift][0] = getTileForPlayer();
-			
-			set[rowToShift][0].setRow(rowToShift);
-			set[rowToShift][0].setColumn(0);
+            Main.board[rowToShift][0] = getTileForPlayer();
+
+            Main.board[rowToShift][0].setRow(rowToShift);
+            Main.board[rowToShift][0].setColumn(0);
 			
 			set[rowToShift][8] = set[rowToShift][7];
 			
 			for (int i = 7; i >=  1; i--) {
 
-				set[rowToShift][i] = set[rowToShift ][i - 1];
-				set[rowToShift][i].setColumn(i);
-				
-				set[rowToShift][i].setLocation(set[rowToShift][i].getX() + 50, set[rowToShift][i].getY());
+                Main.board[rowToShift][i] = Main.board[rowToShift ][i - 1];
+                Main.board[rowToShift][i].setColumn(i);
+
+                Main.board[rowToShift][i].setLocation(Main.board[rowToShift][i].getX() + 50, Main.board[rowToShift][i].getY());
 
 			}
 			
-			setTileForPlayer(set[rowToShift][8]);
+			setTileForPlayer(Main.board[rowToShift][8]);
 
-			set[rowToShift][8] = null;
-			set[rowToShift][0] = null;
+            Main.board[rowToShift][8] = null;
+            Main.board[rowToShift][0] = null;
 		}
 		else if (directionOfShift == LEFT){
 
-			set[rowToShift][8] = getTileForPlayer();
-			
-			set[rowToShift][8].setRow(rowToShift);
-			set[rowToShift][8].setColumn(8);
-			
-			
-			set[rowToShift][0] = set[rowToShift][1];
+            Main.board[rowToShift][8] = getTileForPlayer();
+
+            Main.board[rowToShift][8].setRow(rowToShift);
+            Main.board[rowToShift][8].setColumn(8);
+
+
+            Main.board[rowToShift][0] = Main.board[rowToShift][1];
 			
 			for (int i = 1; i <=  7; i++) {
 
-				set[rowToShift][i] = set[rowToShift][i + 1];
-				set[rowToShift][i].setColumn(i);
-				set[rowToShift][i].setLocation(set[rowToShift][i].getX() - 50, set[rowToShift][i].getY());
+                Main.board[rowToShift][i] = Main.board[rowToShift][i + 1];
+                Main.board[rowToShift][i].setColumn(i);
+                Main.board[rowToShift][i].setLocation(Main.board[rowToShift][i].getX() - 50, Main.board[rowToShift][i].getY());
 
 			}
 
-			setTileForPlayer(set[rowToShift][0]);
+			setTileForPlayer(Main.board[rowToShift][0]);
 
-			set[rowToShift][8] = null;
-			set[rowToShift][0] = null;
+            Main.board[rowToShift][8] = null;
+            Main.board[rowToShift][0] = null;
 		}
 		else if (directionOfShift == UP) {
 
-			set[8][columnToShift] = getTileForPlayer();
-			
-			set[8][columnToShift].setRow(8);
-			set[8][columnToShift].setColumn(columnToShift);
-			
-			set[0][columnToShift] = set[1][columnToShift];
+            Main.board[8][columnToShift] = getTileForPlayer();
+
+            Main.board[8][columnToShift].setRow(8);
+            Main.board[8][columnToShift].setColumn(columnToShift);
+
+            Main.board[0][columnToShift] = Main.board[1][columnToShift];
 			
 			for (int i = 1; i <= 7; i++) {
 
-				set[i][columnToShift] = set[i + 1][columnToShift];
-				set[i][columnToShift].setRow(i);
-				
-				set[i][columnToShift].setLocation(set[i][columnToShift].getX(), set[i][columnToShift].getY() - 50);
+                Main.board[i][columnToShift] = Main.board[i + 1][columnToShift];
+                Main.board[i][columnToShift].setRow(i);
+
+                Main.board[i][columnToShift].setLocation(Main.board[i][columnToShift].getX(), Main.board[i][columnToShift].getY() - 50);
 
 			}
-			setTileForPlayer(set[0][columnToShift]);
+			setTileForPlayer(Main.board[0][columnToShift]);
 
-			set[0][columnToShift] = null;
-			set[8][columnToShift] = null;
+            Main.board[0][columnToShift] = null;
+            Main.board[8][columnToShift] = null;
 		}
 		else if (directionOfShift == DOWN) {
 
-			set[0][columnToShift] = getTileForPlayer();
+			Main.board[0][columnToShift] = getTileForPlayer();
 			
-			set[0][columnToShift].setRow(0);
+			Main.board[0][columnToShift].setRow(0);
 			
-			set[8][columnToShift] = set[7][columnToShift];
-			set[8][columnToShift].setColumn(columnToShift);
-			
-			
+			Main.board[8][columnToShift] = Main.board[7][columnToShift];
+			Main.board[8][columnToShift].setColumn(columnToShift);
+
 			for (int i = 7; i >= 1; i--) {
 
-				set[i][columnToShift] = set[i - 1][columnToShift];
-				set[i][columnToShift].setRow(i);
-				
-				set[i][columnToShift].setLocation(set[i][columnToShift].getX(), set[i][columnToShift].getY() + 50);
+                Main.board[i][columnToShift] = Main.board[i - 1][columnToShift];
+                Main.board[i][columnToShift].setRow(i);
+
+                Main.board[i][columnToShift].setLocation(Main.board[i][columnToShift].getX(), Main.board[i][columnToShift].getY() + 50);
 			}
 
-			setTileForPlayer(set[8][columnToShift]);
+			setTileForPlayer(Main.board[8][columnToShift]);
 
-			set[0][columnToShift] = null;
-			set[8][columnToShift] = null;
+            Main.board[0][columnToShift] = null;
+            Main.board[8][columnToShift] = null;
 		}
 		
 		//checkIfPlayerOverflowed();
@@ -212,7 +215,7 @@ public class Board {
 	public void setTileset(int[][] tileset) {
 		// this.tileset = tileset;
 
-		for (Tile[] row : set){
+		for (Tile[] row : Main.board){
 			for (Tile column : row){
 				// int[][] t = Tile.getShape();
 			}
@@ -220,21 +223,21 @@ public class Board {
 
 	}
 
-	public void setTileForPlayer(Tile tile) {
+	public static void setTileForPlayer(Tile tile) {
 
-		this.tileForPlayer = tile;
+		tileForPlayer = tile;
 	}
 
-	public Tile getTileForPlayer() {
+	public static Tile getTileForPlayer() {
 
-		return this.tileForPlayer;
+		return tileForPlayer;
 	}
 	public Tile[][] getSet() {
-		return set;
+		return Main.board;
 	}
 
 	public void setSet(Tile[][] set) {
-		this.set = set;
+		this.set = Main.board;
 	}
 
 	public Dimension getDim() {
@@ -246,14 +249,14 @@ public class Board {
 	}
 
     public void setDeck(Deck deck) {
-        this.deck = deck;
+        Main.deck = deck;
     }
 
     public Deck getDeck() {
-        return deck;
+        return Main.deck;
     }
 
     public void makeDeck(int players) throws FileNotFoundException {
-        deck = new Deck(players);
+        Main.deck = new Deck(players);
     }
 }
