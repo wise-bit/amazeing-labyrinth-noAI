@@ -26,11 +26,11 @@ public class Deck {
                 column = 1;
             } else if (x == 1) {
                 color = "yellow";
-                row = 7;
+                row = 1;
                 column = 7;
             } else if (x == 2) {
                 color = "blue";
-                row = 1;
+                row = 7;
                 column = 7;
             } else if (x == 3) {
                 color = "green";

@@ -132,14 +132,15 @@ public class Player extends JLabel {
         }
     }
 
-    public boolean movePlayer(int row, int column, int move){
+    public boolean movePlayer(int row, int column, int move, int depth){
 
+        if (depth > 20) return false;
         System.out.println(row + " " + column + " " + getRows() + " " + getColumns());
 
         if (move > 20){
             return false;
-        } else if (row == getRows() && column == getColumns()*3+1) {
-            return false;
+        } else if (row == getRows() && column == getColumns()) {
+            return true;
         } else if (row == getRows() && column == getColumns() && move > 1) {
             return true;
         } else {
@@ -148,7 +149,7 @@ public class Player extends JLabel {
                     case LEFT:
                         if (validMove(row, column, count)) {
                             columns -= 1;
-                            if (movePlayer(row, column, move+1)) {
+                            if (movePlayer(row, column, move+1, depth)) {
                                 return true;
                             }
                             columns += 1;
@@ -157,7 +158,7 @@ public class Player extends JLabel {
                     case RIGHT:
                         if (validMove(row, column, count)) {
                             columns += 1;
-                            if (movePlayer(row, column, move+1)) {
+                            if (movePlayer(row, column, move+1, depth)) {
                                 return true;
                             }
                             columns -= 1;
@@ -166,7 +167,7 @@ public class Player extends JLabel {
                     case UP:
                         if (validMove(row, column, count)) {
                             rows -= 1;
-                            if (movePlayer(row, column, move+1)) {
+                            if (movePlayer(row, column, move+1, depth)) {
                                 return true;
                             }
                             rows += 1;
@@ -175,7 +176,7 @@ public class Player extends JLabel {
                     case DOWN:
                         if (validMove(row, column, count)) {
                             rows += 1;
-                            if (movePlayer(row, column, move+1)) {
+                            if (movePlayer(row, column, move+1, depth)) {
                                 return true;
                             }
                             rows -= 1;
