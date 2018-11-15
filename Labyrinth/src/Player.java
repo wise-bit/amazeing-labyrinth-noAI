@@ -136,15 +136,9 @@ public class Player extends JLabel {
 
         System.out.println(row + " " + column + " " + getRows() + " " + getColumns());
 
-//        int temp = row;
-//        row = rows;
-//        rows = temp;
-//
-//        temp = column;
-//        column = columns;
-//        columns = temp;
-
-        if (row == getRows() && column == getColumns()*3+1) {
+        if (move > 20){
+            return false;
+        } else if (row == getRows() && column == getColumns()*3+1) {
             return false;
         } else if (row == getRows() && column == getColumns() && move > 1) {
             return true;
@@ -152,40 +146,40 @@ public class Player extends JLabel {
             for (int count = 0; count < 4; count++) {
                 switch (count) {
                     case LEFT:
-                        columns -= 1;
                         if (validMove(row, column, count)) {
+                            columns -= 1;
                             if (movePlayer(row, column, move+1)) {
                                 return true;
                             }
+                            columns += 1;
                         }
-                        columns += 1;
                         break;
                     case RIGHT:
-                        columns += 1;
                         if (validMove(row, column, count)) {
+                            columns += 1;
                             if (movePlayer(row, column, move+1)) {
                                 return true;
                             }
+                            columns -= 1;
                         }
-                        columns -= 1;
                         break;
                     case UP:
-                        rows -= 1;
                         if (validMove(row, column, count)) {
+                            rows -= 1;
                             if (movePlayer(row, column, move+1)) {
                                 return true;
                             }
+                            rows += 1;
                         }
-                        rows += 1;
                         break;
                     case DOWN:
-                        rows += 1;
                         if (validMove(row, column, count)) {
+                            rows += 1;
                             if (movePlayer(row, column, move+1)) {
                                 return true;
                             }
+                            rows -= 1;
                         }
-                        rows -= 1;
                         break;
                 }
             }
@@ -195,7 +189,6 @@ public class Player extends JLabel {
     }
 
     public boolean validMove(int row, int column, int count) {
-        // TODO: Error in binary board
         try {
             if (count == UP)
                 return Main.binary[rows*3+1 - 1][columns*3+1] == 1 && Main.binary[rows*3+1 - 2][columns*3+1] == 1 && Main.binary[rows*3+1 - 3][columns*3+1] == 1 && rows*3+1 > 3;
@@ -204,10 +197,10 @@ public class Player extends JLabel {
             else if (count == LEFT)
                 return Main.binary[rows*3+1][columns*3+1 - 1] == 1 && Main.binary[rows*3+1][columns*3+1 - 2] == 1 && Main.binary[rows*3+1][columns*3+1 - 3] == 1 && columns*3+1 > 3;
             else if (count == RIGHT) {
-                System.out.println(Main.binary[rows*3+1][columns*3+1 + 1]);
-                System.out.println(Main.binary[rows*3+1][columns*3+1 + 2]);
-                System.out.println(Main.binary[rows*3+1][columns*3+1 + 3]);
-                return Main.binary[rows*3+1][columns*3+1 + 1] == 1 && Main.binary[rows*3+1][columns*3+1 + 2] == 1 && Main.binary[rows*3-1][columns*3+1 + 3] == 1 && columns*3+1 < 24;
+                System.out.println((rows*3+1) + ":" + (columns*3+1 + 1) + " " + Main.binary[rows*3+1][columns*3+1 + 1]);
+                System.out.println((rows*3+1) + ":" + (columns*3+1 + 2) + " " + Main.binary[rows*3+1][columns*3+1 + 2]);
+                System.out.println((rows*3+1) + ":" + (columns*3+1 + 3) + " " + Main.binary[rows*3+1][columns*3+1 + 3]);
+                return Main.binary[rows*3+1][columns*3+1 + 1] == 1 && Main.binary[rows*3+1][columns*3+1 + 2] == 1 && Main.binary[rows*3+1][columns*3+1 + 3] == 1 && columns < 8;
             }
             else
                 return false;

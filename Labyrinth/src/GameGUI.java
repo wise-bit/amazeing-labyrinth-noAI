@@ -48,8 +48,8 @@ public class GameGUI extends JFrame implements ActionListener, MouseListener {
         // Creates a scaleable image
         BufferedImage img = null;
         try {
-            img = ImageIO.read(new File("Labyrinth/res/white.jpg"));
-            // img = ImageIO.read(new File("Labyrinth/res/blogamazeingBoard.jpg")); // TODO: Switch Back
+            // img = ImageIO.read(new File("Labyrinth/res/white.jpg"));
+            img = ImageIO.read(new File("Labyrinth/res/blogamazeingBoard.jpg")); // TODO: Switch Back
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -422,6 +422,7 @@ public class GameGUI extends JFrame implements ActionListener, MouseListener {
                 Board.shiftBoardTiles(0, 2 + 2 * i, 4);
 
                 binaryBoardPrinter();
+                Setup.fullBinaryBoard();
                 System.out.println();
 
                 Main.board[1][2 + 2 * i].setBounds(18 + 60 * (1 + 2 * i), 25, 50, 50);
@@ -436,6 +437,7 @@ public class GameGUI extends JFrame implements ActionListener, MouseListener {
                 Board.shiftBoardTiles(8, 2 + 2 * i, 3);
 
                 binaryBoardPrinter();
+                Setup.fullBinaryBoard();
                 System.out.println();
 
                 Main.board[7][2 + 2 * i].setBounds(18 + 60  * (1 + 2 * i), 375, 50, 50);
@@ -476,9 +478,10 @@ public class GameGUI extends JFrame implements ActionListener, MouseListener {
                     System.out.printf("Label (%d, %d) was clicked\n", i, j);
                     // Board.extra.s.binaryBoardPrinter();
                     // System.out.println();
-                    if (Main.deck.players.get(currentPlayer).movePlayer(i*3+1,j*3+1, 1) == true){
+                    if (Main.deck.players.get(currentPlayer).movePlayer(i,j, 1) == true){
                         Main.deck.players.get(currentPlayer).setRows(i);
                         Main.deck.players.get(currentPlayer).setColumns(j);
+                        Main.deck.players.get(currentPlayer).setBounds(35 + 60*Main.deck.players.get(currentPlayer).getColumns(), 10 + 60*Main.deck.players.get(currentPlayer).getRows(), 80, 80);
                         Main.deck.players.get(currentPlayer).validate();
                         Main.deck.players.get(currentPlayer).repaint();
                         System.out.println("Working");

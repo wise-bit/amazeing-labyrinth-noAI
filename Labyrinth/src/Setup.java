@@ -130,7 +130,7 @@ public class Setup extends JFrame {
         }
 
         otherTiles();
-        setBinary(fullBinaryBoard());
+        fullBinaryBoard();
 
         System.out.println("New initialization");
         binaryBoardPrinter();
@@ -276,7 +276,7 @@ public class Setup extends JFrame {
 
     // TODO: Check functionality
     // Creates a binary representation of the board to check if the player can move to a certain position
-    public static int[][] fullBinaryBoard(){
+    public static void fullBinaryBoard(){
         int[][] binaryBoard = new int[27][27];
 
         for (int i = 3; i < 24; i++){
@@ -285,7 +285,7 @@ public class Setup extends JFrame {
             }
         }
 
-        return binaryBoard;
+        Main.binary = binaryBoard;
 
     }
 
@@ -298,7 +298,7 @@ public class Setup extends JFrame {
     }
 
     public static void binaryBoardPrinter(){
-        int[][] temp = fullBinaryBoard();
+        int[][] temp = Main.binary;
         for (int i = 0; i < 27; i++){
             for (int j = 0; j < 27; j++){
                 System.out.print(temp[i][j] + " ");
