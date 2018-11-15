@@ -14,8 +14,13 @@ public class Board {
 
 	private Player[] playersArray;
 
-    // Runs setup once
-    // Setup s = new Setup();
+	private final int RIGHT = 1;
+	private final int LEFT = 2;
+	private final int UP = 3;
+	private final int DOWN = 4;
+	
+	private Tile tileForPlayer = new Tile("Empty", true, 'i', 1, 1, 0);
+
 
 	private static final int RIGHT = 1;
 	private static final int LEFT = 2;
@@ -128,12 +133,13 @@ public class Board {
 		}
 		else if (directionOfShift == DOWN) {
 
-            Main.board[0][columnToShift] = getTileForPlayer();
+			Main.board[0][columnToShift] = getTileForPlayer();
+			
+			Main.board[0][columnToShift].setRow(0);
+			
+			Main.board[8][columnToShift] = Main.board[7][columnToShift];
+			Main.board[8][columnToShift].setColumn(columnToShift);
 
-            Main.board[0][columnToShift].setRow(0);
-            Main.board[8][columnToShift].setColumn(columnToShift);
-
-            Main.board[8][columnToShift] = Main.board[7][columnToShift];
 			for (int i = 7; i >= 1; i--) {
 
                 Main.board[i][columnToShift] = Main.board[i - 1][columnToShift];
