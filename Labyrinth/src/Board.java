@@ -20,7 +20,7 @@ public class Board {
 	private final int UP = 3;
 	private final int DOWN = 4;
 	
-	private Tile tileForPlayer = new Tile("Empty", true, 'i', 0, 0, 0);
+	private Tile tileForPlayer = new Tile("Empty", true, 'i', 1, 1, 0);
 
 	private Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
 
@@ -132,9 +132,11 @@ public class Board {
 			set[0][columnToShift] = getTileForPlayer();
 			
 			set[0][columnToShift].setRow(0);
-			set[8][columnToShift].setColumn(columnToShift);
 			
 			set[8][columnToShift] = set[7][columnToShift];
+			set[8][columnToShift].setColumn(columnToShift);
+			
+			
 			for (int i = 7; i >= 1; i--) {
 
 				set[i][columnToShift] = set[i - 1][columnToShift];
