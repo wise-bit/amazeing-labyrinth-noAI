@@ -23,7 +23,7 @@ public class Board {
 	private static final int UP = 3;
 	private static final int DOWN = 4;
 	
-	private static Tile tileForPlayer = new Tile("Empty", true, 'i', 0, 0, 0);
+	private static Tile tileForPlayer = new Tile("Empty", true, 'l', 0, 0, 0);
 
 	public static Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
 

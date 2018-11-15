@@ -9,10 +9,8 @@ import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
-import java.awt.event.*;
 import java.awt.image.BufferedImage;
 import java.io.*;
-import java.util.Arrays;
 
 public class GameGUI extends JFrame implements ActionListener, MouseListener {
 
@@ -23,11 +21,11 @@ public class GameGUI extends JFrame implements ActionListener, MouseListener {
     private JMenu file = new JMenu("File");
     private JMenuItem save = new JMenuItem("Save");
     private JMenuItem load = new JMenuItem("Load");
-    private Player[] player = new Player[4];
     private ImageIcon[] dots = new ImageIcon[4];
     private JLabel[] playerColour = new JLabel[4];
     private JLabel[] playerName = new JLabel[4];
     private int currentPlayer = 0;
+    private Font font = new Font("Sylfaen", Font.BOLD, 40); // Freestyle Script, Matura MT Script Capitals, French Script MT
 
     private JButton[] topButtons = new JButton[3];
     private JButton[] bottomButtons = new JButton[3];
@@ -118,6 +116,46 @@ public class GameGUI extends JFrame implements ActionListener, MouseListener {
         }
 
         //////////////////////////////////////////////////
+        //Make player #1 name show up
+        playerName[0] = new JLabel(Main.visibleNames[0]);
+        playerName[0].setForeground(Color.BLACK);
+        playerName[0].setFont(font);
+        playerName[0].setBounds(100, 10, 200, 80);
+        add(playerName[0]);
+        playerName[0].setVisible(true);
+        //////////////////////////////////////////////////
+
+        //////////////////////////////////////////////////
+        //Make player #2 name show up
+        playerName[1] = new JLabel(Main.visibleNames[1]);
+        playerName[1].setForeground(Color.BLACK);
+        playerName[1].setFont(font);
+        playerName[1].setBounds(100, 310, 200, 80);
+        add(playerName[1]);
+        playerName[1].setVisible(true);
+        //////////////////////////////////////////////////
+
+        //////////////////////////////////////////////////
+        //Make player #3 name show up
+        playerName[2] = new JLabel(Main.visibleNames[2]);
+        playerName[2].setForeground(Color.BLACK);
+        playerName[2].setFont(font);
+        playerName[2].setBounds(1100, 10, 200, 80);
+        add(playerName[2]);
+        playerName[2].setVisible(true);
+        //////////////////////////////////////////////////
+
+        //////////////////////////////////////////////////
+        //Make player #4 name show up
+        playerName[3] = new JLabel(Main.visibleNames[3]);
+        playerName[3].setForeground(Color.BLACK);
+        playerName[3].setFont(font);
+        playerName[3].setBounds(1100, 310, 200, 80);
+        add(playerName[3]);
+        playerName[3].setVisible(true);
+        //////////////////////////////////////////////////
+
+        //////////////////////////////////////////////////
         //Creating the player #1 icon
         BufferedImage playerOneImg = null;
         try {
@@ -141,7 +179,7 @@ public class GameGUI extends JFrame implements ActionListener, MouseListener {
         //Creating the player #2 icon
         BufferedImage playerTwoImg = null;
         try {
-            playerTwoImg = ImageIO.read(new File("Labyrinth/res/PlayerImagesOnBoard/greendot.png")); // Doesnt exist
+            playerTwoImg = ImageIO.read(new File("Labyrinth/res/PlayerImagesOnBoard/yellowdot.png")); // Doesnt exist
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -151,7 +189,7 @@ public class GameGUI extends JFrame implements ActionListener, MouseListener {
         System.out.println();
         System.out.println(Main.deck.players.get(1));
         Main.deck.players.get(1).setIcon(playerTwoIcon);
-        Main.deck.players.get(1).setBounds(38, 366, 80, 80);
+        Main.deck.players.get(1).setBounds(390, 37, 20, 20);
         fixedBoard.add(Main.deck.players.get(1));
         Main.deck.players.get(1).setVisible(true);
 
@@ -161,7 +199,7 @@ public class GameGUI extends JFrame implements ActionListener, MouseListener {
         //Creating the player #3 icon
         BufferedImage playerThreeImg = null;
         try {
-            playerThreeImg = ImageIO.read(new File("Labyrinth/res/PlayerImagesOnBoard/yellowdot.png"));
+            playerThreeImg = ImageIO.read(new File("Labyrinth/res/PlayerImagesOnBoard/bluedot.png"));
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -171,7 +209,7 @@ public class GameGUI extends JFrame implements ActionListener, MouseListener {
         System.out.println();
         System.out.println(Main.deck.players.get(2));
         Main.deck.players.get(2).setIcon(playerThreeIcon);
-        Main.deck.players.get(2).setBounds(390, 37, 20, 20);
+        Main.deck.players.get(2).setBounds(393, 393, 20, 20);
         fixedBoard.add(Main.deck.players.get(2));
         Main.deck.players.get(2).setVisible(true);
 
@@ -181,7 +219,7 @@ public class GameGUI extends JFrame implements ActionListener, MouseListener {
         //Creating the player #4 icon
         BufferedImage playerFourImg = null;
         try {
-            playerFourImg = ImageIO.read(new File("Labyrinth/res/PlayerImagesOnBoard/bluedot.png"));
+            playerFourImg = ImageIO.read(new File("Labyrinth/res/PlayerImagesOnBoard/greendot.png"));
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -192,7 +230,7 @@ public class GameGUI extends JFrame implements ActionListener, MouseListener {
 
         System.out.println(Main.deck.players.get(3));
         Main.deck.players.get(3).setIcon(playerFourIcon);
-        Main.deck.players.get(3).setBounds(393, 393, 20, 20);
+        Main.deck.players.get(3).setBounds(38, 366, 80, 80);
         fixedBoard.add(Main.deck.players.get(3));
         Main.deck.players.get(3).setVisible(true);
 
@@ -388,22 +426,22 @@ public class GameGUI extends JFrame implements ActionListener, MouseListener {
 
     //Adds the dots that the player is associated with in the game
     public void addDots(){
-        dots[0] = new ImageIcon("Labyrinth/res/PlayerImages/bluedot.png");
+        dots[0] = new ImageIcon("Labyrinth/res/PlayerImages/reddot.png");
         playerColour[0] = new JLabel(dots[0]);
         playerColour[0].setBounds(10, 10, 80, 80);
         add(playerColour[0]);
 
-        dots[1] = new ImageIcon("Labyrinth/res/PlayerImages/greendot.png");
+        dots[1] = new ImageIcon("Labyrinth/res/PlayerImages/yellowdot.png");
         playerColour[1] = new JLabel(dots[1]);
         playerColour[1].setBounds(10, 310, 80, 80);
         add(playerColour[1]);
 
-        dots[2] = new ImageIcon("Labyrinth/res/PlayerImages/yellowdot.png");
+        dots[2] = new ImageIcon("Labyrinth/res/PlayerImages/bluedot.png");
         playerColour[2] = new JLabel(dots[2]);
         playerColour[2].setBounds(1000, 10, 80, 80);
         add(playerColour[2]);
 
-        dots[3] = new ImageIcon("Labyrinth/res/PlayerImages/reddot.png");
+        dots[3] = new ImageIcon("Labyrinth/res/PlayerImages/greendot.png");
         playerColour[3] = new JLabel(dots[3]);
         playerColour[3].setBounds(1000, 310, 80, 80);
         add(playerColour[3]);
@@ -436,6 +474,8 @@ public class GameGUI extends JFrame implements ActionListener, MouseListener {
             else if (e.getSource() == bottomButtons[i]) {
 
                 Board.shiftBoardTiles(8, 2 + 2 * i, 3);
+                //System.out.println(Board.set[7][2]);
+                //System.out.println(Board.set[7][2].getLocation());
 
 //                System.out.println(Main.board[8][2 + 2 * i].getLocation());
 //
@@ -453,10 +493,12 @@ public class GameGUI extends JFrame implements ActionListener, MouseListener {
                 //Main.board[7][2 + 2 * i].setBounds(18 + 60  * (1 + 2 * i), 375, 50, 50);
                 //fixedBoard.add(temp);
 
-                JLabel temp = new JLabel(new ImageIcon(Main.extraTile.makeFileName()));
-                temp.setBounds(18 + 60  * (1 + 2 * i), 375, 50, 50);
-                fixedBoard.add(temp);
-                repaint();
+//                JLabel temp = new JLabel(new ImageIcon(Main.extraTile.makeFileName()));
+//                temp.setBounds(18 + 60  * (1 + 2 * i), 375, 50, 50);
+//                System.out.println(Board.getTileForPlayer().getLocation());
+//                Board.getTileForPlayer().setBounds(78, 300, 50, 50);
+//                fixedBoard.add(Board.getTileForPlayer());
+//                repaint();
 
             }
             else if (e.getSource() == rightButtons[i]) {
@@ -481,6 +523,7 @@ public class GameGUI extends JFrame implements ActionListener, MouseListener {
 
     @Override
     public void mouseClicked(MouseEvent e) {
+
         int currentRow = Main.deck.players.get(currentPlayer).getRows();
         int currentColumn = Main.deck.players.get(currentPlayer).getColumns();
         for (int i = 0; i < 9; i++) {
@@ -489,13 +532,15 @@ public class GameGUI extends JFrame implements ActionListener, MouseListener {
                     System.out.printf("Label (%d, %d) was clicked\n", i, j);
                     // Board.extra.s.binaryBoardPrinter();
                     // System.out.println();
-                    if (Main.deck.players.get(currentPlayer).movePlayer(i,j, 1, 0, 0) == true){
+                    if (Main.deck.players.get(currentPlayer).movePlayer(i,j, currentRow, currentColumn, 0) == true){
                         Main.deck.players.get(currentPlayer).setRows(i);
                         Main.deck.players.get(currentPlayer).setColumns(j);
                         System.out.println((35 + 60*Main.deck.players.get(currentPlayer).getColumns()) + " " +  (10 + 60*Main.deck.players.get(currentPlayer).getRows()));
                         Main.deck.players.get(currentPlayer).setBounds(35 + 60*Main.deck.players.get(currentPlayer).getColumns(), 10 + 60*Main.deck.players.get(currentPlayer).getRows(), 80, 80);
-                        Main.deck.players.get(currentPlayer).validate();
-                        Main.deck.players.get(currentPlayer).repaint();
+//
+// Main.deck.players.get(currentPlayer).validate();
+//                        Main.deck.players.get(currentPlayer).repaint();
+//
                         System.out.println("Working");
                         if (currentPlayer == 3)
                             currentPlayer = 0;
@@ -536,20 +581,45 @@ public class GameGUI extends JFrame implements ActionListener, MouseListener {
     	if (e.getSource() == extraTile) {
     		
     		if (e.getButton() == MouseEvent.BUTTON1) {
-    			
+
+    		    /*
     			int[][] array = Board.getTileForPlayer().getIntLayout();
     			
     			for (int i = 0; i < 3; i++) {
     				
     				System.out.println(Arrays.toString(array[i]));
     			}
-    			
+    			*/
     			Board.getTileForPlayer().rotateClockwise();
     			System.out.println(Board.getTileForPlayer().getRotation());
-    			
+
+    			BufferedImage extraTileImg = null;
+    			try{
+    			    extraTileImg = ImageIO.read(new File("Labyrinth/res/Images/" + Board.getTileForPlayer().makeFileName()));
+                } catch (IOException e1){
+    			    e1.printStackTrace();
+                }
+                Image currentTileImage = extraTileImg.getScaledInstance(50,50, Image.SCALE_SMOOTH);
+    			ImageIcon tileIcon = new ImageIcon(currentTileImage);
+
+    			extraTile.setIcon(tileIcon);
     		}
     		else if (e.getButton() == MouseEvent.BUTTON3) {
-    			System.out.println("right click");
+
+                Board.getTileForPlayer().rotateCounterClockwise();
+                System.out.println(Board.getTileForPlayer().getRotation());
+
+                BufferedImage extraTileImg = null;
+                try{
+                    extraTileImg = ImageIO.read(new File("Labyrinth/res/Images/" + Board.getTileForPlayer().makeFileName()));
+                } catch (IOException e1){
+                    e1.printStackTrace();
+                }
+                Image currentTileImage = extraTileImg.getScaledInstance(50,50, Image.SCALE_SMOOTH);
+                ImageIcon tileIcon = new ImageIcon(currentTileImage);
+
+                extraTile.setIcon(tileIcon);
+
     		}
     	}
     }
