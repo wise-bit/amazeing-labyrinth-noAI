@@ -22,7 +22,6 @@ public class PlayerGUI extends JFrame implements ActionListener {
     private Font font = new Font("Helvetica", Font.BOLD, 40);
     private ImageIcon[] dots = new ImageIcon[4];    //array to hold the player colours
     private JLabel[] playerColour = new JLabel[4];
-    private JTextField[] names = new JTextField[4];
     private JButton next = new JButton("Continue");
 
     //Constructor Method
@@ -103,14 +102,19 @@ public class PlayerGUI extends JFrame implements ActionListener {
 
     //Methods that are used to setup up to allow the user to enter the players information based on the number of players they select
     public void playerOneSetup() {
-        dots[0] = new ImageIcon("Labyrinth/res/PlayerImages/bluedot.png");
+        dots[0] = new ImageIcon("Labyrinth/res/PlayerImages/reddot.png");
         playerColour[0] = new JLabel(dots[0]);
         playerColour[0].setBounds(850, 80, 80, 80);
         add(playerColour[0]);
 
-        names[0] = new JTextField(20);
-        names[0].setBounds(1100, 100, 250, 40);
-        add(names[0]);
+        Main.names[0] = new JTextField(20);
+        Main.names[0].setBounds(1100, 100, 250, 40);
+        add(Main.names[0]);
+
+        TextFieldListener tfListener = new TextFieldListener();
+        Main.names[0].addActionListener(tfListener);
+
+        //Main.playerNames[0].setPlayerName(Main.names[0].getText());
 
         playerTitle[0] = new JLabel("Player 1:");
         playerTitle[0].setFont(new Font("Helvetica", Font.CENTER_BASELINE, 30));
@@ -120,14 +124,19 @@ public class PlayerGUI extends JFrame implements ActionListener {
     }
 
     public void playerTwoSetup() {
-        dots[1] = new ImageIcon("Labyrinth/res/PlayerImages/greendot.png");
+        dots[1] = new ImageIcon("Labyrinth/res/PlayerImages/yellowdot.png");
         playerColour[1] = new JLabel(dots[1]);
         playerColour[1].setBounds(850, 200, 80, 80);
         add(playerColour[1]);
 
-        names[1] = new JTextField(20);
-        names[1].setBounds(1100, 220, 250, 40);
-        add(names[1]);
+        Main.names[1] = new JTextField(20);
+        Main.names[1].setBounds(1100, 220, 250, 40);
+        add(Main.names[1]);
+
+        TextFieldListener tfListener = new TextFieldListener();
+        Main.names[1].addActionListener(tfListener);
+
+        //Main.playerNames[1].setPlayerName(Main.names[1].getText());
 
         playerTitle[1] = new JLabel("Player 2:");
         playerTitle[1].setFont(new Font("Helvetica", Font.CENTER_BASELINE, 30));
@@ -137,14 +146,19 @@ public class PlayerGUI extends JFrame implements ActionListener {
     }
 
     public void playerThreeSetup() {
-        dots[2] = new ImageIcon("Labyrinth/res/PlayerImages/yellowdot.png");
+        dots[2] = new ImageIcon("Labyrinth/res/PlayerImages/bluedot.png");
         playerColour[2] = new JLabel(dots[2]);
         playerColour[2].setBounds(850, 320, 80, 80);
         add(playerColour[2]);
 
-        names[2] = new JTextField(20);
-        names[2].setBounds(1100, 340, 250, 40);
-        add(names[2]);
+        Main.names[2] = new JTextField(20);
+        Main.names[2].setBounds(1100, 340, 250, 40);
+        add(Main.names[2]);
+
+        TextFieldListener tfListener = new TextFieldListener();
+        Main.names[2].addActionListener(tfListener);
+
+       // Main.playerNames[2].setPlayerName(Main.names[2].getText());
 
         playerTitle[2] = new JLabel("Player 3:");
         playerTitle[2].setFont(new Font("Helvetica", Font.CENTER_BASELINE, 30));
@@ -154,14 +168,19 @@ public class PlayerGUI extends JFrame implements ActionListener {
     }
 
     public void playerFourSetup() {
-        dots[3] = new ImageIcon("Labyrinth/res/PlayerImages/reddot.png");
+        dots[3] = new ImageIcon("Labyrinth/res/PlayerImages/greendot.png");
         playerColour[3] = new JLabel(dots[3]);
         playerColour[3].setBounds(850, 440, 80, 80);
         add(playerColour[3]);
 
-        names[3] = new JTextField(20);
-        names[3].setBounds(1100, 460, 250, 40);
-        add(names[3]);
+        Main.names[3] = new JTextField(20);
+        Main.names[3].setBounds(1100, 460, 250, 40);
+        add(Main.names[3]);
+
+        TextFieldListener tfListener = new TextFieldListener();
+        Main.names[3].addActionListener(tfListener);
+
+        //Main.playerNames[3].setPlayerName(Main.names[3].getText());
 
         playerTitle[3] = new JLabel("Player 4:");
         playerTitle[3].setFont(new Font("Helvetica", Font.CENTER_BASELINE, 30));
@@ -177,9 +196,9 @@ public class PlayerGUI extends JFrame implements ActionListener {
         add(playerTitle[2]);
         playerColour[2].setBounds(850, 320, 80, 80);
         add(playerColour[2]);
-        names[2].setBounds(1100, 340, 250, 40);
-        add(names[2]);
-
+        Main.names[2].setBounds(1100, 340, 250, 40);
+        add(Main.names[2]);
+        Main.playerNames[2].setPlayerName(Main.names[2].getText());
         repaint();
     }
 
@@ -190,9 +209,9 @@ public class PlayerGUI extends JFrame implements ActionListener {
         add(playerTitle[3]);
         playerColour[3].setBounds(850, 440, 80, 80);
         add(playerColour[3]);
-        names[3].setBounds(1100, 460, 250, 40);
-        add(names[3]);
-
+        Main.names[3].setBounds(1100, 460, 250, 40);
+        add(Main.names[3]);
+        Main.playerNames[3].setPlayerName(Main.names[3].getText());
         repaint();
     }
 
@@ -205,7 +224,7 @@ public class PlayerGUI extends JFrame implements ActionListener {
 
                 remove(playerTitle[i]);
                 remove(playerColour[i]);
-                remove(names[i]);
+                remove(Main.names[i]);
             }
 
         } else if (event.getSource() == threePlayers) {
@@ -214,7 +233,7 @@ public class PlayerGUI extends JFrame implements ActionListener {
 
                 remove(playerTitle[3]);
                 remove(playerColour[3]);
-                remove(names[3]);
+                remove(Main.names[3]);
 
             } else {
                 reAddPlayerThreeSetup();
@@ -232,6 +251,15 @@ public class PlayerGUI extends JFrame implements ActionListener {
         repaint();
 
         if (event.getSource() == next) {
+            Main.visibleNames[0] = Main.names[0].getText();
+            Main.visibleNames[1] = Main.names[1].getText();
+            Main.visibleNames[2] = Main.names[2].getText();
+            Main.visibleNames[3] = Main.names[3].getText();
+            System.out.println(Main.visibleNames[0]);
+            System.out.println(Main.visibleNames[1]);
+            System.out.println(Main.visibleNames[2]);
+            System.out.println(Main.visibleNames[3]);
+
             this.setVisible(false);
             try {
                 new GameGUI();
@@ -251,5 +279,12 @@ public class PlayerGUI extends JFrame implements ActionListener {
                 return true;
         }
         return false;
+    }
+
+    private class TextFieldListener implements ActionListener{
+        @Override
+        public void actionPerformed(ActionEvent e) {
+
+        }
     }
 }

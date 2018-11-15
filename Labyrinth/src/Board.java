@@ -1,3 +1,4 @@
+import javax.swing.*;
 import java.awt.*;
 import java.io.FileNotFoundException;
 
@@ -22,7 +23,7 @@ public class Board {
 	private static final int UP = 3;
 	private static final int DOWN = 4;
 	
-	private static Tile tileForPlayer = new Tile("Empty", true, 'i', 0, 0, 0);
+	private static Tile tileForPlayer = new Tile("Empty", true, 'l', 0, 0, 0);
 
 	public static Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
 
@@ -107,24 +108,25 @@ public class Board {
 		else if (directionOfShift == UP) {
 
             Main.board[8][columnToShift] = getTileForPlayer();
+			System.out.println(getTileForPlayer().makeFileName());
 
             Main.board[8][columnToShift].setRow(8);
             Main.board[8][columnToShift].setColumn(columnToShift);
 
-            Main.board[0][columnToShift] = Main.board[1][columnToShift];
+            //Main.board[0][columnToShift] = Main.board[1][columnToShift];
 			
-			for (int i = 1; i <= 7; i++) {
+			for (int i = 0; i <= 7; i++) {
 
                 Main.board[i][columnToShift] = Main.board[i + 1][columnToShift];
                 Main.board[i][columnToShift].setRow(i);
 
-                Main.board[i][columnToShift].setLocation(Main.board[i][columnToShift].getX(), Main.board[i][columnToShift].getY() - 50);
+                Main.board[i][columnToShift].setLocation(Main.board[i][columnToShift].getX(), Main.board[i][columnToShift].getY() - 58);
 
 			}
 			setTileForPlayer(Main.board[0][columnToShift]);
 
-            Main.board[0][columnToShift] = null;
-            Main.board[8][columnToShift] = null;
+			Main.board[0][columnToShift].setVisible(false);
+			Main.board[8][columnToShift].setVisible(false);
 		}
 		else if (directionOfShift == DOWN) {
 
@@ -134,9 +136,7 @@ public class Board {
             Main.board[0][columnToShift].setColumn(columnToShift);
             
             Main.board[8][columnToShift] = Main.board[7][columnToShift];
-           
 
-            
 			for (int i = 7; i >= 1; i--) {
 
                 Main.board[i][columnToShift] = Main.board[i - 1][columnToShift];
