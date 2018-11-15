@@ -415,6 +415,7 @@ public class GameGUI extends JFrame implements ActionListener, MouseListener {
 
         if(e.getSource() == instructions) {
             new Instructions();
+            setVisible(true);
         }
 
         for (int i = 0; i < 3; i++) {
@@ -480,7 +481,8 @@ public class GameGUI extends JFrame implements ActionListener, MouseListener {
                     System.out.printf("Label (%d, %d) was clicked\n", i, j);
                     // Board.extra.s.binaryBoardPrinter();
                     // System.out.println();
-                    if (Main.deck.players.get(currentPlayer).movePlayer(i,j, 1, 0) == true){
+                    if (Main.deck.players.get(currentPlayer).movePlayer(i,j, Main.deck.players.get(currentPlayer).getRows(), Main.deck.players.get(currentPlayer).getColumns(), 1) == true){
+                        System.out.printf("Changing position of player: %d\n", currentPlayer);
                         Main.deck.players.get(currentPlayer).setRows(i);
                         Main.deck.players.get(currentPlayer).setColumns(j);
                         System.out.println((35 + 60*Main.deck.players.get(currentPlayer).getColumns()) + " " +  (10 + 60*Main.deck.players.get(currentPlayer).getRows()));
