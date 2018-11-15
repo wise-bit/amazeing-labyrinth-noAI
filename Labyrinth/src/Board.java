@@ -131,9 +131,12 @@ public class Board {
             Main.board[0][columnToShift] = getTileForPlayer();
 
             Main.board[0][columnToShift].setRow(0);
-            Main.board[8][columnToShift].setColumn(columnToShift);
-
+            Main.board[0][columnToShift].setColumn(columnToShift);
+            
             Main.board[8][columnToShift] = Main.board[7][columnToShift];
+           
+
+            
 			for (int i = 7; i >= 1; i--) {
 
                 Main.board[i][columnToShift] = Main.board[i - 1][columnToShift];

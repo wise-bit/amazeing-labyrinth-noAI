@@ -12,6 +12,7 @@ import java.awt.event.*;
 import java.awt.event.*;
 import java.awt.image.BufferedImage;
 import java.io.*;
+import java.util.Arrays;
 
 public class GameGUI extends JFrame implements ActionListener, MouseListener {
 
@@ -33,6 +34,7 @@ public class GameGUI extends JFrame implements ActionListener, MouseListener {
     private JButton[] leftButtons = new JButton[3];
     private JButton[] rightButtons = new JButton[3];
 
+    
     private JLabel extraTile = new JLabel();
 
     public GameGUI() throws IOException {
@@ -342,6 +344,7 @@ public class GameGUI extends JFrame implements ActionListener, MouseListener {
         extraTile.setIcon(tileIcon);
 
         extraTile.setBounds(100, 600, 100, 100);
+        extraTile.addMouseListener(this);
         add(extraTile);
         setVisible(true);
 
@@ -522,8 +525,28 @@ public class GameGUI extends JFrame implements ActionListener, MouseListener {
     @Override
     public void mousePressed(MouseEvent e) {
 
+    	if (e.getSource() == extraTile) {
+    		
+    		if (e.getButton() == MouseEvent.BUTTON1) {
+    			
+    			int[][] array = Board.getTileForPlayer().getIntLayout();
+    			
+    			for (int i = 0; i < 3; i++) {
+    				
+    				System.out.println(Arrays.toString(array[i]));
+    			}
+    			
+    			Board.getTileForPlayer().rotateClockwise();
+    			System.out.println(Board.getTileForPlayer().getRotation());
+    			
+    		}
+    		else if (e.getButton() == MouseEvent.BUTTON3) {
+    			System.out.println("right click");
+    		}
+    	}
     }
 
+    
     @Override
     public void mouseReleased(MouseEvent e) {
 
