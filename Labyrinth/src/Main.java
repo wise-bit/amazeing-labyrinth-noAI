@@ -41,8 +41,8 @@ public class Main {
 //        for (int i = 0; i < 24; i++)
 //            System.out.print(list.get(i) + ", ");
 
-        // new HomePageGUI();
-        new GameGUI();
+        new HomePageGUI();
+        // new GameGUI();
         // new UX().save(s.getBoard());
         // new Instructions();
 

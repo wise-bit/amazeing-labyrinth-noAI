@@ -394,7 +394,6 @@ public class GameGUI extends JFrame implements ActionListener, MouseListener {
     	
         if(e.getSource() == instructions) {
             new Instructions();
-            setVisible(true);
         }
         
         if (e.getSource() == shiftColumn2Button) {
