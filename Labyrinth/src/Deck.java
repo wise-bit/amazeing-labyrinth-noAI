@@ -7,9 +7,10 @@ import java.util.*;
 
 public class Deck {
 
-    private ArrayList<Player> players = new ArrayList<Player>();
-    ExtraMethods extra = new ExtraMethods();
-    private ArrayList<String> cardsList = extra.s.listOfTreasures();
+    public static ArrayList<Player> players = new ArrayList<Player>();
+    // Runs it again just for the sake of randomizing the card assignment
+    Setup s = new Setup();
+    private ArrayList<String> cardsList = s.listOfTreasures();
 
     public Deck(int numOfPlayers) throws FileNotFoundException {
 

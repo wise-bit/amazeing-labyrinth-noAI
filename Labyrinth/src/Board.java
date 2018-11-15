@@ -9,31 +9,32 @@ import java.io.FileNotFoundException;
 
 public class Board {
 	
-	private Tile[][] set;
+	public static Tile[][] set;
 	private int[][] tileset;
 
 	private Player[] playersArray;
-    Deck deck;
+    public static Deck deck;
 
-	private final int RIGHT = 1;
-	private final int LEFT = 2;
-	private final int UP = 3;
-	private final int DOWN = 4;
+    // Runs setup once
+    Setup s = new Setup();
+
+	private static final int RIGHT = 1;
+	private static final int LEFT = 2;
+	private static final int UP = 3;
+	private static final int DOWN = 4;
 	
-	private Tile tileForPlayer = new Tile("Empty", true, 'i', 0, 0, 0);
+	private static Tile tileForPlayer = new Tile("Empty", true, 'i', 0, 0, 0);
 
-	private Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
-
-	public ExtraMethods extra = new ExtraMethods();
+	public static Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
 
 	public Board() throws FileNotFoundException{
-		extra.s.init();
-		extra.s.binaryBoardPrinter();
-		set = extra.s.getBoard();
+		s.init();
+		s.binaryBoardPrinter();
+		set = s.getBoard();
         makeDeck(4);
 		//displayTilesStart();
 
-		Tile[][] set = extra.s.getBoard();
+		Tile[][] set = s.getBoard();
         for (int i = 0; i < 9; i++){
             for (int j = 0; j < 9; j++){
                 if (set[i][j] != null && set[i][j].isMoveable()) {
@@ -54,7 +55,7 @@ public class Board {
     	}
 	}
 
-	public void shiftBoardTiles(int rowToShift, int columnToShift, int directionOfShift){
+	public static void shiftBoardTiles(int rowToShift, int columnToShift, int directionOfShift){
 
 		// Checks if any player is on the row/column being shifted (depending on direction of shift)
 		//checkTileOccupied(rowToShift, columnToShift, directionOfShift);
@@ -218,14 +219,14 @@ public class Board {
 
 	}
 
-	public void setTileForPlayer(Tile tile) {
+	public static void setTileForPlayer(Tile tile) {
 
-		this.tileForPlayer = tile;
+		tileForPlayer = tile;
 	}
 
-	public Tile getTileForPlayer() {
+	public static Tile getTileForPlayer() {
 
-		return this.tileForPlayer;
+		return tileForPlayer;
 	}
 	public Tile[][] getSet() {
 		return set;

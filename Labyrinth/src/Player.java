@@ -21,9 +21,7 @@ public class Player extends JLabel {
     //Variables to store the players location (coordinates)
     private int rows;
     private int columns;
-
-    private ExtraMethods extra = new ExtraMethods();
-
+    
     // for traversal of movePlayer
     public static final int LEFT = 0;
     public static final int RIGHT = 1;
@@ -114,7 +112,6 @@ public class Player extends JLabel {
                 ", collected=" + collected +
                 ", rows=" + rows +
                 ", columns=" + columns +
-                ", extra=" + extra +
                 '}';
     }
 
@@ -183,17 +180,17 @@ public class Player extends JLabel {
         // TODO: Error in binary board
         try {
             if (count == UP)
-                return extra.s.fullBinaryBoard()[row-1][column] == 1 && extra.s.fullBinaryBoard()[row-2][column] == 1 && extra.s.fullBinaryBoard()[row-3][column] == 1 && row > 3;
+                return Setup.binary[row-1][column] == 1 && Setup.binary[row-2][column] == 1 && Setup.binary[row-3][column] == 1 && row > 3;
             else if (count == DOWN)
-                return extra.s.fullBinaryBoard()[row+1][column] == 1 && extra.s.fullBinaryBoard()[row+2][column] == 1 && extra.s.fullBinaryBoard()[row+3][column] == 1 && row < 24;
+                return Setup.binary[row+1][column] == 1 && Setup.binary[row+2][column] == 1 && Setup.binary[row+3][column] == 1 && row < 24;
             else if (count == LEFT)
-                return extra.s.fullBinaryBoard()[row][column-1] == 1 && extra.s.fullBinaryBoard()[row][column-2] == 1 && extra.s.fullBinaryBoard()[row][column-3] == 1 && column > 3;
+                return Setup.binary[row][column-1] == 1 && Setup.binary[row][column-2] == 1 && Setup.binary[row][column-3] == 1 && column > 3;
             else if (count == RIGHT) {
-                System.out.println(extra.s.getBinary()[row][column + 1]);
-                System.out.println(extra.s.getBinary()[row][column + 2]);
-                System.out.println(extra.s.getBinary()[row][column + 3]);
+                System.out.println(Setup.binary[row][column + 1]);
+                System.out.println(Setup.binary[row][column + 2]);
+                System.out.println(Setup.binary[row][column + 3]);
                 System.out.println(column < 24);
-                return extra.s.fullBinaryBoard()[row][column + 1] == 1 && extra.s.fullBinaryBoard()[row][column + 2] == 1 && extra.s.fullBinaryBoard()[row][column + 3] == 1 && column < 24;
+                return Setup.binary[row][column + 1] == 1 && Setup.binary[row][column + 2] == 1 && Setup.binary[row][column + 3] == 1 && column < 24;
             }
             else
                 return false;

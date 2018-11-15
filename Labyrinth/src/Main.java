@@ -3,12 +3,7 @@ Author: Satrajit, Shrill
  */
 
 import java.awt.*;
-import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.time.Instant;
-import java.util.Date;
-import java.util.ArrayList;
-import java.util.Arrays;
 
 public class Main {
 
@@ -28,20 +23,9 @@ public class Main {
 //            }
 //        }
 
-        // Generates binary maze
-//        for (int i = 0; i < 27; i++){
-//            for (int j = 0; j < 27; j++){
-//                System.out.print(s.fullBinaryBoard()[i][j] + " ");
-//            }
-//            System.out.println();
-//        }
-
-        // Shows list of all of the treasures
-//        ArrayList<String> list = s.listOfTreasures();
-//        for (int i = 0; i < 24; i++)
-//            System.out.print(list.get(i) + ", ");
 
         // new HomePageGUI();
+        new Setup();
         new GameGUI();
 
         // new UX().save(s.getBoard());
