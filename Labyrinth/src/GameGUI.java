@@ -474,7 +474,7 @@ public class GameGUI extends JFrame implements ActionListener, MouseListener {
             else if (e.getSource() == bottomButtons[i]) {
 
                 Board.shiftBoardTiles(8, 2 + 2 * i, 3);
-                //System.out.println(Board.set[7][2]);
+                System.out.println(Main.board[7][2]);
                 //System.out.println(Board.set[7][2].getLocation());
 
 //                System.out.println(Main.board[8][2 + 2 * i].getLocation());
