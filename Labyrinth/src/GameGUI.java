@@ -415,7 +415,6 @@ public class GameGUI extends JFrame implements ActionListener, MouseListener {
 
         if(e.getSource() == instructions) {
             new Instructions();
-            setVisible(true);
         }
 
         for (int i = 0; i < 3; i++) {
