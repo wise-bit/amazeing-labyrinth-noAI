@@ -14,7 +14,6 @@ public class Setup extends JFrame {
 
     //// Variable initializations
 
-
     // A counter to keep track of availability of a spot on the board
     private ArrayList<Integer> counter = new ArrayList<Integer>();
 
@@ -132,7 +131,10 @@ public class Setup extends JFrame {
         otherTiles();
         fullBinaryBoard();
 
+        Main.extraTile = new Tile("Empty", true, iCount>=lCount?'i':'l', 0, 0, 4);
+
         System.out.println("New initialization");
+        System.out.println(iCount + " + " + lCount);
         binaryBoardPrinter();
 
     }

@@ -10,6 +10,7 @@ public class Main {
     public static Tile[][] board;
     public static int[][] binary;
     public static Deck deck;
+    public static Tile extraTile;
 
     public static void main(String[] args) throws IOException, FontFormatException {
 
