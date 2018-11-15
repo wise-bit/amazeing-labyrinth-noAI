@@ -21,9 +21,7 @@ public class Player extends JLabel {
     //Variables to store the players location (coordinates)
     private int rows;
     private int columns;
-
-    private ExtraMethods extra = new ExtraMethods();
-
+    
     // for traversal of movePlayer
     public static final int LEFT = 0;
     public static final int RIGHT = 1;
@@ -114,7 +112,6 @@ public class Player extends JLabel {
                 ", collected=" + collected +
                 ", rows=" + rows +
                 ", columns=" + columns +
-                ", extra=" + extra +
                 '}';
     }
 
@@ -137,7 +134,17 @@ public class Player extends JLabel {
 
     public boolean movePlayer(int row, int column, int move){
 
-        if (row == getRows() && column == getColumns()) {
+        System.out.println(row + " " + column + " " + getRows() + " " + getColumns());
+
+//        int temp = row;
+//        row = rows;
+//        rows = temp;
+//
+//        temp = column;
+//        column = columns;
+//        columns = temp;
+
+        if (row == getRows() && column == getColumns()*3+1) {
             return false;
         } else if (row == getRows() && column == getColumns() && move > 1) {
             return true;
@@ -145,32 +152,40 @@ public class Player extends JLabel {
             for (int count = 0; count < 4; count++) {
                 switch (count) {
                     case LEFT:
-                        if (validMove(row, column-3, count)) {
-                            if (movePlayer(row, column-3, move+3)) {
+                        columns -= 1;
+                        if (validMove(row, column, count)) {
+                            if (movePlayer(row, column, move+1)) {
                                 return true;
                             }
                         }
+                        columns += 1;
                         break;
                     case RIGHT:
-                        if (validMove(row, column+3, count)) {
-                            if (movePlayer(row, column+3, move+3)) {
+                        columns += 1;
+                        if (validMove(row, column, count)) {
+                            if (movePlayer(row, column, move+1)) {
                                 return true;
                             }
                         }
+                        columns -= 1;
                         break;
                     case UP:
-                        if (validMove(row - 3, column, count)) {
-                            if (movePlayer(row - 3, column, move+3)) {
+                        rows -= 1;
+                        if (validMove(row, column, count)) {
+                            if (movePlayer(row, column, move+1)) {
                                 return true;
                             }
                         }
+                        rows += 1;
                         break;
                     case DOWN:
-                        if (validMove(row + 3, column, count)) {
-                            if (movePlayer(row + 3, column, move+3)) {
+                        rows += 1;
+                        if (validMove(row, column, count)) {
+                            if (movePlayer(row, column, move+1)) {
                                 return true;
                             }
                         }
+                        rows -= 1;
                         break;
                 }
             }
@@ -183,13 +198,17 @@ public class Player extends JLabel {
         // TODO: Error in binary board
         try {
             if (count == UP)
-                return extra.s.fullBinaryBoard()[row-1][column] == 1 && extra.s.fullBinaryBoard()[row-2][column] == 1 && extra.s.fullBinaryBoard()[row-3][column] == 1 && row > 3;
+                return Main.binary[rows*3+1 - 1][columns*3+1] == 1 && Main.binary[rows*3+1 - 2][columns*3+1] == 1 && Main.binary[rows*3+1 - 3][columns*3+1] == 1 && rows*3+1 > 3;
             else if (count == DOWN)
-                return extra.s.fullBinaryBoard()[row+1][column] == 1 && extra.s.fullBinaryBoard()[row+2][column] == 1 && extra.s.fullBinaryBoard()[row+3][column] == 1 && row < 24;
+                return Main.binary[rows*3+1 + 1][columns*3+1] == 1 && Main.binary[rows*3+1 + 2][columns*3+1] == 1 && Main.binary[rows*3+1 + 3][columns*3+1] == 1 && rows*3+1 < 24;
             else if (count == LEFT)
-                return extra.s.fullBinaryBoard()[row][column-1] == 1 && extra.s.fullBinaryBoard()[row][column-2] == 1 && extra.s.fullBinaryBoard()[row][column-3] == 1 && column > 3;
-            else if (count == RIGHT)
-                return extra.s.fullBinaryBoard()[row][column+1] == 1 && extra.s.fullBinaryBoard()[row][column+2] == 1 && extra.s.fullBinaryBoard()[row][column+3] == 1 && column < 24;
+                return Main.binary[rows*3+1][columns*3+1 - 1] == 1 && Main.binary[rows*3+1][columns*3+1 - 2] == 1 && Main.binary[rows*3+1][columns*3+1 - 3] == 1 && columns*3+1 > 3;
+            else if (count == RIGHT) {
+                System.out.println(Main.binary[rows*3+1][columns*3+1 + 1]);
+                System.out.println(Main.binary[rows*3+1][columns*3+1 + 2]);
+                System.out.println(Main.binary[rows*3+1][columns*3+1 + 3]);
+                return Main.binary[rows*3+1][columns*3+1 + 1] == 1 && Main.binary[rows*3+1][columns*3+1 + 2] == 1 && Main.binary[rows*3-1][columns*3+1 + 3] == 1 && columns*3+1 < 24;
+            }
             else
                 return false;
 
