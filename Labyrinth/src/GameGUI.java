@@ -340,15 +340,10 @@ public class GameGUI extends JFrame implements ActionListener, MouseListener {
 
     }
 
-        return binaryBoard;
-
-    }
-
-    public void binaryBoardPrinter(){
-        int[][] temp = fullBinaryBoard();
-        for (int i = 3; i < 24; i++){
-            for (int j = 3; j < 24; j++){
-                System.out.print(temp[i][j] + " ");
+    //Creates the menu bar where instruction, save and load functionalities can be accessed
+    public void createMenuBar(){
+        JMenuBar menuBar = new JMenuBar();
+        setJMenuBar(menuBar);
 
         JMenu help = new JMenu("Help");
         menuBar.add(help);
@@ -434,28 +429,27 @@ public class GameGUI extends JFrame implements ActionListener, MouseListener {
                     }
                 }
             }
-            System.out.println();
         }
     }
-    
-	@Override
-	public void mousePressed(MouseEvent e) {
 
-	}
+    @Override
+    public void mousePressed(MouseEvent e) {
 
-	@Override
-	public void mouseReleased(MouseEvent e) {
+    }
 
-	}
+    @Override
+    public void mouseReleased(MouseEvent e) {
 
-	@Override
-	public void mouseEntered(MouseEvent e) {
+    }
 
-	}
+    @Override
+    public void mouseEntered(MouseEvent e) {
 
-	@Override
-	public void mouseExited(MouseEvent e) {
+    }
 
-	}
+    @Override
+    public void mouseExited(MouseEvent e) {
+
+    }
 
 }
