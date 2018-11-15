@@ -332,8 +332,6 @@ public class GameGUI extends JFrame implements ActionListener, MouseListener {
         }
         ////////////////////////////////////////////////////
 
-
-
         ////////////////////////////////////////////////////
         //Adds the extra tile onto the Board and allows for rotation
 
@@ -352,6 +350,8 @@ public class GameGUI extends JFrame implements ActionListener, MouseListener {
         extraTile.addMouseListener(this);
         add(extraTile);
         setVisible(true);
+
+        System.out.println(Main.deck.players.get(0).getPlayerName());
 
         //Closes program if the exit option is clicked.
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -489,7 +489,7 @@ public class GameGUI extends JFrame implements ActionListener, MouseListener {
                     System.out.printf("Label (%d, %d) was clicked\n", i, j);
                     // Board.extra.s.binaryBoardPrinter();
                     // System.out.println();
-                    if (Main.deck.players.get(currentPlayer).movePlayer(i,j, 1, 0) == true){
+                    if (Main.deck.players.get(currentPlayer).movePlayer(i,j, 1, 0, 0) == true){
                         Main.deck.players.get(currentPlayer).setRows(i);
                         Main.deck.players.get(currentPlayer).setColumns(j);
                         System.out.println((35 + 60*Main.deck.players.get(currentPlayer).getColumns()) + " " +  (10 + 60*Main.deck.players.get(currentPlayer).getRows()));
