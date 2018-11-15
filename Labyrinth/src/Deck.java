@@ -9,8 +9,7 @@ public class Deck {
 
     public static ArrayList<Player> players = new ArrayList<Player>();
     // Runs it again just for the sake of randomizing the card assignment
-    Setup s = new Setup();
-    private ArrayList<String> cardsList = s.listOfTreasures();
+    private ArrayList<String> cardsList = Setup.listOfTreasures();
 
     public Deck(int numOfPlayers) throws FileNotFoundException {
 

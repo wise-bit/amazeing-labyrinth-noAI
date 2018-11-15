@@ -33,9 +33,9 @@ public class GameGUI extends JFrame implements ActionListener, MouseListener {
     private JLabel extraTile = new JLabel();
 
     private JButton shiftColumn2Button = new JButton();
-    
+
     public GameGUI() throws IOException {
-    	
+
         setLayout(null);
         setBounds(0, 0, Board.dim.width, Board.dim.height);
         this.setTitle("aMAZEing Labyrinth");
@@ -76,10 +76,10 @@ public class GameGUI extends JFrame implements ActionListener, MouseListener {
             for (int j = 0; j < 9; j++){
 
                 // Only if the tile is not a null
-                if (Board.set[i][j] != null && Board.set[i][j].isMoveable()){
+                if (Main.board[i][j] != null && Main.board[i][j].isMoveable()){
                     // new tile creation begins here
 
-                    String fileName = Board.set[i][j].makeFileName();
+                    String fileName = Main.board[i][j].makeFileName();
 
                     BufferedImage tileImg = null;
                     try {
@@ -90,23 +90,23 @@ public class GameGUI extends JFrame implements ActionListener, MouseListener {
                     Image currentTileImage = tileImg.getScaledInstance(50,50, Image.SCALE_SMOOTH);
                     ImageIcon tileIcon = new ImageIcon(currentTileImage);
 
-                    Board.set[i][j].setIcon(tileIcon);
+                    Main.board[i][j].setIcon(tileIcon);
 
-                    // System.out.println(Board.set[i][j]);
-                    Board.set[i][j].setBounds(18 + 60 * (j- 1),22 + 60 * (i - 1),50,50);
-                    Board.set[i][j].addMouseListener(this);
+                    // System.out.println(Main.board[i][j]);
+                    Main.board[i][j].setBounds(18 + 60 * (j- 1),22 + 60 * (i - 1),50,50);
+                    Main.board[i][j].addMouseListener(this);
 
-                    fixedBoard.add(Board.set[i][j]);
-                    Board.set[i][j].setVisible(true);
+                    fixedBoard.add(Main.board[i][j]);
+                    Main.board[i][j].setVisible(true);
 
                     // new tile creation ends here
-                } else if (Board.set[i][j] != null ) {
+                } else if (Main.board[i][j] != null ) {
 
-                    Board.set[i][j].setBounds(18 + 60 * (j- 1),22 + 60 * (i - 1),50,50);
-                    Board.set[i][j].addMouseListener(this);
+                    Main.board[i][j].setBounds(18 + 60 * (j- 1),22 + 60 * (i - 1),50,50);
+                    Main.board[i][j].addMouseListener(this);
 
-                    fixedBoard.add(Board.set[i][j]);
-                    Board.set[i][j].setVisible(true);
+                    fixedBoard.add(Main.board[i][j]);
+                    Main.board[i][j].setVisible(true);
 
                 }
 
@@ -125,11 +125,11 @@ public class GameGUI extends JFrame implements ActionListener, MouseListener {
         ImageIcon playerOneIcon = new ImageIcon(currentPlayerOneImg);
 
         System.out.println();
-        System.out.println(Board.deck.players.get(0));
-        Board.deck.players.get(0).setIcon(playerOneIcon);
-        Board.deck.players.get(0).setBounds(35, 10, 80, 80);
-        fixedBoard.add(Board.deck.players.get(0));
-        Board.deck.players.get(0).setVisible(true);
+        System.out.println(Main.deck.players.get(0));
+        Main.deck.players.get(0).setIcon(playerOneIcon);
+        Main.deck.players.get(0).setBounds(35, 10, 80, 80);
+        fixedBoard.add(Main.deck.players.get(0));
+        Main.deck.players.get(0).setVisible(true);
 
         ////////////////////////////////////////////////////
 
@@ -145,11 +145,11 @@ public class GameGUI extends JFrame implements ActionListener, MouseListener {
         ImageIcon playerTwoIcon = new ImageIcon(currentPlayerTwoImg);
 
         System.out.println();
-        System.out.println(Board.deck.players.get(1));
-        Board.deck.players.get(1).setIcon(playerTwoIcon);
-        Board.deck.players.get(1).setBounds(38, 366, 80, 80);
-        fixedBoard.add(Board.deck.players.get(1));
-        Board.deck.players.get(1).setVisible(true);
+        System.out.println(Main.deck.players.get(1));
+        Main.deck.players.get(1).setIcon(playerTwoIcon);
+        Main.deck.players.get(1).setBounds(38, 366, 80, 80);
+        fixedBoard.add(Main.deck.players.get(1));
+        Main.deck.players.get(1).setVisible(true);
 
         ////////////////////////////////////////////////////
 
@@ -165,11 +165,11 @@ public class GameGUI extends JFrame implements ActionListener, MouseListener {
         ImageIcon playerThreeIcon = new ImageIcon(currentPlayerThreeImg);
 
         System.out.println();
-        System.out.println(Board.deck.players.get(2));
-        Board.deck.players.get(2).setIcon(playerThreeIcon);
-        Board.deck.players.get(2).setBounds(390, 37, 20, 20);
-        fixedBoard.add(Board.deck.players.get(2));
-        Board.deck.players.get(2).setVisible(true);
+        System.out.println(Main.deck.players.get(2));
+        Main.deck.players.get(2).setIcon(playerThreeIcon);
+        Main.deck.players.get(2).setBounds(390, 37, 20, 20);
+        fixedBoard.add(Main.deck.players.get(2));
+        Main.deck.players.get(2).setVisible(true);
 
         ////////////////////////////////////////////////////
 
@@ -186,17 +186,17 @@ public class GameGUI extends JFrame implements ActionListener, MouseListener {
 
         System.out.println();
 
-        System.out.println(Board.deck.players.get(3));
-        Board.deck.players.get(3).setIcon(playerFourIcon);
-        Board.deck.players.get(3).setBounds(393, 393, 20, 20);
-        fixedBoard.add(Board.deck.players.get(3));
-        Board.deck.players.get(3).setVisible(true);
+        System.out.println(Main.deck.players.get(3));
+        Main.deck.players.get(3).setIcon(playerFourIcon);
+        Main.deck.players.get(3).setBounds(393, 393, 20, 20);
+        fixedBoard.add(Main.deck.players.get(3));
+        Main.deck.players.get(3).setVisible(true);
 
         ////////////////////////////////////////////////////
 
         ////////////////////////////////////////////////////
         //Dealing the hand out for player ONE
-        String[] playerOneHand = Board.deck.players.get(0).getPlayerHand();
+        String[] playerOneHand = Main.deck.players.get(0).getPlayerHand();
 
         for(int x = 0; x < 5; x++){
 
@@ -218,7 +218,7 @@ public class GameGUI extends JFrame implements ActionListener, MouseListener {
 
         ////////////////////////////////////////////////////
         //Dealing the hand out for player TWO
-        String[] playerTwoHand = Board.deck.players.get(1).getPlayerHand();
+        String[] playerTwoHand = Main.deck.players.get(1).getPlayerHand();
 
         for(int y = 0; y < 5; y++){
 
@@ -240,7 +240,7 @@ public class GameGUI extends JFrame implements ActionListener, MouseListener {
 
         ////////////////////////////////////////////////////
         //Dealing the hand out for player THREE
-        String[] playerThreeHand = Board.deck.players.get(2).getPlayerHand();
+        String[] playerThreeHand = Main.deck.players.get(2).getPlayerHand();
 
         for(int i = 0; i < 5; i++){
 
@@ -260,15 +260,15 @@ public class GameGUI extends JFrame implements ActionListener, MouseListener {
         }
         ////////////////////////////////////////////////////
       
-        // System.out.println(Board.deck.players.get(0));
-        // Board.deck.players.get(0).setIcon(playerFourIcon);
-        // Board.deck.players.get(0).setBounds(10, fixedBoard.getY()-10, 50, 50);
-        // fixedBoard.add(Board.deck.players.get(0));
-        // Board.deck.players.get(0).setVisible(true);
+        // System.out.println(Main.deck.players.get(0));
+        // Main.deck.players.get(0).setIcon(playerFourIcon);
+        // Main.deck.players.get(0).setBounds(10, fixedBoard.getY()-10, 50, 50);
+        // fixedBoard.add(Main.deck.players.get(0));
+        // Main.deck.players.get(0).setVisible(true);
 
         ////////////////////////////////////////////////////
         //Dealing the hand out for player FOUR
-        String[] playerFourHand = Board.deck.players.get(3).getPlayerHand();
+        String[] playerFourHand = Main.deck.players.get(3).getPlayerHand();
 
         for(int z = 0; z < 5; z++){
 
@@ -328,7 +328,7 @@ public class GameGUI extends JFrame implements ActionListener, MouseListener {
         //Adds the extra tile onto the board and allows for rotation
         extraTile = new JLabel(new ImageIcon());
 
-        System.out.println(Board.deck.players.get(0).getPlayerName());
+        System.out.println(Main.deck.players.get(0).getPlayerName());
 
         //Closes program if the exit option is clicked.
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -385,7 +385,7 @@ public class GameGUI extends JFrame implements ActionListener, MouseListener {
     }
 
     public void addNames(){
-        //playerName[0] = new JLabel(Board.deck.players.get(0).getPlayerName());
+        //playerName[0] = new JLabel(Main.deck.players.get(0).getPlayerName());
     }
 
     @Override
@@ -398,8 +398,8 @@ public class GameGUI extends JFrame implements ActionListener, MouseListener {
         
         if (e.getSource() == shiftColumn2Button) {
         	
-        	Board.set[7][2].setBounds(18 + 60 * 2, 25 + 60 * 7, 50, 50);
-        	fixedBoard.add(Board.set[7][2]);
+        	Main.board[7][2].setBounds(18 + 60 * 2, 25 + 60 * 7, 50, 50);
+        	fixedBoard.add(Main.board[7][2]);
         	Board.shiftBoardTiles(7, 2, 3);
         	
         }
@@ -408,19 +408,19 @@ public class GameGUI extends JFrame implements ActionListener, MouseListener {
 
     @Override
     public void mouseClicked(MouseEvent e) {
-        int currentRow = Board.deck.players.get(currentPlayer).getRows();
-        int currentColumn = Board.deck.players.get(currentPlayer).getColumns();
+        int currentRow = Main.deck.players.get(currentPlayer).getRows();
+        int currentColumn = Main.deck.players.get(currentPlayer).getColumns();
         for (int i = 0; i < 9; i++) {
             for (int j = 0; j < 9; j++) {
-                if (e.getSource() == Board.set[i][j]) {
+                if (e.getSource() == Main.board[i][j]) {
                     System.out.printf("Label (%d, %d) was clicked\n", i, j);
                     // board.s.binaryBoardPrinter();
                     // System.out.println();
-                    if (Board.deck.players.get(currentPlayer).movePlayer(i*3+1,j*3+1, 1) == true){
-                        Board.deck.players.get(currentPlayer).setRows(i);
-                        Board.deck.players.get(currentPlayer).setColumns(j);
-                        Board.deck.players.get(currentPlayer).validate();
-                        Board.deck.players.get(currentPlayer).repaint();
+                    if (Main.deck.players.get(currentPlayer).movePlayer(i,j, 1) == true){
+                        Main.deck.players.get(currentPlayer).setRows(i);
+                        Main.deck.players.get(currentPlayer).setColumns(j);
+                        Main.deck.players.get(currentPlayer).validate();
+                        Main.deck.players.get(currentPlayer).repaint();
                         System.out.println("Working");
                         if (currentPlayer == 3)
                             currentPlayer = 0;
