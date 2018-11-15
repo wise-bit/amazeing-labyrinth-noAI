@@ -43,8 +43,6 @@ public class GameGUI extends JFrame implements ActionListener, MouseListener {
         setBounds(0, 0, Board.dim.width, Board.dim.height);
         this.setTitle("aMAZEing Labyrinth");
 
-
-
         // setContentPane(fixedBoard);
 
         // Creates a scaleable image
@@ -70,6 +68,11 @@ public class GameGUI extends JFrame implements ActionListener, MouseListener {
         help.add(instructions);
         file.add(save);
         file.add(load);
+        instructions.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent ev) {
+                new Instructions();
+            }
+        });
 
         // Places the other tiles
         for (int i = 0; i < 9; i++){
@@ -413,11 +416,6 @@ public class GameGUI extends JFrame implements ActionListener, MouseListener {
     @Override
     public void actionPerformed(ActionEvent e) {
 
-        if(e.getSource() == instructions) {
-            new Instructions();
-            setVisible(true);
-        }
-
         for (int i = 0; i < 3; i++) {
 
             if (e.getSource() == topButtons[i]) {
@@ -439,13 +437,25 @@ public class GameGUI extends JFrame implements ActionListener, MouseListener {
 
                 Board.shiftBoardTiles(8, 2 + 2 * i, 3);
 
+//                System.out.println(Main.board[8][2 + 2 * i].getLocation());
+//
+//                temp.setLocation(Main.board[7][2 + 2 * i].getLocation());
+//                fixedBoard.add(temp);
+//                setVisible(true);
+
                 binaryBoardPrinter();
                 Setup.fullBinaryBoard();
                 System.out.println();
 
-                Main.board[7][2 + 2 * i].setBounds(18 + 60  * (1 + 2 * i), 375, 50, 50);
-                fixedBoard.add(Main.board[7][2 + 2 * i]);
+//                Main.board[7][2 + 2 * i].setBounds(18 + 60  * (1 + 2 * i), 375, 50, 50);
+//                fixedBoard.add(Main.board[7][2 + 2 * i]);
 
+                //Main.board[7][2 + 2 * i].setBounds(18 + 60  * (1 + 2 * i), 375, 50, 50);
+                //fixedBoard.add(temp);
+
+                JLabel temp = new JLabel(new ImageIcon(Main.extraTile.makeFileName()));
+                temp.setBounds(18 + 60  * (1 + 2 * i), 375, 50, 50);
+                fixedBoard.add(temp);
                 repaint();
 
             }
@@ -457,7 +467,6 @@ public class GameGUI extends JFrame implements ActionListener, MouseListener {
             }
 
         }
-
         BufferedImage extraTileImg = null;
         try {
             extraTileImg = ImageIO.read(new File("Labyrinth/res/Images/" + Board.getTileForPlayer().makeFileName()));
@@ -468,7 +477,6 @@ public class GameGUI extends JFrame implements ActionListener, MouseListener {
         ImageIcon tileIcon = new ImageIcon(currentTileImage);
 
         extraTile.setIcon(tileIcon);
-
     }
 
     @Override
@@ -481,8 +489,10 @@ public class GameGUI extends JFrame implements ActionListener, MouseListener {
                     System.out.printf("Label (%d, %d) was clicked\n", i, j);
                     // Board.extra.s.binaryBoardPrinter();
                     // System.out.println();
+
                     if (Main.deck.players.get(currentPlayer).movePlayer(i,j, currentRow, currentColumn, 1) == true){
                         System.out.printf("Changing position of player: %d\n", currentPlayer);
+                      
                         Main.deck.players.get(currentPlayer).setRows(i);
                         Main.deck.players.get(currentPlayer).setColumns(j);
                         System.out.println((35 + 60*Main.deck.players.get(currentPlayer).getColumns()) + " " +  (10 + 60*Main.deck.players.get(currentPlayer).getRows()));
