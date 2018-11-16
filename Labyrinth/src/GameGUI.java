@@ -375,7 +375,7 @@ public class GameGUI extends JFrame implements ActionListener, MouseListener {
 
         BufferedImage extraTileImg = null;
         try {
-            extraTileImg = ImageIO.read(new File("Labyrinth/res/Images/" + Board.getTileForPlayer().makeFileName()));
+            extraTileImg = ImageIO.read(new File("Labyrinth/res/Images/" + Main.extraTile.makeFileName()));
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -474,7 +474,7 @@ public class GameGUI extends JFrame implements ActionListener, MouseListener {
             else if (e.getSource() == bottomButtons[i]) {
 
                 Board.shiftBoardTiles(8, 2 + 2 * i, 3);
-                System.out.println(Main.board[7][2]);
+               // System.out.println(Main.board[7][2]);
                 //System.out.println(Board.set[7][2].getLocation());
 
 //                System.out.println(Main.board[8][2 + 2 * i].getLocation());
@@ -487,18 +487,23 @@ public class GameGUI extends JFrame implements ActionListener, MouseListener {
                 Setup.fullBinaryBoard();
                 System.out.println();
 
-//                Main.board[7][2 + 2 * i].setBounds(18 + 60  * (1 + 2 * i), 375, 50, 50);
-//                fixedBoard.add(Main.board[7][2 + 2 * i]);
+               //JLabel img = new JLabel(new ImageIcon(new File("Labyrinth/res/images" +Main.extraTile.makeFileName()));
+               //img.setLocation(Main.extraTile.getLocation());
+               //setVisible(true);
+
+                Main.board[7][2 + 2 * i].setBounds(18 + 60  * (1 + 2 * i), 375, 50, 50);
+                fixedBoard.add(Main.board[7][2 + 2 * i]);
 
                 //Main.board[7][2 + 2 * i].setBounds(18 + 60  * (1 + 2 * i), 375, 50, 50);
                 //fixedBoard.add(temp);
 
-//                JLabel temp = new JLabel(new ImageIcon(Main.extraTile.makeFileName()));
-//                temp.setBounds(18 + 60  * (1 + 2 * i), 375, 50, 50);
-//                System.out.println(Board.getTileForPlayer().getLocation());
-//                Board.getTileForPlayer().setBounds(78, 300, 50, 50);
-//                fixedBoard.add(Board.getTileForPlayer());
-//                repaint();
+           //    JLabel temp = new JLabel(new ImageIcon(Main.extraTile.makeFileName()));
+
+           //     temp.setBounds(18 + 60  * (1 + 2 * i), 375, 50, 50);
+
+        //        Main.extraTile.setBounds(78, 300, 50, 50);
+        //        fixedBoard.add(extraTile);
+           //     repaint();
 
             }
             else if (e.getSource() == rightButtons[i]) {
@@ -509,9 +514,10 @@ public class GameGUI extends JFrame implements ActionListener, MouseListener {
             }
 
         }
+        System.out.println(Main.extraTile);
         BufferedImage extraTileImg = null;
         try {
-            extraTileImg = ImageIO.read(new File("Labyrinth/res/Images/" + Board.getTileForPlayer().makeFileName()));
+            extraTileImg = ImageIO.read(new File("Labyrinth/res/Images/" + Main.extraTile.makeFileName()));
         } catch (IOException e1) {
             e1.printStackTrace();
         }
@@ -583,19 +589,19 @@ public class GameGUI extends JFrame implements ActionListener, MouseListener {
     		if (e.getButton() == MouseEvent.BUTTON1) {
 
     		    /*
-    			int[][] array = Board.getTileForPlayer().getIntLayout();
+    			int[][] array = Main.extraTile.getIntLayout();
     			
     			for (int i = 0; i < 3; i++) {
     				
     				System.out.println(Arrays.toString(array[i]));
     			}
     			*/
-    			Board.getTileForPlayer().rotateClockwise();
-    			System.out.println(Board.getTileForPlayer().getRotation());
+    			Main.extraTile.rotateClockwise();
+    			System.out.println(Main.extraTile.getRotation());
 
     			BufferedImage extraTileImg = null;
     			try{
-    			    extraTileImg = ImageIO.read(new File("Labyrinth/res/Images/" + Board.getTileForPlayer().makeFileName()));
+    			    extraTileImg = ImageIO.read(new File("Labyrinth/res/Images/" + Main.extraTile.makeFileName()));
                 } catch (IOException e1){
     			    e1.printStackTrace();
                 }
@@ -606,12 +612,12 @@ public class GameGUI extends JFrame implements ActionListener, MouseListener {
     		}
     		else if (e.getButton() == MouseEvent.BUTTON3) {
 
-                Board.getTileForPlayer().rotateCounterClockwise();
-                System.out.println(Board.getTileForPlayer().getRotation());
+                Main.extraTile.rotateCounterClockwise();
+                System.out.println(Main.extraTile.getRotation());
 
                 BufferedImage extraTileImg = null;
                 try{
-                    extraTileImg = ImageIO.read(new File("Labyrinth/res/Images/" + Board.getTileForPlayer().makeFileName()));
+                    extraTileImg = ImageIO.read(new File("Labyrinth/res/Images/" + Main.extraTile.makeFileName()));
                 } catch (IOException e1){
                     e1.printStackTrace();
                 }

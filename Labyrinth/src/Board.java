@@ -23,7 +23,7 @@ public class Board {
 	private static final int UP = 3;
 	private static final int DOWN = 4;
 	
-	private static Tile tileForPlayer = new Tile("Empty", true, 'l', 0, 0, 0);
+	private static Tile tileForPlayer;
 
 	public static Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
 
@@ -61,7 +61,7 @@ public class Board {
 
 		if (directionOfShift == RIGHT){
 
-            Main.board[rowToShift][0] = getTileForPlayer();
+            Main.board[rowToShift][0] = Main.extraTile;
 
             Main.board[rowToShift][0].setRow(rowToShift);
             Main.board[rowToShift][0].setColumn(0);
@@ -77,14 +77,14 @@ public class Board {
 
 			}
 			
-			setTileForPlayer(Main.board[rowToShift][8]);
+			Main.extraTile = Main.board[rowToShift][8];
 
             Main.board[rowToShift][8] = null;
             Main.board[rowToShift][0] = null;
 		}
 		else if (directionOfShift == LEFT){
 
-            Main.board[rowToShift][8] = getTileForPlayer();
+            Main.board[rowToShift][8] = Main.extraTile;
 
             Main.board[rowToShift][8].setRow(rowToShift);
             Main.board[rowToShift][8].setColumn(8);
@@ -100,15 +100,15 @@ public class Board {
 
 			}
 
-			setTileForPlayer(Main.board[rowToShift][0]);
+			Main.extraTile = Main.board[rowToShift][0];
 
             Main.board[rowToShift][8] = null;
             Main.board[rowToShift][0] = null;
 		}
 		else if (directionOfShift == UP) {
 
-            Main.board[8][columnToShift] = getTileForPlayer();
-			System.out.println(getTileForPlayer().makeFileName());
+            Main.board[8][columnToShift] = Main.extraTile;
+			//System.out.println(getTileForPlayer().makeFileName());
 
             Main.board[8][columnToShift].setRow(8);
             Main.board[8][columnToShift].setColumn(columnToShift);
@@ -123,14 +123,14 @@ public class Board {
                 Main.board[i][columnToShift].setLocation(Main.board[i][columnToShift].getX(), Main.board[i][columnToShift].getY() - 58);
 
 			}
-			setTileForPlayer(Main.board[0][columnToShift]);
+			Main.extraTile = Main.board[0][columnToShift];
 
 			Main.board[0][columnToShift].setVisible(false);
 			Main.board[8][columnToShift].setVisible(false);
 		}
 		else if (directionOfShift == DOWN) {
 
-            Main.board[0][columnToShift] = getTileForPlayer();
+            Main.board[0][columnToShift] = Main.extraTile;
 
             Main.board[0][columnToShift].setRow(0);
             Main.board[0][columnToShift].setColumn(columnToShift);
@@ -145,7 +145,7 @@ public class Board {
                 Main.board[i][columnToShift].setLocation(Main.board[i][columnToShift].getX(), Main.board[i][columnToShift].getY() + 50);
 			}
 
-			setTileForPlayer(Main.board[8][columnToShift]);
+			Main.extraTile = Main.board[8][columnToShift];
 
             Main.board[0][columnToShift] = null;
             Main.board[8][columnToShift] = null;
