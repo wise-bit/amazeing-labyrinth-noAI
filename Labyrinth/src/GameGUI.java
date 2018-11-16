@@ -32,7 +32,7 @@ public class GameGUI extends JFrame implements ActionListener, MouseListener {
     private JButton[] leftButtons = new JButton[3];
     private JButton[] rightButtons = new JButton[3];
 
-    
+
     private JLabel extraTile = new JLabel();
 
     public GameGUI() throws IOException {
@@ -530,17 +530,17 @@ public class GameGUI extends JFrame implements ActionListener, MouseListener {
             for (int j = 0; j < 9; j++) {
                 if (e.getSource() == Main.board[i][j]) {
                     System.out.printf("Label (%d, %d) was clicked\n", i, j);
-                    // Board.extra.s.binaryBoardPrinter();
                     // System.out.println();
+                    int[][] modifyableBoard = Main.binary;
                     if (Main.deck.players.get(currentPlayer).movePlayer(i,j, currentRow, currentColumn, 0) == true){
                         Main.deck.players.get(currentPlayer).setRows(i);
                         Main.deck.players.get(currentPlayer).setColumns(j);
                         System.out.println((35 + 60*Main.deck.players.get(currentPlayer).getColumns()) + " " +  (10 + 60*Main.deck.players.get(currentPlayer).getRows()));
                         Main.deck.players.get(currentPlayer).setBounds(35 + 60*Main.deck.players.get(currentPlayer).getColumns(), 10 + 60*Main.deck.players.get(currentPlayer).getRows(), 80, 80);
-//
+
 // Main.deck.players.get(currentPlayer).validate();
 //                        Main.deck.players.get(currentPlayer).repaint();
-//
+
                         System.out.println("Working");
                         if (currentPlayer == 3)
                             currentPlayer = 0;
@@ -579,14 +579,14 @@ public class GameGUI extends JFrame implements ActionListener, MouseListener {
     public void mousePressed(MouseEvent e) {
 
     	if (e.getSource() == extraTile) {
-    		
+
     		if (e.getButton() == MouseEvent.BUTTON1) {
 
     		    /*
     			int[][] array = Board.getTileForPlayer().getIntLayout();
-    			
+
     			for (int i = 0; i < 3; i++) {
-    				
+
     				System.out.println(Arrays.toString(array[i]));
     			}
     			*/
