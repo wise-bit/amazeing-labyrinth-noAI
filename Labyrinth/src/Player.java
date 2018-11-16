@@ -132,9 +132,11 @@ public class Player extends JLabel {
         }
     }
 
-    public boolean movePlayer(int end_row, int end_column, int row, int column, int move){
+    public boolean movePlayer(int[][] modifyableBoard, int end_row, int end_column, int row, int column, int move){
 
         System.out.println(row + " " + column + " " + end_row + " " + end_column);
+
+        modifyableBoard[row][column] = 0;
 
         removeCard();
 
@@ -149,28 +151,28 @@ public class Player extends JLabel {
                 switch (count) {
                     case LEFT:
                         if (validMove(row, column, count)) {
-                            if (movePlayer(end_row, end_column, row, column-1, move+1)) {
+                            if (movePlayer(modifyableBoard, end_row, end_column, row, column-1, move+1)) {
                                 return true;
                             }
                         }
                         break;
                     case RIGHT:
                         if (validMove(row, column, count)) {
-                            if (movePlayer(end_row, end_column, row, column+1, move+1)) {
+                            if (movePlayer(modifyableBoard, end_row, end_column, row, column+1, move+1)) {
                                 return true;
                             }
                         }
                         break;
                     case UP:
                         if (validMove(row, column, count)) {
-                            if (movePlayer(end_row, end_column, row-1, column, move+1)) {
+                            if (movePlayer(modifyableBoard, end_row, end_column, row-1, column, move+1)) {
                                 return true;
                             }
                         }
                         break;
                     case DOWN:
                         if (validMove(row, column, count)) {
-                            if (movePlayer(end_row, end_column, row+1, column, move+1)) {
+                            if (movePlayer(modifyableBoard, end_row, end_column, row+1, column, move+1)) {
                                 return true;
                             }
                         }
