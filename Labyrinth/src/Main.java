@@ -12,7 +12,7 @@ public class Main {
     public static Tile[][] board;
     public static int[][] binary;
     public static Deck deck;
-    public static Tile extraTile;
+    public static Tile extraTile = new Tile("Empty", true, 'l', 0, 0, 0);;
     public static String[] visibleNames = new String[4];
     public static Player[] playerNames = new Player[4];
     public static JTextField[] names = new JTextField[4];
