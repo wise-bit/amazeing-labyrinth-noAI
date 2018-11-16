@@ -464,10 +464,13 @@ public class GameGUI extends JFrame implements ActionListener, MouseListener {
                 Setup.fullBinaryBoard();
                 System.out.println();
 
-                Main.board[1][2 + 2 * i].setBounds(18 + 60 * (1 + 2 * i), 25, 50, 50);
-                fixedBoard.add(Main.board[1][2 + 2 * i]);
 
-                repaint();
+                Main.board[1][2 + 2 * i].setLocation(18 + 60 * (1 + 2 * i), 25);
+                fixedBoard.add(Main.board[1][2 + 2 * i]);
+                System.out.println(Main.board[1][2 + 2 * i].getLocation());
+                Main.board[1][2 + 2 * i].setVisible(true);
+
+                Main.board[1][2 + 2 * i].repaint();
 
 
             }
@@ -588,6 +591,8 @@ public class GameGUI extends JFrame implements ActionListener, MouseListener {
 
     		if (e.getButton() == MouseEvent.BUTTON1) {
 
+                System.out.println(Main.extraTile);
+                System.out.println();
     		    /*
     			int[][] array = Main.extraTile.getIntLayout();
 
