@@ -127,8 +127,10 @@ public class Board {
 			}
 			Main.extraTile = Main.board[0][columnToShift];
 
-			Main.board[0][columnToShift].setVisible(false);
-			Main.board[8][columnToShift].setVisible(false);
+			// Main.board[0][columnToShift].setVisible(false);
+			// Main.board[8][columnToShift].setVisible(false);
+			Main.board[0][columnToShift] = null;
+			Main.board[8][columnToShift] = null;
 		}
 		else if (directionOfShift == DOWN) {
 
@@ -149,7 +151,6 @@ public class Board {
 
                 Main.board[i][columnToShift] = Main.board[i - 1][columnToShift];
                 Main.board[i][columnToShift].setRow(i);
-
 
 
                 Main.board[i][columnToShift].setLocation(Main.board[i][columnToShift].getX(), Main.board[i][columnToShift].getY() + 60);
