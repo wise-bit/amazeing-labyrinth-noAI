@@ -12,7 +12,7 @@ import java.util.Date;
 public class UX {
 
     // Create a file to store current game data
-    public void save(Tile[][] board) throws FileNotFoundException, UnsupportedEncodingException {
+    public static void save() throws FileNotFoundException, UnsupportedEncodingException {
 
         Date date = new Date();
         String path = "Labyrinth/savefiles/" + (date.getYear()+1900) + "-" + date.getMonth() + "-" + date.getDate() + " " + date.getHours() + "-" + date.getMinutes() + "-" + date.getSeconds() + ".txt";
@@ -25,8 +25,8 @@ public class UX {
             // Loops through all of the columns
             for (int j = 0; j < 9; j++) {
 
-                if (board[i][j] != null)
-                    writer.println(board[i][j].toStorageString());
+                if (Main.board[i][j] != null)
+                    writer.println(Main.board[i][j].toStorageString());
                 else
                     writer.println("blank");
 

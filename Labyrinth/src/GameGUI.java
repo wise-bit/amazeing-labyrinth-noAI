@@ -42,8 +42,7 @@ public class GameGUI extends JFrame implements ActionListener, MouseListener {
         setLayout(null);
         setBounds(0, 0, 1440, 900);
         this.setTitle("aMAZEing Labyrinth");
-
-
+        setContentPane(new JLabel(new ImageIcon(ImageIO.read(new File("Labyrinth/res/background.jpg")))));
 
         // setContentPane(fixedBoard);
 
@@ -64,12 +63,13 @@ public class GameGUI extends JFrame implements ActionListener, MouseListener {
         // Main fixed Board image ends here
 
         //Creates the menu bar
-        setJMenuBar(menuBar);
-        menuBar.add(help);
-        menuBar.add(file);
-        help.add(instructions);
-        file.add(save);
-        file.add(load);
+//        setJMenuBar(menuBar);
+//        menuBar.add(help);
+//        menuBar.add(file);
+//        help.add(instructions);
+//        file.add(save);
+//        file.add(load);
+        createMenuBar();
 
         // Places the other tiles
         for (int i = 0; i < 9; i++){
@@ -398,6 +398,7 @@ public class GameGUI extends JFrame implements ActionListener, MouseListener {
         setVisible(true);
         // setExtendedState(getExtendedState() | JFrame.MAXIMIZED_BOTH);
         setSize(1440, 900);
+        this.setLocation(Board.dim.width/2-this.getSize().width/2, Board.dim.height/2-this.getSize().height/2);
         repaint();
 
     }
@@ -416,12 +417,14 @@ public class GameGUI extends JFrame implements ActionListener, MouseListener {
         JMenu file = new JMenu("File");
         menuBar.add(file);
 
+        // ImageIcon saveIcon = new ImageIcon("Labyrinth/res/save-icon.png").getImage().getScaledInstance(10,10,Image.SCALE_DEFAULT);
         JMenuItem save = new JMenuItem("Save");
         file.add(save);
+        save.addActionListener(this);
 
         JMenuItem load = new JMenuItem("Load");
         file.add(load);
-
+        load.addActionListener(this);
 
     }
 
@@ -457,6 +460,11 @@ public class GameGUI extends JFrame implements ActionListener, MouseListener {
 
         if(e.getSource() == instructions) {
             new Instructions();
+            setVisible(true);
+        }
+
+        if(e.getSource() == save) {
+            try { UX.save(); } catch (Exception ex){ }
             setVisible(true);
         }
 

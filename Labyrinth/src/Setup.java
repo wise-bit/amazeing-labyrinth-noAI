@@ -134,7 +134,6 @@ public class Setup extends JFrame {
         Main.extraTile = new Tile("Empty", true, iCount>=lCount?'i':'l', 0, 0, 4);
 
         System.out.println("New initialization");
-        System.out.println(iCount + " + " + lCount);
         binaryBoardPrinter();
 
     }
