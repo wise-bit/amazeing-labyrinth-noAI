@@ -87,6 +87,7 @@ public class HomePageGUI extends JFrame implements ActionListener {
         setVisible(true);
         // setExtendedState(getExtendedState() | JFrame.MAXIMIZED_BOTH);
         setSize(1440, 900);
+        this.setLocation(Board.dim.width/2-this.getSize().width/2, Board.dim.height/2-this.getSize().height/2);
 //      homeScreenMusic();
         repaint();
 
