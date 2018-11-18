@@ -198,7 +198,6 @@ public class PlayerGUI extends JFrame implements ActionListener {
         add(playerColour[2]);
         Main.names[2].setBounds(1100, 340, 250, 40);
         add(Main.names[2]);
-        Main.playerNames[2].setPlayerName(Main.names[2].getText());
         repaint();
     }
 
@@ -211,7 +210,6 @@ public class PlayerGUI extends JFrame implements ActionListener {
         add(playerColour[3]);
         Main.names[3].setBounds(1100, 460, 250, 40);
         add(Main.names[3]);
-        Main.playerNames[3].setPlayerName(Main.names[3].getText());
         repaint();
     }
 
@@ -241,19 +239,9 @@ public class PlayerGUI extends JFrame implements ActionListener {
 
         } else if (event.getSource() == fourPlayers) {
 
-            if (isThisComponentFoundInJPanel(playerTitle[3])) {
+            if (isThisComponentFoundInJPanel(playerTitle[3]) == false) {
 
-                remove(playerTitle[4]);
-                remove(playerColour[4]);
-                remove(Main.names[4]);
-
-            } else if(isThisComponentFoundInJPanel(playerTitle[2])){
-
-                remove(playerTitle[3]);
-                remove(playerColour[3]);
-                remove(Main.names[3]);
-
-            } else {
+                reAddPlayerThreeSetup();
                 reAddPlayerFourSetup();
             }
         }
