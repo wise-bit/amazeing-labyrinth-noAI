@@ -33,7 +33,7 @@ public class HomePageGUI extends JFrame implements ActionListener {
 
         //Makes frame and sets size and color (full-screen)
         setLayout(null);
-        setBounds(0, 0, dim.width, dim.height);
+        setBounds(0, 0, 1440, 900);
         this.setTitle("aMAZEing Labyrinth");
         setContentPane(new JLabel(new ImageIcon(ImageIO.read(new File("Labyrinth/res/background.jpg")))));
 
@@ -42,7 +42,7 @@ public class HomePageGUI extends JFrame implements ActionListener {
 
         gameTitle.setForeground(Color.WHITE);
         gameTitle.setFont(font);
-        gameTitle.setSize(dim.width,(int) (dim.height/5));
+        gameTitle.setSize(1440,(int) (900/5));
         add(gameTitle);
         gameTitle.setVisible(true);
 
@@ -55,7 +55,7 @@ public class HomePageGUI extends JFrame implements ActionListener {
 //        }
 
         //Add picture to frame
-        picture1.setBounds(dim.width/5, dim.height/5, dim.width - 2*dim.width/5, dim.height - 2*dim.height/5);
+        picture1.setBounds(1440/5, 900/5, 1440 - 2*1440/5, 900 - 2*900/5);
         add(picture1);
 
         //Adds continue button and makes it clickable
