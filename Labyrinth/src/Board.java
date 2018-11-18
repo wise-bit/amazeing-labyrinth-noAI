@@ -57,21 +57,40 @@ public class Board {
 
 			Main.board[rowToShift][0] = getTileForPlayer();
 
+			BufferedImage extraTileImg = null;
+
+			try {
+				extraTileImg = ImageIO.read(new File("Labyrinth/res/Images/" + Main.board[rowToShift][0].makeFileName()));
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+
+			Image currentTileImage = extraTileImg.getScaledInstance(50,50, Image.SCALE_SMOOTH);
+			ImageIcon tileIcon = new ImageIcon(currentTileImage);
+
+			Main.board[rowToShift][0].setIcon(tileIcon);
+
 			Main.board[rowToShift][0].setRow(rowToShift);
 			Main.board[rowToShift][0].setColumn(0);
 
-			set[rowToShift][8] = set[rowToShift][7];
+			System.out.println();
+			Main.board[rowToShift][8] = Main.board[rowToShift][7];
 
 			for (int i = 7; i >=  1; i--) {
 
 				Main.board[rowToShift][i] = Main.board[rowToShift ][i - 1];
 				Main.board[rowToShift][i].setColumn(i);
 
-				Main.board[rowToShift][i].setLocation(Main.board[rowToShift][i].getX() + 50, Main.board[rowToShift][i].getY());
+				Main.board[rowToShift][i].setLocation(Main.board[rowToShift][i].getX() + 60, Main.board[rowToShift][i].getY());
 
 			}
 
 			setTileForPlayer(Main.board[rowToShift][8]);
+
+			Main.board[rowToShift][0].setVisible(false);
+			Main.board[rowToShift][8].setVisible(false);
+
+			Main.board[rowToShift][1].setVisible(true);
 
 			Main.board[rowToShift][8] = null;
 			Main.board[rowToShift][0] = null;
@@ -79,6 +98,19 @@ public class Board {
 		else if (directionOfShift == LEFT){
 
 			Main.board[rowToShift][8] = getTileForPlayer();
+
+			BufferedImage extraTileImg = null;
+
+			try {
+				extraTileImg = ImageIO.read(new File("Labyrinth/res/Images/" + Main.board[rowToShift][8].makeFileName()));
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+
+			Image currentTileImage = extraTileImg.getScaledInstance(50,50, Image.SCALE_SMOOTH);
+			ImageIcon tileIcon = new ImageIcon(currentTileImage);
+
+			Main.board[rowToShift][8].setIcon(tileIcon);
 
 			Main.board[rowToShift][8].setRow(rowToShift);
 			Main.board[rowToShift][8].setColumn(8);
@@ -90,14 +122,21 @@ public class Board {
 
 				Main.board[rowToShift][i] = Main.board[rowToShift][i + 1];
 				Main.board[rowToShift][i].setColumn(i);
-				Main.board[rowToShift][i].setLocation(Main.board[rowToShift][i].getX() - 50, Main.board[rowToShift][i].getY());
+
+				Main.board[rowToShift][i].setLocation(Main.board[rowToShift][i].getX() - 60, Main.board[rowToShift][i].getY());
 
 			}
 
 			setTileForPlayer(Main.board[rowToShift][0]);
 
+			Main.board[rowToShift][0].setVisible(false);
+			Main.board[rowToShift][8].setVisible(false);
+
+			Main.board[rowToShift][7].setVisible(true);
+
 			Main.board[rowToShift][8] = null;
 			Main.board[rowToShift][0] = null;
+
 		}
 		else if (directionOfShift == UP) {
 
@@ -169,9 +208,6 @@ public class Board {
 
 				Main.board[i][columnToShift] = Main.board[i - 1][columnToShift];
 				Main.board[i][columnToShift].setRow(i);
-
-
-				System.out.println(Main.board[i][columnToShift]);
 
 				Main.board[i][columnToShift].setLocation(Main.board[i][columnToShift].getX(), Main.board[i][columnToShift].getY() + 60);
 			}
