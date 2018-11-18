@@ -37,6 +37,18 @@ public class Tile extends JLabel {
 
     }
 
+    public Tile(Tile other) {
+        this.name = other.name;
+        this.rotation = other.rotation;
+        this.shape = other.shape;
+        this.moveable = other.moveable;
+        this.row = other.row;
+        this.column = other.column;
+        this.layout = other.layout;
+        this.setLocation(other.getLocation());
+        this.setIcon(other.getIcon());
+    }
+
     // Checks if the tile is moveable
     public boolean isMoveable() {
         return moveable;

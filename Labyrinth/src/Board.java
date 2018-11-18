@@ -132,42 +132,30 @@ public class Board {
 			Main.board[0][columnToShift] = null;
 			Main.board[8][columnToShift] = null;
 		}
+
 		else if (directionOfShift == DOWN) {
 
-			System.out.println(Main.extraTile);
-			System.out.println(Main.extraTile.makeFileName());
-
+            System.out.println();
             Main.board[0][columnToShift] = Main.extraTile;
-			System.out.println(Main.board[0][columnToShift].makeFileName());
-
             Main.board[0][columnToShift].setRow(0);
             Main.board[0][columnToShift].setColumn(columnToShift);
+			Main.extraTile = Main.board[7][columnToShift];
 
-			Main.board[0][columnToShift].setLocation(18 + 60 * (columnToShift - 1), 22);
-			Main.board[8][columnToShift] = Main.board[7][columnToShift];
+			for (int i = 7; i >= 1; i--) {
 
-			for (int i = 8; i >= 1; i--) {
-
-
+                System.out.println(Main.board[i][columnToShift] + " :: " + Main.board[i - 1][columnToShift]);
                 Main.board[i][columnToShift] = Main.board[i - 1][columnToShift];
                 Main.board[i][columnToShift].setRow(i);
-
-
-                Main.board[i][columnToShift].setLocation(Main.board[i][columnToShift].getX(), Main.board[i][columnToShift].getY() + 60);
+                Main.board[i][columnToShift].setLocation(Main.board[i][columnToShift].getX(), Main.board[i-1][columnToShift].getY() + 60);
 				//Main.board[i][columnToShift].setLocation(18 + 60 * (columnToShift - 1), 22 + 60 * (i));
+                Main.board[i][columnToShift].setVisible(true);
+                Main.board[i][columnToShift].repaint();
+
 			}
-
-			Main.extraTile = Main.board[8][columnToShift];
-
-			System.out.println(Main.board[1][columnToShift].getLocation());
-			System.out.println(Main.board[1][columnToShift]);
-
-			//	System.out.println(Main.board[1][columnToShift].getLocation());
+            Main.board[1][columnToShift].repaint();
             Main.board[1][columnToShift].setVisible(true);
-			Main.board[8][columnToShift].setVisible(false);
 
 		}
-		
 		//checkIfPlayerOverflowed();
 
 	}
