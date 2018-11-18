@@ -115,6 +115,10 @@ public class Player extends JLabel {
                 '}';
     }
 
+    public String toStorageString() {
+        return playerHand + "," + playerName + "," + playerColour + "," + treasures + "," + collected + " " + rows + " " + columns;
+    }
+
     //Helper Methods
 
     //Method to help increment the treasure count when player collects them
