@@ -47,7 +47,8 @@ public class Board {
 	public static void shiftBoardTiles(int rowToShift, int columnToShift, int directionOfShift){
 
 		// Checks if any player is on the row/column being shifted (depending on direction of shift)
-		checkTileOccupied(rowToShift, columnToShift, directionOfShift);
+
+		 checkTileOccupied(rowToShift, columnToShift, directionOfShift);
 
 		if (directionOfShift == RIGHT){
 
@@ -222,24 +223,40 @@ public class Board {
 
 	public static void checkIfPlayerOverflowed() {
 
+
 		// Check if a player has been pushed outside the playable board, returns them to the appropriate row and column
 		for (int i = 0; i < Main.deck.players.size(); i++) {
 
 			if (Main.deck.players.get(i).getColumns() == 8) {
 				Main.deck.players.get(i).setColumns(1);
-				Main.deck.players.get(i).setLocation(18, Main.deck.players.get(i).getY());
+
+				Main.board[Main.deck.players.get(i).getRows()][1].add(Main.deck.players.get(i));
+
+				Main.board[Main.deck.players.get(i).getRows()][1].repaint();
+
 			}
 			else if (Main.deck.players.get(i).getColumns() == 0) {
 				Main.deck.players.get(i).setColumns(7);
-				Main.deck.players.get(i).setLocation(378, Main.deck.players.get(i).getY());
+
+				Main.board[Main.deck.players.get(i).getRows()][7].add(Main.deck.players.get(i));
+
+				Main.board[Main.deck.players.get(i).getRows()][7].repaint();
 			}
 			else if (Main.deck.players.get(i).getRows() == 8) {
 				Main.deck.players.get(i).setRows(1);
-				Main.deck.players.get(i).setLocation(Main.deck.players.get(i).getX(), 18);
+
+				Main.board[1][Main.deck.players.get(i).getColumns()].add(Main.deck.players.get(i));
+
+				Main.board[1][Main.deck.players.get(i).getColumns()].repaint();
+
+				Main.board[Main.deck.players.get(i).getRows()][1].repaint();
 			}
 			else if (Main.deck.players.get(i).getRows() == 0) {
 				Main.deck.players.get(i).setRows(7);
-				Main.deck.players.get(i).setLocation(Main.deck.players.get(i).getX(), 382);
+
+				Main.board[7][Main.deck.players.get(i).getColumns()].add(Main.deck.players.get(i));
+
+				Main.board[7][Main.deck.players.get(i).getColumns()].repaint();
 			}
 
 		}
@@ -251,6 +268,7 @@ public class Board {
 		// Checks if any player is on the tile being moved
 		for (int i = 0; i < Main.deck.players.size(); i++) {
 
+
 			int playerColumn = Main.deck.players.get(i).getColumns();
 			int playerRow = Main.deck.players.get(i).getRows();
 
@@ -258,28 +276,24 @@ public class Board {
 
 				if (playerRow == rowIndex) {
 					Main.deck.players.get(i).setColumns(playerColumn + 1);
-					Main.deck.players.get(i).setLocation(Main.deck.players.get(i).getX() + 60, Main.deck.players.get(i).getY());
 				}
 			}
 			else if (directionOfShift == LEFT) {
 
 				if (playerRow == rowIndex) {
 					Main.deck.players.get(i).setColumns(playerColumn - 1);
-					Main.deck.players.get(i).setLocation(Main.deck.players.get(i).getX() - 60, Main.deck.players.get(i).getY());
 				}
 			}
 			else if (directionOfShift == UP) {
 
 				if (playerColumn == columnIndex) {
-					Main.deck.players.get(i).setRows(rowIndex - 1);
-					Main.deck.players.get(i).setLocation(Main.deck.players.get(i).getX(), Main.deck.players.get(i).getY() - 60);
+					Main.deck.players.get(i).setRows(playerRow - 1);
 				}
 			}
 			else if (directionOfShift == DOWN) {
 
 				if (playerColumn == columnIndex) {
-					Main.deck.players.get(i).setRows(rowIndex + 1);
-					Main.deck.players.get(i).setLocation(Main.deck.players.get(i).getX(), Main.deck.players.get(i).getY() + 60);
+					Main.deck.players.get(i).setRows(playerRow + 1);
 				}
 			}
 
