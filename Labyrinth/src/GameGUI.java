@@ -11,21 +11,22 @@ import java.awt.*;
 import java.awt.event.*;
 import java.awt.image.BufferedImage;
 import java.io.*;
+import java.util.Arrays;
 
 public class GameGUI extends JFrame implements ActionListener, MouseListener {
 
-    public static JLabel fixedBoard;
+    private JLabel fixedBoard;
     private JMenuBar menuBar = new JMenuBar();
     private JMenu help = new JMenu("Help");
     private JMenuItem instructions = new JMenuItem("Instructions");
     private JMenu file = new JMenu("File");
     private JMenuItem save = new JMenuItem("Save");
     private JMenuItem load = new JMenuItem("Load");
+    private Player[] player = new Player[4];
     private ImageIcon[] dots = new ImageIcon[4];
     private JLabel[] playerColour = new JLabel[4];
     private JLabel[] playerName = new JLabel[4];
     private int currentPlayer = 0;
-    private Font font = new Font("Sylfaen", Font.BOLD, 40); // Freestyle Script, Matura MT Script Capitals, French Script MT
 
     private JButton[] topButtons = new JButton[3];
     private JButton[] bottomButtons = new JButton[3];
@@ -40,6 +41,8 @@ public class GameGUI extends JFrame implements ActionListener, MouseListener {
         setLayout(null);
         setBounds(0, 0, 1440, 900);
         this.setTitle("aMAZEing Labyrinth");
+
+
 
         // setContentPane(fixedBoard);
 
@@ -66,11 +69,6 @@ public class GameGUI extends JFrame implements ActionListener, MouseListener {
         help.add(instructions);
         file.add(save);
         file.add(load);
-        instructions.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent ev) {
-                new Instructions();
-            }
-        });
 
         // Places the other tiles
         for (int i = 0; i < 9; i++){
@@ -115,45 +113,7 @@ public class GameGUI extends JFrame implements ActionListener, MouseListener {
             }
         }
 
-        //////////////////////////////////////////////////
-        //Make player #1 name show up
-        playerName[0] = new JLabel(Main.visibleNames[0]);
-        playerName[0].setForeground(Color.BLACK);
-        playerName[0].setFont(font);
-        playerName[0].setBounds(100, 10, 200, 80);
-        add(playerName[0]);
-        playerName[0].setVisible(true);
-        //////////////////////////////////////////////////
-
-        //////////////////////////////////////////////////
-        //Make player #2 name show up
-        playerName[1] = new JLabel(Main.visibleNames[1]);
-        playerName[1].setForeground(Color.BLACK);
-        playerName[1].setFont(font);
-        playerName[1].setBounds(100, 310, 200, 80);
-        add(playerName[1]);
-        playerName[1].setVisible(true);
-        //////////////////////////////////////////////////
-
-        //////////////////////////////////////////////////
-        //Make player #3 name show up
-        playerName[2] = new JLabel(Main.visibleNames[2]);
-        playerName[2].setForeground(Color.BLACK);
-        playerName[2].setFont(font);
-        playerName[2].setBounds(1100, 10, 200, 80);
-        add(playerName[2]);
-        playerName[2].setVisible(true);
-        //////////////////////////////////////////////////
-
-        //////////////////////////////////////////////////
-        //Make player #4 name show up
-        playerName[3] = new JLabel(Main.visibleNames[3]);
-        playerName[3].setForeground(Color.BLACK);
-        playerName[3].setFont(font);
-        playerName[3].setBounds(1100, 310, 200, 80);
-        add(playerName[3]);
-        playerName[3].setVisible(true);
-        //////////////////////////////////////////////////
+        Main.extraTile.addMouseListener(this);
 
         //////////////////////////////////////////////////
         //Creating the player #1 icon
@@ -189,7 +149,7 @@ public class GameGUI extends JFrame implements ActionListener, MouseListener {
         System.out.println();
         System.out.println(Main.deck.players.get(1));
         Main.deck.players.get(1).setIcon(playerTwoIcon);
-        Main.deck.players.get(1).setBounds(390, 37, 20, 20);
+        Main.deck.players.get(1).setBounds(38, 366, 80, 80);
         fixedBoard.add(Main.deck.players.get(1));
         Main.deck.players.get(1).setVisible(true);
 
@@ -209,7 +169,7 @@ public class GameGUI extends JFrame implements ActionListener, MouseListener {
         System.out.println();
         System.out.println(Main.deck.players.get(2));
         Main.deck.players.get(2).setIcon(playerThreeIcon);
-        Main.deck.players.get(2).setBounds(393, 393, 20, 20);
+        Main.deck.players.get(2).setBounds(390, 37, 20, 20);
         fixedBoard.add(Main.deck.players.get(2));
         Main.deck.players.get(2).setVisible(true);
 
@@ -230,7 +190,7 @@ public class GameGUI extends JFrame implements ActionListener, MouseListener {
 
         System.out.println(Main.deck.players.get(3));
         Main.deck.players.get(3).setIcon(playerFourIcon);
-        Main.deck.players.get(3).setBounds(38, 366, 80, 80);
+        Main.deck.players.get(3).setBounds(393, 393, 20, 20);
         fixedBoard.add(Main.deck.players.get(3));
         Main.deck.players.get(3).setVisible(true);
 
@@ -465,6 +425,7 @@ public class GameGUI extends JFrame implements ActionListener, MouseListener {
 
                 Board.shiftBoardTiles(0, 2 + 2 * i, 4);
 
+                binaryBoardPrinter();
                 Setup.fullBinaryBoard();
                 System.out.println();
 
@@ -479,6 +440,7 @@ public class GameGUI extends JFrame implements ActionListener, MouseListener {
 
                 Board.shiftBoardTiles(8, 2 + 2 * i, 3);
 
+                binaryBoardPrinter();
                 Setup.fullBinaryBoard();
                 System.out.println();
 
@@ -492,6 +454,7 @@ public class GameGUI extends JFrame implements ActionListener, MouseListener {
 
                 Board.shiftBoardTiles(2 + 2 * i, 8, 2);
 
+                binaryBoardPrinter();
                 Setup.fullBinaryBoard();
                 System.out.println();
 
@@ -505,20 +468,22 @@ public class GameGUI extends JFrame implements ActionListener, MouseListener {
 
                 Board.shiftBoardTiles(2 + 2 * i, 0, 1);
 
+                binaryBoardPrinter();
                 Setup.fullBinaryBoard();
                 System.out.println();
 
-                Main.board[2 + 2 * i][1].setBounds(18, 22 + 60 * (1 + 2 * i), 50, 50);
+                Main.board[2 + 2 * i][1].setBounds(18, 22 + 60  * (1 + 2 * i), 50, 50);
                 fixedBoard.add(Main.board[2 + 2 * i][1]);
 
                 repaint();
+
             }
 
         }
 
         BufferedImage extraTileImg = null;
         try {
-            extraTileImg = ImageIO.read(new File("Labyrinth/res/Images/" + Board.getTileForPlayer().makeFileName()));
+            extraTileImg = ImageIO.read(new File("Labyrinth/res/Images/" + Main.extraTile.makeFileName()));
         } catch (IOException e1) {
             e1.printStackTrace();
         }
@@ -579,48 +544,42 @@ public class GameGUI extends JFrame implements ActionListener, MouseListener {
         }
     }
 
+    public int[][] fullBinaryBoard(){
+        int[][] binaryBoard = new int[27][27];
+
+        for (int i = 3; i < 24; i++){
+            for (int j = 3; j < 24; j++){
+                binaryBoard[i][j] = Main.board[i/3][j/3].getIntLayout()[i%3][j%3];
+            }
+        }
+
+        return binaryBoard;
+
+    }
+
+    public void binaryBoardPrinter(){
+        int[][] temp = fullBinaryBoard();
+        for (int i = 3; i < 24; i++){
+            for (int j = 3; j < 24; j++){
+                System.out.print(temp[i][j] + " ");
+            }
+            System.out.println();
+        }
+    }
+
     @Override
     public void mousePressed(MouseEvent e) {
 
-    	if (e.getSource() == extraTileLabel) {
+        if (e.getSource() == extraTileLabel) {
 
-    		if (e.getButton() == MouseEvent.BUTTON1) {
+            if (e.getButton() == MouseEvent.BUTTON1) {
 
-                System.out.println(Main.extraTile.makeFileName());
-
-    		    /*
-    			int[][] array = Main.extraTileLabel.getIntLayout();
-
-    			for (int i = 0; i < 3; i++) {
-
-    				System.out.println(Arrays.toString(array[i]));
-    			}
-    			*/
-    			Main.extraTile.rotateClockwise();
-    			System.out.println(Main.extraTile.getRotation());
-
-    			BufferedImage extraTileImg = null;
-    			try{
-    			    extraTileImg = ImageIO.read(new File("Labyrinth/res/Images/" + Main.extraTile.makeFileName()));
-                    System.out.println("Labyrinth/res/Images/" + Main.extraTile.makeFileName());
-                } catch (IOException e1){
-    			    e1.printStackTrace();
-                }
-                Image currentTileImage = extraTileImg.getScaledInstance(50,50, Image.SCALE_SMOOTH);
-    			ImageIcon tileIcon = new ImageIcon(currentTileImage);
-
-    			extraTileLabel.setIcon(tileIcon);
-
-            }
-    		else if (e.getButton() == MouseEvent.BUTTON3) {
-
-                Main.extraTile.rotateCounterClockwise();
-                System.out.println(Main.extraTile.getRotation());
+                Main.extraTile.rotateClockwise();
 
                 BufferedImage extraTileImg = null;
-                try{
+                try {
                     extraTileImg = ImageIO.read(new File("Labyrinth/res/Images/" + Main.extraTile.makeFileName()));
-                } catch (IOException e1){
+                } catch (IOException e1) {
                     e1.printStackTrace();
                 }
                 Image currentTileImage = extraTileImg.getScaledInstance(50,50, Image.SCALE_SMOOTH);
@@ -628,11 +587,27 @@ public class GameGUI extends JFrame implements ActionListener, MouseListener {
 
                 extraTileLabel.setIcon(tileIcon);
 
-    		}
-    	}
+            }
+            else if (e.getButton() == MouseEvent.BUTTON3) {
+
+                Main.extraTile.rotateCounterClockwise();
+
+                BufferedImage extraTileImg = null;
+                try {
+                    extraTileImg = ImageIO.read(new File("Labyrinth/res/Images/" + Main.extraTile.makeFileName()));
+                } catch (IOException e1) {
+                    e1.printStackTrace();
+                }
+                Image currentTileImage = extraTileImg.getScaledInstance(50,50, Image.SCALE_SMOOTH);
+                ImageIcon tileIcon = new ImageIcon(currentTileImage);
+
+                extraTileLabel.setIcon(tileIcon);
+
+            }
+        }
     }
 
-    
+
     @Override
     public void mouseReleased(MouseEvent e) {
 

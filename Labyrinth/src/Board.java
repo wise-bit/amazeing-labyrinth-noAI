@@ -18,8 +18,6 @@ public class Board {
 	public static Tile[][] set;
 	private int[][] tileset;
 
-//	private Player[] playersArray;
-
 	// Runs setup once
 	// Setup s = new Setup();
 
@@ -27,8 +25,6 @@ public class Board {
 	private static final int LEFT = 2;
 	private static final int UP = 3;
 	private static final int DOWN = 4;
-
-	private static Tile tileForPlayer = new Tile("Empty", true, 'l', 0, 0, 0);
 
 	public static Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
 
@@ -55,7 +51,7 @@ public class Board {
 
 		if (directionOfShift == RIGHT){
 
-			Main.board[rowToShift][0] = getTileForPlayer();
+			Main.board[rowToShift][0] = Main.extraTile;
 
 			BufferedImage extraTileImg = null;
 
@@ -85,7 +81,7 @@ public class Board {
 
 			}
 
-			setTileForPlayer(Main.board[rowToShift][8]);
+			Main.extraTile = Main.board[rowToShift][8];
 
 			Main.board[rowToShift][0].setVisible(false);
 			Main.board[rowToShift][8].setVisible(false);
@@ -97,7 +93,7 @@ public class Board {
 		}
 		else if (directionOfShift == LEFT){
 
-			Main.board[rowToShift][8] = getTileForPlayer();
+			Main.board[rowToShift][8] = Main.extraTile;
 
 			BufferedImage extraTileImg = null;
 
@@ -127,7 +123,7 @@ public class Board {
 
 			}
 
-			setTileForPlayer(Main.board[rowToShift][0]);
+			Main.extraTile = Main.board[rowToShift][0];
 
 			Main.board[rowToShift][0].setVisible(false);
 			Main.board[rowToShift][8].setVisible(false);
@@ -140,7 +136,7 @@ public class Board {
 		}
 		else if (directionOfShift == UP) {
 
-			Main.board[8][columnToShift] = getTileForPlayer();
+			Main.board[8][columnToShift] = Main.extraTile;
 
 			BufferedImage extraTileImg = null;
 
@@ -168,8 +164,7 @@ public class Board {
 				Main.board[i][columnToShift].setLocation(Main.board[i][columnToShift].getX(), Main.board[i][columnToShift].getY() - 60);
 
 			}
-			setTileForPlayer(Main.board[0][columnToShift]);
-
+			Main.extraTile = Main.board[0][columnToShift];
 
 			Main.board[0][columnToShift].setVisible(false);
 			Main.board[8][columnToShift].setVisible(false);
@@ -181,7 +176,7 @@ public class Board {
 		}
 		else if (directionOfShift == DOWN) {
 
-			Main.board[0][columnToShift] = getTileForPlayer();
+			Main.board[0][columnToShift] = Main.extraTile;
 
 			BufferedImage extraTileImg = null;
 
@@ -212,7 +207,7 @@ public class Board {
 				Main.board[i][columnToShift].setLocation(Main.board[i][columnToShift].getX(), Main.board[i][columnToShift].getY() + 60);
 			}
 
-			setTileForPlayer(Main.board[8][columnToShift]);
+			Main.extraTile = Main.board[8][columnToShift];
 
 			Main.board[0][columnToShift].setVisible(false);
 			Main.board[8][columnToShift].setVisible(false);
@@ -308,15 +303,6 @@ public class Board {
 
 	}
 
-	public static void setTileForPlayer(Tile tile) {
-
-		tileForPlayer = tile;
-	}
-
-	public static Tile getTileForPlayer() {
-
-		return tileForPlayer;
-	}
 	public Tile[][] getSet() {
 		return Main.board;
 	}
