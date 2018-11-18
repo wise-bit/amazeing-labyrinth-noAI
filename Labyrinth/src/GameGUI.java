@@ -536,8 +536,11 @@ public class GameGUI extends JFrame implements ActionListener, MouseListener {
                     if (Main.deck.players.get(currentPlayer).movePlayer(modifyableBoard, i,j, currentRow, currentColumn, 0) == true){
 
 
+                        // TODO: FIX THIS
+                        //////////
                         Main.board[currentRow][currentColumn].remove(Main.deck.players.get(currentPlayer));
                         Main.deck.players.get(currentPlayer).setLocation(0,0);
+                        //////////////
 
                         Main.deck.players.get(currentPlayer).setRows(i);
                         Main.deck.players.get(currentPlayer).setColumns(j);
