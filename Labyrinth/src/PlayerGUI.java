@@ -241,9 +241,19 @@ public class PlayerGUI extends JFrame implements ActionListener {
 
         } else if (event.getSource() == fourPlayers) {
 
-            if (isThisComponentFoundInJPanel(playerTitle[3]) == false) {
+            if (isThisComponentFoundInJPanel(playerTitle[3])) {
 
-                reAddPlayerThreeSetup();
+                remove(playerTitle[4]);
+                remove(playerColour[4]);
+                remove(Main.names[4]);
+
+            } else if(isThisComponentFoundInJPanel(playerTitle[2])){
+
+                remove(playerTitle[3]);
+                remove(playerColour[3]);
+                remove(Main.names[3]);
+
+            } else {
                 reAddPlayerFourSetup();
             }
         }
