@@ -490,10 +490,28 @@ public class GameGUI extends JFrame implements ActionListener, MouseListener {
             }
             else if (e.getSource() == rightButtons[i]) {
 
+                Board.shiftBoardTiles(2 + 2 * i, 8, 2);
+
+                Setup.fullBinaryBoard();
+                System.out.println();
+
+                Main.board[2 + 2 * i][7].setBounds(378, 22 + 60  * (1 + 2 * i), 50, 50);
+                fixedBoard.add(Main.board[2 + 2 * i][7]);
+
+                repaint();
 
             }
             else if (e.getSource() == leftButtons[i]) {
 
+                Board.shiftBoardTiles(2 + 2 * i, 0, 1);
+
+                Setup.fullBinaryBoard();
+                System.out.println();
+
+                Main.board[2 + 2 * i][1].setBounds(18, 22 + 60 * (1 + 2 * i), 50, 50);
+                fixedBoard.add(Main.board[2 + 2 * i][1]);
+
+                repaint();
             }
 
         }

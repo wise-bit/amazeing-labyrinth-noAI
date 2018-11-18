@@ -33,6 +33,10 @@ public class UX {
             }
         }
 
+        for (int i = 0; i < 4; i++){
+            writer.println(Main.deck.getPlayers().get(i).toStorageString());
+        }
+
         writer.close();
     }
 
