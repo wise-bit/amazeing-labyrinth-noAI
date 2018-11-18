@@ -40,7 +40,8 @@ public class Main {
 
         extraTile.setIcon(tileIcon);
 
-        new GameGUI();
+        new HomePageGUI();
+        // new GameGUI();
 
         // new UX().save(s.getBoard());
         // new Instructions();
