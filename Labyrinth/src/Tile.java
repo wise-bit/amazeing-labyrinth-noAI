@@ -11,7 +11,7 @@
 import javax.swing.*;
 import java.util.Random;
 
-public class Tile extends JLabel {
+public class Tile extends JLabel implements Cloneable {
 
     Random rand = new Random();
 
@@ -47,6 +47,10 @@ public class Tile extends JLabel {
         this.layout = other.layout;
         this.setLocation(other.getLocation());
         this.setIcon(other.getIcon());
+    }
+
+    public Object clone() throws CloneNotSupportedException {
+        return super.clone();
     }
 
     // Checks if the tile is moveable

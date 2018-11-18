@@ -1,6 +1,11 @@
-import javax.swing.*;
 import java.awt.*;
+import java.awt.image.BufferedImage;
+import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.IOException;
+
+import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
 
 /*
  * Author: Satrajit Chatterjee
@@ -13,202 +18,244 @@ public class Board {
 	public static Tile[][] set;
 	private int[][] tileset;
 
-	private Player[] playersArray;
+//	private Player[] playersArray;
 
-    // Runs setup once
-    // Setup s = new Setup();
+	// Runs setup once
+	// Setup s = new Setup();
 
 	private static final int RIGHT = 1;
 	private static final int LEFT = 2;
 	private static final int UP = 3;
 	private static final int DOWN = 4;
-	
-	private static Tile tileForPlayer;
+
+	private static Tile tileForPlayer = new Tile("Empty", true, 'l', 0, 0, 0);
 
 	public static Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
 
 	public Board() throws FileNotFoundException{
 		Setup.binaryBoardPrinter();
 		set = Main.board;
-        makeDeck(4);
+		makeDeck(4);
 		//displayTilesStart();
 
 		Tile[][] set = Main.board;
-        for (int i = 0; i < 9; i++){
-            for (int j = 0; j < 9; j++){
-                if (set[i][j] != null && set[i][j].isMoveable()) {
-                    System.out.println(set[i][j].makeFileName());
-                }
-            }
-        }
-	}
-
-    private void displayTilesStart() {
-
-    	for (int i = 0; i < Main.board.length; i++) {
-    		
-    		for (int j = 0; j < Main.board[i].length; j++) {
-    			
-    		//	Main.board[i][j].setBounds(r);
-    		}
-    	}
+		for (int i = 0; i < 9; i++){
+			for (int j = 0; j < 9; j++){
+				if (set[i][j] != null && set[i][j].isMoveable()) {
+					System.out.println(set[i][j].makeFileName());
+				}
+			}
+		}
 	}
 
 	public static void shiftBoardTiles(int rowToShift, int columnToShift, int directionOfShift){
 
 		// Checks if any player is on the row/column being shifted (depending on direction of shift)
-		//checkTileOccupied(rowToShift, columnToShift, directionOfShift);
+		checkTileOccupied(rowToShift, columnToShift, directionOfShift);
 
 		if (directionOfShift == RIGHT){
 
-            Main.board[rowToShift][0] = Main.extraTile;
+			Main.board[rowToShift][0] = getTileForPlayer();
 
-            Main.board[rowToShift][0].setRow(rowToShift);
-            Main.board[rowToShift][0].setColumn(0);
-			
+			Main.board[rowToShift][0].setRow(rowToShift);
+			Main.board[rowToShift][0].setColumn(0);
+
 			set[rowToShift][8] = set[rowToShift][7];
-			
+
 			for (int i = 7; i >=  1; i--) {
 
-                Main.board[rowToShift][i] = Main.board[rowToShift ][i - 1];
-                Main.board[rowToShift][i].setColumn(i);
+				Main.board[rowToShift][i] = Main.board[rowToShift ][i - 1];
+				Main.board[rowToShift][i].setColumn(i);
 
-                Main.board[rowToShift][i].setLocation(Main.board[rowToShift][i].getX() + 50, Main.board[rowToShift][i].getY());
+				Main.board[rowToShift][i].setLocation(Main.board[rowToShift][i].getX() + 50, Main.board[rowToShift][i].getY());
 
 			}
-			
-			Main.extraTile = Main.board[rowToShift][8];
 
-            Main.board[rowToShift][8] = null;
-            Main.board[rowToShift][0] = null;
+			setTileForPlayer(Main.board[rowToShift][8]);
+
+			Main.board[rowToShift][8] = null;
+			Main.board[rowToShift][0] = null;
 		}
 		else if (directionOfShift == LEFT){
 
-            Main.board[rowToShift][8] = Main.extraTile;
+			Main.board[rowToShift][8] = getTileForPlayer();
 
-            Main.board[rowToShift][8].setRow(rowToShift);
-            Main.board[rowToShift][8].setColumn(8);
+			Main.board[rowToShift][8].setRow(rowToShift);
+			Main.board[rowToShift][8].setColumn(8);
 
 
-            Main.board[rowToShift][0] = Main.board[rowToShift][1];
-			
+			Main.board[rowToShift][0] = Main.board[rowToShift][1];
+
 			for (int i = 1; i <=  7; i++) {
 
-                Main.board[rowToShift][i] = Main.board[rowToShift][i + 1];
-                Main.board[rowToShift][i].setColumn(i);
-                Main.board[rowToShift][i].setLocation(Main.board[rowToShift][i].getX() - 50, Main.board[rowToShift][i].getY());
+				Main.board[rowToShift][i] = Main.board[rowToShift][i + 1];
+				Main.board[rowToShift][i].setColumn(i);
+				Main.board[rowToShift][i].setLocation(Main.board[rowToShift][i].getX() - 50, Main.board[rowToShift][i].getY());
 
 			}
 
-			Main.extraTile = Main.board[rowToShift][0];
+			setTileForPlayer(Main.board[rowToShift][0]);
 
-            Main.board[rowToShift][8] = null;
-            Main.board[rowToShift][0] = null;
+			Main.board[rowToShift][8] = null;
+			Main.board[rowToShift][0] = null;
 		}
 		else if (directionOfShift == UP) {
+
+			Main.board[8][columnToShift] = getTileForPlayer();
+
+			BufferedImage extraTileImg = null;
+
+			try {
+				extraTileImg = ImageIO.read(new File("Labyrinth/res/Images/" + Main.board[8][columnToShift].makeFileName()));
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+
+			Image currentTileImage = extraTileImg.getScaledInstance(50,50, Image.SCALE_SMOOTH);
+			ImageIcon tileIcon = new ImageIcon(currentTileImage);
+
+			Main.board[8][columnToShift].setIcon(tileIcon);
 
 			Main.board[8][columnToShift].setRow(8);
 			Main.board[8][columnToShift].setColumn(columnToShift);
 
-            Main.board[8][columnToShift] = Main.extraTile;
-			//System.out.println(getTileForPlayer().makeFileName());
+			Main.board[0][columnToShift] = Main.board[1][columnToShift];
 
+			for (int i = 1; i <= 7; i++) {
 
+				Main.board[i][columnToShift] = Main.board[i + 1][columnToShift];
+				Main.board[i][columnToShift].setRow(i);
 
-            //Main.board[0][columnToShift] = Main.board[1][columnToShift];
-			
-			for (int i = 0; i <= 7; i++) {
-
-                Main.board[i][columnToShift] = Main.board[i + 1][columnToShift];
-                Main.board[i][columnToShift].setRow(i);
-
-                Main.board[i][columnToShift].setLocation(Main.board[i][columnToShift].getX(), Main.board[i][columnToShift].getY() - 58);
+				Main.board[i][columnToShift].setLocation(Main.board[i][columnToShift].getX(), Main.board[i][columnToShift].getY() - 60);
 
 			}
-			Main.extraTile = Main.board[0][columnToShift];
+			setTileForPlayer(Main.board[0][columnToShift]);
 
-			// Main.board[0][columnToShift].setVisible(false);
-			// Main.board[8][columnToShift].setVisible(false);
+
+			Main.board[0][columnToShift].setVisible(false);
+			Main.board[8][columnToShift].setVisible(false);
+
+			Main.board[7][columnToShift].setVisible(true);
+
+			Main.board[0][columnToShift] = null;
+			Main.board[8][columnToShift] = null;
+		}
+		else if (directionOfShift == DOWN) {
+
+			Main.board[0][columnToShift] = getTileForPlayer();
+
+			BufferedImage extraTileImg = null;
+
+			try {
+				extraTileImg = ImageIO.read(new File("Labyrinth/res/Images/" + Main.board[0][columnToShift].makeFileName()));
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+
+			Image currentTileImage = extraTileImg.getScaledInstance(50,50, Image.SCALE_SMOOTH);
+			ImageIcon tileIcon = new ImageIcon(currentTileImage);
+
+			Main.board[0][columnToShift].setIcon(tileIcon);
+
+			Main.board[0][columnToShift].setRow(0);
+			Main.board[0][columnToShift].setColumn(columnToShift);
+
+
+			Main.board[8][columnToShift] = Main.board[7][columnToShift];
+
+
+
+			for (int i = 7; i >= 1; i--) {
+
+				Main.board[i][columnToShift] = Main.board[i - 1][columnToShift];
+				Main.board[i][columnToShift].setRow(i);
+
+
+				System.out.println(Main.board[i][columnToShift]);
+
+				Main.board[i][columnToShift].setLocation(Main.board[i][columnToShift].getX(), Main.board[i][columnToShift].getY() + 60);
+			}
+
+			setTileForPlayer(Main.board[8][columnToShift]);
+
+			Main.board[0][columnToShift].setVisible(false);
+			Main.board[8][columnToShift].setVisible(false);
+
+			Main.board[1][columnToShift].setVisible(true);
+
 			Main.board[0][columnToShift] = null;
 			Main.board[8][columnToShift] = null;
 		}
 
-		else if (directionOfShift == DOWN) {
-
-            System.out.println();
-            Main.board[0][columnToShift] = Main.extraTile;
-            Main.board[0][columnToShift].setRow(0);
-            Main.board[0][columnToShift].setColumn(columnToShift);
-			Main.extraTile = Main.board[7][columnToShift];
-
-			for (int i = 7; i >= 1; i--) {
-
-                System.out.println(Main.board[i][columnToShift] + " :: " + Main.board[i - 1][columnToShift]);
-                Main.board[i][columnToShift] = Main.board[i - 1][columnToShift];
-                Main.board[i][columnToShift].setRow(i);
-                Main.board[i][columnToShift].setLocation(Main.board[i][columnToShift].getX(), Main.board[i-1][columnToShift].getY() + 60);
-				//Main.board[i][columnToShift].setLocation(18 + 60 * (columnToShift - 1), 22 + 60 * (i));
-                Main.board[i][columnToShift].setVisible(true);
-                Main.board[i][columnToShift].repaint();
-
-			}
-            Main.board[1][columnToShift].repaint();
-            Main.board[1][columnToShift].setVisible(true);
-
-		}
-		//checkIfPlayerOverflowed();
+		checkIfPlayerOverflowed();
 
 	}
 
-	public void checkIfPlayerOverflowed() {
-		
+	public static void checkIfPlayerOverflowed() {
+
 		// Check if a player has been pushed outside the playable board, returns them to the appropriate row and column
-		for (int i = 0; i < playersArray.length; i++) {
-				
-				if (playersArray[i].getColumns() == 8)
-					playersArray[i].setColumns(1);
-				else if (playersArray[i].getColumns() == 0)
-					playersArray[i].setColumns(7);
-				else if (playersArray[i].getRows() == 8)
-					playersArray[i].setRows(1);
-				else if (playersArray[i].getRows() == 0)
-					playersArray[i].setRows(7);
-				
+		for (int i = 0; i < Main.deck.players.size(); i++) {
+
+			if (Main.deck.players.get(i).getColumns() == 8) {
+				Main.deck.players.get(i).setColumns(1);
+				Main.deck.players.get(i).setLocation(18, Main.deck.players.get(i).getY());
+			}
+			else if (Main.deck.players.get(i).getColumns() == 0) {
+				Main.deck.players.get(i).setColumns(7);
+				Main.deck.players.get(i).setLocation(378, Main.deck.players.get(i).getY());
+			}
+			else if (Main.deck.players.get(i).getRows() == 8) {
+				Main.deck.players.get(i).setRows(1);
+				Main.deck.players.get(i).setLocation(Main.deck.players.get(i).getX(), 18);
+			}
+			else if (Main.deck.players.get(i).getRows() == 0) {
+				Main.deck.players.get(i).setRows(7);
+				Main.deck.players.get(i).setLocation(Main.deck.players.get(i).getX(), 382);
+			}
+
 		}
-		
+
 	}
-	 
-	private void checkTileOccupied(int rowIndex, int columnIndex, int directionOfShift) {
+
+	private static void checkTileOccupied(int rowIndex, int columnIndex, int directionOfShift) {
 
 		// Checks if any player is on the tile being moved
-		for (int i = 0; i < playersArray.length; i++) {
+		for (int i = 0; i < Main.deck.players.size(); i++) {
 
-			int playerColumn = playersArray[i].getColumns();
-			int playerRow = playersArray[i].getRows();
+			int playerColumn = Main.deck.players.get(i).getColumns();
+			int playerRow = Main.deck.players.get(i).getRows();
 
 			if (directionOfShift == RIGHT) {
-				
-				if (playerRow == rowIndex) 
-					playersArray[i].setColumns(playerColumn + 1);
+
+				if (playerRow == rowIndex) {
+					Main.deck.players.get(i).setColumns(playerColumn + 1);
+					Main.deck.players.get(i).setLocation(Main.deck.players.get(i).getX() + 60, Main.deck.players.get(i).getY());
+				}
 			}
 			else if (directionOfShift == LEFT) {
-				
-				if (playerRow == rowIndex)
-					playersArray[i].setColumns(playerColumn - 1); 
+
+				if (playerRow == rowIndex) {
+					Main.deck.players.get(i).setColumns(playerColumn - 1);
+					Main.deck.players.get(i).setLocation(Main.deck.players.get(i).getX() - 60, Main.deck.players.get(i).getY());
+				}
 			}
 			else if (directionOfShift == UP) {
-				
-				if (playerColumn == columnIndex)
-					playersArray[i].setRows(rowIndex - 1);
+
+				if (playerColumn == columnIndex) {
+					Main.deck.players.get(i).setRows(rowIndex - 1);
+					Main.deck.players.get(i).setLocation(Main.deck.players.get(i).getX(), Main.deck.players.get(i).getY() - 60);
+				}
 			}
 			else if (directionOfShift == DOWN) {
-				
-				if (playerColumn == columnIndex)
-					playersArray[i].setRows(rowIndex + 1);
+
+				if (playerColumn == columnIndex) {
+					Main.deck.players.get(i).setRows(rowIndex + 1);
+					Main.deck.players.get(i).setLocation(Main.deck.players.get(i).getX(), Main.deck.players.get(i).getY() + 60);
+				}
 			}
-			
+
 		}
-		
+
 	}
 	public int[][] getTileset() {
 		return tileset;
@@ -250,15 +297,15 @@ public class Board {
 		this.dim = dim;
 	}
 
-    public void setDeck(Deck deck) {
-        Main.deck = deck;
-    }
+	public void setDeck(Deck deck) {
+		Main.deck = deck;
+	}
 
-    public Deck getDeck() {
-        return Main.deck;
-    }
+	public Deck getDeck() {
+		return Main.deck;
+	}
 
-    public void makeDeck(int players) throws FileNotFoundException {
-        Main.deck = new Deck(players);
-    }
+	public void makeDeck(int players) throws FileNotFoundException {
+		Main.deck = new Deck(players);
+	}
 }

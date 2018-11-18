@@ -136,9 +136,9 @@ public class Player extends JLabel {
 
         System.out.println(row + " " + column + " " + end_row + " " + end_column);
 
-        removeCard();
+        modifyableBoard[row*3+1][column*3+1] = 0;
 
-        // TODO: When move is invalid it breaks
+        removeCard();
 
         if (row == end_row && column == end_column) {
             return true;
@@ -179,8 +179,8 @@ public class Player extends JLabel {
                         return false;
                 }
             }
+            modifyableBoard[row][column] = 0;
         }
-        modifyableBoard[row][column] = 0;
         return false;
 
     }
@@ -188,24 +188,18 @@ public class Player extends JLabel {
     public boolean validMove(int[][] modifyableBoard, int row, int column, int count) {
         try {
             if (count == UP) {
-                System.out.println(modifyableBoard[row*3+1 - 1][column*3+1] == 1 && modifyableBoard[row*3+1 - 2][column*3+1] == 1 && modifyableBoard[row*3+1 - 3][column*3+1] == 1 && row*3+1 > 3);
                 return modifyableBoard[row * 3 + 1 - 1][column * 3 + 1] == 1 && modifyableBoard[row * 3 + 1 - 2][column * 3 + 1] == 1 && modifyableBoard[row * 3 + 1 - 3][column * 3 + 1] == 1 && row * 3 + 1 > 3;
 
             }
             else if (count == DOWN) {
-                System.out.println(modifyableBoard[row * 3 + 1 + 1][column * 3 + 1] == 1 && modifyableBoard[row * 3 + 1 + 2][column * 3 + 1] == 1 && modifyableBoard[row * 3 + 1 + 3][column * 3 + 1] == 1 && row * 3 + 1 < 24);
                 return modifyableBoard[row * 3 + 1 + 1][column * 3 + 1] == 1 && modifyableBoard[row * 3 + 1 + 2][column * 3 + 1] == 1 && modifyableBoard[row * 3 + 1 + 3][column * 3 + 1] == 1 && row * 3 + 1 < 24;
 
             }
             else if (count == LEFT) {
-                System.out.println(modifyableBoard[row * 3 + 1][column * 3 + 1 - 1] == 1 && modifyableBoard[row * 3 + 1][column * 3 + 1 - 2] == 1 && modifyableBoard[row * 3 + 1][column * 3 + 1 - 3] == 1 && column * 3 + 1 > 3);
                 return modifyableBoard[row * 3 + 1][column * 3 + 1 - 1] == 1 && modifyableBoard[row * 3 + 1][column * 3 + 1 - 2] == 1 && modifyableBoard[row * 3 + 1][column * 3 + 1 - 3] == 1 && column * 3 + 1 > 3;
 
             }
             else if (count == RIGHT) {
-                System.out.println((row*3+1) + ":" + (column*3+1 + 1) + " " + modifyableBoard[row*3+1][column*3+1 + 1]);
-                System.out.println((row*3+1) + ":" + (column*3+1 + 2) + " " + modifyableBoard[row*3+1][column*3+1 + 2]);
-                System.out.println((row*3+1) + ":" + (column*3+1 + 3) + " " + modifyableBoard[row*3+1][column*3+1 + 3]);
                 return modifyableBoard[row*3+1][column*3+1 + 1] == 1 && modifyableBoard[row*3+1][column*3+1 + 2] == 1 && modifyableBoard[row*3+1][column*3+1 + 3] == 1 && column < 8;
             }
             else
