@@ -105,10 +105,6 @@ public class Board {
 
 			BufferedImage extraTileImg = null;
 
-            //Main.board[0][columnToShift] = Main.board[1][columnToShift];
-			
-			for (int i = 0; i <= 7; i++) {
-
 			try {
 				extraTileImg = ImageIO.read(new File("Labyrinth/res/Images/" + Main.board[8][columnToShift].makeFileName()));
 			} catch (IOException e) {
@@ -136,7 +132,7 @@ public class Board {
 			setTileForPlayer(Main.board[0][columnToShift]);
 
 
-			Main.board[0][columnToShift] = null;
+			Main.board[0][columnToShift].setVisible(false);
 			Main.board[8][columnToShift].setVisible(false);
 
 			Main.board[7][columnToShift].setVisible(true);
@@ -144,7 +140,6 @@ public class Board {
 			Main.board[0][columnToShift] = null;
 			Main.board[8][columnToShift] = null;
 		}
-
 		else if (directionOfShift == DOWN) {
 
 			Main.board[0][columnToShift] = getTileForPlayer();
@@ -175,14 +170,6 @@ public class Board {
 				Main.board[i][columnToShift] = Main.board[i - 1][columnToShift];
 				Main.board[i][columnToShift].setRow(i);
 
-		    Main.board[0][columnToShift] = Main.extraTile;
-
-            for (int x = 0; x < 8; x++) {
-
-                Main.board[x][columnToShift] = Main.board[x + 1][columnToShift];
-                Main.board[x][columnToShift].setRow(x);
-                //Main.board[x][columnToShift].setLocation(Main.board[x + 1][columnToShift].getX(), Main.board[x + 1][columnToShift].getY());
-                //Main.board[x][columnToShift].setVisible(true);
 
 				System.out.println(Main.board[i][columnToShift]);
 
@@ -202,8 +189,6 @@ public class Board {
 
 		checkIfPlayerOverflowed();
 
-            }
-        }
 	}
 
 	public static void checkIfPlayerOverflowed() {
