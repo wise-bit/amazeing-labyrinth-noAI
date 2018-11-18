@@ -190,7 +190,7 @@ public class GameGUI extends JFrame implements ActionListener, MouseListener {
         System.out.println();
         System.out.println(Main.deck.players.get(1));
         Main.deck.players.get(1).setIcon(playerTwoIcon);
-        Main.deck.players.get(1).setBounds(38, 366, 80, 80);
+        Main.deck.players.get(1).setBounds(390, 37, 20, 20);
         fixedBoard.add(Main.deck.players.get(1));
         Main.deck.players.get(1).setVisible(true);
 
@@ -210,7 +210,7 @@ public class GameGUI extends JFrame implements ActionListener, MouseListener {
         System.out.println();
         System.out.println(Main.deck.players.get(2));
         Main.deck.players.get(2).setIcon(playerThreeIcon);
-        Main.deck.players.get(2).setBounds(390, 37, 20, 20);
+        Main.deck.players.get(2).setBounds(393, 393, 20, 20);
         fixedBoard.add(Main.deck.players.get(2));
         Main.deck.players.get(2).setVisible(true);
 
@@ -231,7 +231,7 @@ public class GameGUI extends JFrame implements ActionListener, MouseListener {
 
         System.out.println(Main.deck.players.get(3));
         Main.deck.players.get(3).setIcon(playerFourIcon);
-        Main.deck.players.get(3).setBounds(393, 393, 20, 20);
+        Main.deck.players.get(3).setBounds(38, 366, 80, 80);
         fixedBoard.add(Main.deck.players.get(3));
         Main.deck.players.get(3).setVisible(true);
 
@@ -558,7 +558,6 @@ public class GameGUI extends JFrame implements ActionListener, MouseListener {
                     }
 
                     if (Main.deck.players.get(currentPlayer).movePlayer(modifyableBoard, i,j, currentRow, currentColumn, 0) == true){
-
 
                         // TODO: FIX THIS
                         //////////
