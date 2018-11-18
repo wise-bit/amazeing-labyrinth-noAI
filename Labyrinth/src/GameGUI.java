@@ -22,6 +22,7 @@ public class GameGUI extends JFrame implements ActionListener, MouseListener {
     private JMenu file = new JMenu("File");
     private JMenuItem save = new JMenuItem("Save");
     private JMenuItem load = new JMenuItem("Load");
+    private Font font = new Font("Helvetica", Font.BOLD, 40);
     private Player[] player = new Player[4];
     private ImageIcon[] dots = new ImageIcon[4];
     private JLabel[] playerColour = new JLabel[4];
@@ -114,6 +115,46 @@ public class GameGUI extends JFrame implements ActionListener, MouseListener {
         }
 
         Main.extraTile.addMouseListener(this);
+
+        //////////////////////////////////////////////////
+        //Make player #1 name show up
+        playerName[0] = new JLabel(Main.visibleNames[0]);
+        playerName[0].setForeground(Color.BLACK);
+        playerName[0].setFont(font);
+        playerName[0].setBounds(100, 10, 200, 80);
+        add(playerName[0]);
+        playerName[0].setVisible(true);
+        //////////////////////////////////////////////////
+
+        //////////////////////////////////////////////////
+        //Make player #2 name show up
+        playerName[1] = new JLabel(Main.visibleNames[1]);
+        playerName[1].setForeground(Color.BLACK);
+        playerName[1].setFont(font);
+        playerName[1].setBounds(100, 310, 200, 80);
+        add(playerName[1]);
+        playerName[1].setVisible(true);
+        //////////////////////////////////////////////////
+
+        //////////////////////////////////////////////////
+        //Make player #3 name show up
+        playerName[2] = new JLabel(Main.visibleNames[2]);
+        playerName[2].setForeground(Color.BLACK);
+        playerName[2].setFont(font);
+        playerName[2].setBounds(1100, 10, 200, 80);
+        add(playerName[2]);
+        playerName[2].setVisible(true);
+        //////////////////////////////////////////////////
+
+        //////////////////////////////////////////////////
+        //Make player #4 name show up
+        playerName[3] = new JLabel(Main.visibleNames[3]);
+        playerName[3].setForeground(Color.BLACK);
+        playerName[3].setFont(font);
+        playerName[3].setBounds(1100, 310, 200, 80);
+        add(playerName[3]);
+        playerName[3].setVisible(true);
+        //////////////////////////////////////////////////
 
         //////////////////////////////////////////////////
         //Creating the player #1 icon
