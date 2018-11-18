@@ -21,7 +21,7 @@ public class Instructions {
         JScrollPane scrollPane = new JScrollPane(textArea);
         textArea.setLineWrap(true);
         textArea.setWrapStyleWord(true);
-        scrollPane.setPreferredSize( new Dimension( 200, 200 ) );
+        scrollPane.setPreferredSize( new Dimension( 300, 200 ) );
         JOptionPane.showMessageDialog(textArea, scrollPane, "Instructions", JOptionPane.INFORMATION_MESSAGE);
 
     }

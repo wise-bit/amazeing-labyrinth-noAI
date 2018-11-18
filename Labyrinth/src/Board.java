@@ -113,8 +113,6 @@ public class Board {
             Main.board[8][columnToShift] = Main.extraTile;
 			//System.out.println(getTileForPlayer().makeFileName());
 
-
-
             //Main.board[0][columnToShift] = Main.board[1][columnToShift];
 			
 			for (int i = 0; i <= 7; i++) {
@@ -127,48 +125,23 @@ public class Board {
 			}
 			Main.extraTile = Main.board[0][columnToShift];
 
-			Main.board[0][columnToShift].setVisible(false);
+			Main.board[0][columnToShift] = null;
 			Main.board[8][columnToShift].setVisible(false);
 		}
+
 		else if (directionOfShift == DOWN) {
 
-			System.out.println(Main.extraTile);
-			System.out.println(Main.extraTile.makeFileName());
+		    Main.board[0][columnToShift] = Main.extraTile;
 
-            Main.board[0][columnToShift] = Main.extraTile;
-			System.out.println(Main.board[0][columnToShift].makeFileName());
+            for (int x = 0; x < 8; x++) {
 
-            Main.board[0][columnToShift].setRow(0);
-            Main.board[0][columnToShift].setColumn(columnToShift);
+                Main.board[x][columnToShift] = Main.board[x + 1][columnToShift];
+                Main.board[x][columnToShift].setRow(x);
+                //Main.board[x][columnToShift].setLocation(Main.board[x + 1][columnToShift].getX(), Main.board[x + 1][columnToShift].getY());
+                //Main.board[x][columnToShift].setVisible(true);
 
-			Main.board[0][columnToShift].setLocation(18 + 60 * (columnToShift - 1), 22);
-			Main.board[8][columnToShift] = Main.board[7][columnToShift];
-
-			for (int i = 8; i >= 1; i--) {
-
-
-                Main.board[i][columnToShift] = Main.board[i - 1][columnToShift];
-                Main.board[i][columnToShift].setRow(i);
-
-
-
-                Main.board[i][columnToShift].setLocation(Main.board[i][columnToShift].getX(), Main.board[i][columnToShift].getY() + 60);
-				//Main.board[i][columnToShift].setLocation(18 + 60 * (columnToShift - 1), 22 + 60 * (i));
-			}
-
-			Main.extraTile = Main.board[8][columnToShift];
-
-			System.out.println(Main.board[1][columnToShift].getLocation());
-			System.out.println(Main.board[1][columnToShift]);
-
-			//	System.out.println(Main.board[1][columnToShift].getLocation());
-            Main.board[1][columnToShift].setVisible(true);
-			Main.board[8][columnToShift].setVisible(false);
-
-		}
-		
-		//checkIfPlayerOverflowed();
-
+            }
+        }
 	}
 
 	public void checkIfPlayerOverflowed() {

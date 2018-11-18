@@ -22,7 +22,7 @@ public class Main {
         // new HomePageGUI();
         new Setup();
         new Deck(4);
-        new GameGUI();
+        new HomePageGUI();
 
         // new UX().save(s.getBoard());
         // new Instructions();

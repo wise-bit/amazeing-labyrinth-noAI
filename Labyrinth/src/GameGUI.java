@@ -460,53 +460,38 @@ public class GameGUI extends JFrame implements ActionListener, MouseListener {
 
                 Board.shiftBoardTiles(0, 2 + 2 * i, 4);
 
-                binaryBoardPrinter();
-                Setup.fullBinaryBoard();
-                System.out.println();
-
-
-                Main.board[1][2 + 2 * i].setLocation(18 + 60 * (1 + 2 * i), 25);
-                fixedBoard.add(Main.board[1][2 + 2 * i]);
-                System.out.println(Main.board[1][2 + 2 * i].getLocation());
-                Main.board[1][2 + 2 * i].setVisible(true);
-
-                Main.board[1][2 + 2 * i].repaint();
+                if(Main.board[7][2 + 2 * i] == Main.board[8][2 + 2 * i])
+                    Main.board[8][2 + 2 * i] = Main.extraTile;
+//
+//                if(Main.board[1][2 + 2 * i] == null)
+//                    Main.board[1][2 + 2 *i] = Main.extraTile;
+//
+//                binaryBoardPrinter();
+//                Setup.fullBinaryBoard();
+//                System.out.println();
+//
+//                Main.board[1][2 + 2 * i].setLocation(18 + 60 * (1 + 2 * i), 25);
+//                fixedBoard.add(Main.board[1][2 + 2 * i]);
+//                Main.board[1][2 + 2 * i].setVisible(true);
+//
+//                Main.board[1][2 + 2 * i].repaint();
 
 
             }
             else if (e.getSource() == bottomButtons[i]) {
 
                 Board.shiftBoardTiles(8, 2 + 2 * i, 3);
-               // System.out.println(Main.board[7][2]);
-                //System.out.println(Board.set[7][2].getLocation());
-
-//                System.out.println(Main.board[8][2 + 2 * i].getLocation());
-//
-//                temp.setLocation(Main.board[7][2 + 2 * i].getLocation());
-//                fixedBoard.add(temp);
-//                setVisible(true);
 
                 binaryBoardPrinter();
                 Setup.fullBinaryBoard();
                 System.out.println();
 
-               //JLabel img = new JLabel(new ImageIcon(new File("Labyrinth/res/images" +Main.extraTile.makeFileName()));
-               //img.setLocation(Main.extraTile.getLocation());
-               //setVisible(true);
-
                 Main.board[7][2 + 2 * i].setBounds(18 + 60  * (1 + 2 * i), 375, 50, 50);
                 fixedBoard.add(Main.board[7][2 + 2 * i]);
 
-                //Main.board[7][2 + 2 * i].setBounds(18 + 60  * (1 + 2 * i), 375, 50, 50);
-                //fixedBoard.add(temp);
-
-           //    JLabel temp = new JLabel(new ImageIcon(Main.extraTile.makeFileName()));
-
-           //     temp.setBounds(18 + 60  * (1 + 2 * i), 375, 50, 50);
-
-        //        Main.extraTile.setBounds(78, 300, 50, 50);
-        //        fixedBoard.add(extraTile);
-           //     repaint();
+                Main.extraTile.setBounds(78, 300, 50, 50);
+                fixedBoard.add(extraTile);
+                repaint();
 
             }
             else if (e.getSource() == rightButtons[i]) {
