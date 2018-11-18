@@ -576,7 +576,7 @@ public class GameGUI extends JFrame implements ActionListener, MouseListener {
 
                         Main.deck.players.get(currentPlayer).setRows(i);
                         Main.deck.players.get(currentPlayer).setColumns(j);
-                        Main.deck.players.get(currentPlayer).setBounds(0, 0, 80, 80);
+                        Main.deck.players.get(currentPlayer).setBounds(15, -15, 80, 80);
                         //if (Main.board[i][j].isMoveable()) {
                             Main.board[i][j].add(Main.deck.players.get(currentPlayer));
                             Main.board[i][j].repaint();
@@ -584,7 +584,6 @@ public class GameGUI extends JFrame implements ActionListener, MouseListener {
                         //    Main.deck.players.get(currentPlayer).setLocation(Main.board[i][j].getLocation());
                         //    repaint();
                        // }
-
 
                         System.out.println("Working: " + i + "," + j + " --> " + Main.board[i][j].getLocation());
                         if (currentPlayer == 3) currentPlayer = 0;
