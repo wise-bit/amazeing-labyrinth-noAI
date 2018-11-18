@@ -136,11 +136,9 @@ public class Player extends JLabel {
 
         System.out.println(row + " " + column + " " + end_row + " " + end_column);
 
-        modifyableBoard[row][column] = 0;
+        modifyableBoard[row*3+1][column*3+1] = 0;
 
         removeCard();
-
-        // TODO: When move is invalid it breaks
 
         if (row == end_row && column == end_column) {
             return true;
@@ -150,28 +148,28 @@ public class Player extends JLabel {
             for (int count = 0; count < 4; count++) {
                 switch (count) {
                     case LEFT:
-                        if (validMove(row, column, count)) {
+                        if (validMove(modifyableBoard, row, column, count)) {
                             if (movePlayer(modifyableBoard, end_row, end_column, row, column-1, move+1)) {
                                 return true;
                             }
                         }
                         break;
                     case RIGHT:
-                        if (validMove(row, column, count)) {
+                        if (validMove(modifyableBoard, row, column, count)) {
                             if (movePlayer(modifyableBoard, end_row, end_column, row, column+1, move+1)) {
                                 return true;
                             }
                         }
                         break;
                     case UP:
-                        if (validMove(row, column, count)) {
+                        if (validMove(modifyableBoard, row, column, count)) {
                             if (movePlayer(modifyableBoard, end_row, end_column, row-1, column, move+1)) {
                                 return true;
                             }
                         }
                         break;
                     case DOWN:
-                        if (validMove(row, column, count)) {
+                        if (validMove(modifyableBoard, row, column, count)) {
                             if (movePlayer(modifyableBoard, end_row, end_column, row+1, column, move+1)) {
                                 return true;
                             }
@@ -181,33 +179,28 @@ public class Player extends JLabel {
                         return false;
                 }
             }
+            modifyableBoard[row][column] = 0;
         }
         return false;
 
     }
 
-    public boolean validMove(int row, int column, int count) {
+    public boolean validMove(int[][] modifyableBoard, int row, int column, int count) {
         try {
             if (count == UP) {
-                System.out.println(Main.binary[row*3+1 - 1][column*3+1] == 1 && Main.binary[row*3+1 - 2][column*3+1] == 1 && Main.binary[row*3+1 - 3][column*3+1] == 1 && row*3+1 > 3);
-                return Main.binary[row * 3 + 1 - 1][column * 3 + 1] == 1 && Main.binary[row * 3 + 1 - 2][column * 3 + 1] == 1 && Main.binary[row * 3 + 1 - 3][column * 3 + 1] == 1 && row * 3 + 1 > 3;
+                return modifyableBoard[row * 3 + 1 - 1][column * 3 + 1] == 1 && modifyableBoard[row * 3 + 1 - 2][column * 3 + 1] == 1 && modifyableBoard[row * 3 + 1 - 3][column * 3 + 1] == 1 && row * 3 + 1 > 3;
 
             }
             else if (count == DOWN) {
-                System.out.println(Main.binary[row * 3 + 1 + 1][column * 3 + 1] == 1 && Main.binary[row * 3 + 1 + 2][column * 3 + 1] == 1 && Main.binary[row * 3 + 1 + 3][column * 3 + 1] == 1 && row * 3 + 1 < 24);
-                return Main.binary[row * 3 + 1 + 1][column * 3 + 1] == 1 && Main.binary[row * 3 + 1 + 2][column * 3 + 1] == 1 && Main.binary[row * 3 + 1 + 3][column * 3 + 1] == 1 && row * 3 + 1 < 24;
+                return modifyableBoard[row * 3 + 1 + 1][column * 3 + 1] == 1 && modifyableBoard[row * 3 + 1 + 2][column * 3 + 1] == 1 && modifyableBoard[row * 3 + 1 + 3][column * 3 + 1] == 1 && row * 3 + 1 < 24;
 
             }
             else if (count == LEFT) {
-                System.out.println(Main.binary[row * 3 + 1][column * 3 + 1 - 1] == 1 && Main.binary[row * 3 + 1][column * 3 + 1 - 2] == 1 && Main.binary[row * 3 + 1][column * 3 + 1 - 3] == 1 && column * 3 + 1 > 3);
-                return Main.binary[row * 3 + 1][column * 3 + 1 - 1] == 1 && Main.binary[row * 3 + 1][column * 3 + 1 - 2] == 1 && Main.binary[row * 3 + 1][column * 3 + 1 - 3] == 1 && column * 3 + 1 > 3;
+                return modifyableBoard[row * 3 + 1][column * 3 + 1 - 1] == 1 && modifyableBoard[row * 3 + 1][column * 3 + 1 - 2] == 1 && modifyableBoard[row * 3 + 1][column * 3 + 1 - 3] == 1 && column * 3 + 1 > 3;
 
             }
             else if (count == RIGHT) {
-                System.out.println((row*3+1) + ":" + (column*3+1 + 1) + " " + Main.binary[row*3+1][column*3+1 + 1]);
-                System.out.println((row*3+1) + ":" + (column*3+1 + 2) + " " + Main.binary[row*3+1][column*3+1 + 2]);
-                System.out.println((row*3+1) + ":" + (column*3+1 + 3) + " " + Main.binary[row*3+1][column*3+1 + 3]);
-                return Main.binary[row*3+1][column*3+1 + 1] == 1 && Main.binary[row*3+1][column*3+1 + 2] == 1 && Main.binary[row*3+1][column*3+1 + 3] == 1 && column < 8;
+                return modifyableBoard[row*3+1][column*3+1 + 1] == 1 && modifyableBoard[row*3+1][column*3+1 + 2] == 1 && modifyableBoard[row*3+1][column*3+1 + 3] == 1 && column < 8;
             }
             else
                 return false;
