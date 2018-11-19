@@ -1,5 +1,5 @@
-/*
-Author: Shrill Patel
+/**
+ * Author: Shrill Patel
  */
 
 import javax.swing.*;

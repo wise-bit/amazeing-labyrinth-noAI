@@ -1,8 +1,8 @@
 
 /**
- * Author: Shrill
- * Author: Lazar
- * Author: Satrajit
+ * Author: Shrill Patel
+ * Author: Lazar Glumac
+ * Author: Satrajit Chatterjee
  */
 
 import javax.imageio.ImageIO;

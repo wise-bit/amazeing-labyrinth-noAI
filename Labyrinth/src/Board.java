@@ -1,3 +1,8 @@
+/*
+ * Author: Satrajit Chatterjee
+ * Author: Lazar Glumac
+ */
+
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
@@ -6,11 +11,6 @@ import java.io.IOException;
 
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
-
-/*
- * Author: Satrajit Chatterjee
- * Author: Lazar Glumac
- */
 
 
 public class Board {

@@ -1,5 +1,6 @@
-/*
-Author: Shrill and Satrajit
+/**
+ * Author: Satrajit Chatterjee
+ * Author: Shrill Patel
  */
 
 import java.io.*;

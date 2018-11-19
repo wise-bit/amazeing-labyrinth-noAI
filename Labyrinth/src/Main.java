@@ -1,5 +1,6 @@
 /*
-Author: Satrajit, Shrill
+ * Author: Satrajit Chatterjee
+ * Author: Shrill Patel
  */
 
 import javax.imageio.ImageIO;
@@ -45,8 +46,8 @@ public class Main {
 
         extraTile.setIcon(tileIcon);
 
-        // new HomePageGUI();
-        new GameGUI();
+        new HomePageGUI();
+        // new GameGUI();
 
         // new UX().save(s.getBoard());
         // new Instructions();

@@ -1,6 +1,7 @@
-/*
- Author: Shrill Patel
- Author: Lazar Glumac
+/**
+ * Author: Satrajit Chatterjee
+ * Author: Shrill Patel
+ * Author: Lazar Glumac
  */
 
 import javax.imageio.*;

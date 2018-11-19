@@ -9,6 +9,9 @@ import java.io.*;
 //import java.io.*;
 //import javax.sound.sampled.*;
 import javax.imageio.*;
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
 import javax.swing.*;
 
 public class HomePageGUI extends JFrame implements ActionListener {
@@ -21,12 +24,7 @@ public class HomePageGUI extends JFrame implements ActionListener {
 
     // Used to get dimensions of Screen
     private Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
-//    Clip clip;
-//    Clip clip2;
-
-//    public void paint(Graphics g){
-//        g.drawString("Hello to JavaTutorial.net", 100, 100);
-//    }
+    Clip clip;
 
     //constructor method
     public HomePageGUI () throws IOException, FontFormatException {
@@ -88,29 +86,29 @@ public class HomePageGUI extends JFrame implements ActionListener {
         // setExtendedState(getExtendedState() | JFrame.MAXIMIZED_BOTH);
         setSize(1440, 900);
         this.setLocation(Board.dim.width/2-this.getSize().width/2, Board.dim.height/2-this.getSize().height/2);
-//      homeScreenMusic();
+        homeScreenMusic();
         repaint();
 
     }
 
-//    //A method for the sound when game starts
-//    public void homeScreenMusic () {
-//
-//        //checks if the sound file exists
-//        try {
-//
-//            //convert to .wav
-//            AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(new File("sounds/Pac-Man_Fever.wav").getAbsoluteFile());		//imports the sound file
-//            clip = AudioSystem.getClip();
-//            clip.open(audioInputStream);		//opens the clip
-//            clip.start();		//starts playing the clip
-//
-//            //if file is invalid
-//        } catch(Exception  ex) {
-//            System.out.println("Error with playing sound");
-//
-//        }
-//    }
+    //A method for the sound when game starts
+    public void homeScreenMusic () {
+
+        //checks if the sound file exists
+        try {
+
+            //convert to .wav
+            AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(new File("Labyrinth/res/music.wav").getAbsoluteFile());		//imports the sound file
+            clip = AudioSystem.getClip();
+            clip.open(audioInputStream);		//opens the clip
+            clip.start();		//starts playing the clip
+
+            //if file is invalid
+        } catch(Exception  ex) {
+            System.out.println("Error with playing sound");
+
+        }
+    }
 
     //Method used to listen to events occuring on the current frame
     public void actionPerformed(ActionEvent event) {

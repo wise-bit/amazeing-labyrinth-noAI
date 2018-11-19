@@ -1,5 +1,5 @@
-/*
-Author: Satrajit Chatterjee
+/**
+ * Author: Satrajit Chatterjee
  */
 
 import javax.swing.*;
