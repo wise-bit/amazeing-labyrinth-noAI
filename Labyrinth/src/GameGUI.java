@@ -45,7 +45,6 @@ public class GameGUI extends JFrame implements ActionListener, MouseListener {
     private JButton[] leftButtons = new JButton[3];
     private JButton[] rightButtons = new JButton[3];
 
-
     private JLabel extraTileLabel = new JLabel();
 
     public GameGUI() throws IOException {
@@ -593,7 +592,6 @@ public class GameGUI extends JFrame implements ActionListener, MouseListener {
 
                     repaint();
 
-
                 } else if (e.getSource() == bottomButtons[i]) {
 
                     Board.shiftBoardTiles(8, 2 + 2 * i, 3);
@@ -700,8 +698,14 @@ public class GameGUI extends JFrame implements ActionListener, MouseListener {
 
                         Main.deck.players.get(currentPlayer).removeCard(whatever);
                         playerScore[currentPlayer].setText(Integer.toString(Main.deck.players.get(currentPlayer).getTreasures()));
-                        if(Main.deck.players.get(currentPlayer).getTreasures() == 5)
 
+                        if(Main.deck.players.get(currentPlayer).getTreasures() == 5) {
+                            try {
+                                new WinScreen();
+                            } catch (IOException e1) {
+                                e1.printStackTrace();
+                            }
+                        }
 
                         //////////
                         Main.board[currentRow][currentColumn].remove(Main.deck.players.get(currentPlayer));
