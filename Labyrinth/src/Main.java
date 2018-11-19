@@ -22,8 +22,13 @@ public class Main {
 
     public static void main(String[] args) throws IOException, FontFormatException {
 
-        // new HomePageGUI();
+        UIDefaults uiDefaults = UIManager.getDefaults();
+        uiDefaults.put("activeCaption", new javax.swing.plaf.ColorUIResource(Color.CYAN));
+        uiDefaults.put("activeCaptionText", new javax.swing.plaf.ColorUIResource(Color.BLACK));
+        JFrame.setDefaultLookAndFeelDecorated(true);
+
         new Setup();
+
         extraTile.setVisible(true);
         new Deck(4);
 
@@ -40,8 +45,8 @@ public class Main {
 
         extraTile.setIcon(tileIcon);
 
-        new HomePageGUI();
-        // new GameGUI();
+        // new HomePageGUI();
+        new GameGUI();
 
         // new UX().save(s.getBoard());
         // new Instructions();

@@ -97,6 +97,7 @@ public class PlayerGUI extends JFrame implements ActionListener {
         setVisible(true);
         // setExtendedState(getExtendedState() | JFrame.MAXIMIZED_BOTH);
         setSize(1440, 900);
+        this.setLocation(Board.dim.width/2-this.getSize().width/2, Board.dim.height/2-this.getSize().height/2);
         repaint();
     }
 
@@ -198,6 +199,7 @@ public class PlayerGUI extends JFrame implements ActionListener {
         add(playerColour[2]);
         Main.names[2].setBounds(1100, 340, 250, 40);
         add(Main.names[2]);
+      //  Main.playerNames[2].setPlayerName(Main.names[2].getText());
         repaint();
     }
 
@@ -210,6 +212,7 @@ public class PlayerGUI extends JFrame implements ActionListener {
         add(playerColour[3]);
         Main.names[3].setBounds(1100, 460, 250, 40);
         add(Main.names[3]);
+     //   Main.playerNames[3].setPlayerName(Main.names[3].getText());
         repaint();
     }
 

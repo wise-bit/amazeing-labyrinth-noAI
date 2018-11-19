@@ -42,8 +42,7 @@ public class GameGUI extends JFrame implements ActionListener, MouseListener {
         setLayout(null);
         setBounds(0, 0, 1440, 900);
         this.setTitle("aMAZEing Labyrinth");
-
-
+        setContentPane(new JLabel(new ImageIcon(ImageIO.read(new File("Labyrinth/res/background.jpg")))));
 
         // setContentPane(fixedBoard);
 
@@ -64,12 +63,13 @@ public class GameGUI extends JFrame implements ActionListener, MouseListener {
         // Main fixed Board image ends here
 
         //Creates the menu bar
-        setJMenuBar(menuBar);
-        menuBar.add(help);
-        menuBar.add(file);
-        help.add(instructions);
-        file.add(save);
-        file.add(load);
+//        setJMenuBar(menuBar);
+//        menuBar.add(help);
+//        menuBar.add(file);
+//        help.add(instructions);
+//        file.add(save);
+//        file.add(load);
+        createMenuBar();
 
         // Places the other tiles
         for (int i = 0; i < 9; i++){
@@ -190,7 +190,7 @@ public class GameGUI extends JFrame implements ActionListener, MouseListener {
         System.out.println();
         System.out.println(Main.deck.players.get(1));
         Main.deck.players.get(1).setIcon(playerTwoIcon);
-        Main.deck.players.get(1).setBounds(38, 366, 80, 80);
+        Main.deck.players.get(1).setBounds(390, 37, 20, 20);
         fixedBoard.add(Main.deck.players.get(1));
         Main.deck.players.get(1).setVisible(true);
 
@@ -210,7 +210,7 @@ public class GameGUI extends JFrame implements ActionListener, MouseListener {
         System.out.println();
         System.out.println(Main.deck.players.get(2));
         Main.deck.players.get(2).setIcon(playerThreeIcon);
-        Main.deck.players.get(2).setBounds(390, 37, 20, 20);
+        Main.deck.players.get(2).setBounds(393, 393, 20, 20);
         fixedBoard.add(Main.deck.players.get(2));
         Main.deck.players.get(2).setVisible(true);
 
@@ -231,7 +231,7 @@ public class GameGUI extends JFrame implements ActionListener, MouseListener {
 
         System.out.println(Main.deck.players.get(3));
         Main.deck.players.get(3).setIcon(playerFourIcon);
-        Main.deck.players.get(3).setBounds(393, 393, 20, 20);
+        Main.deck.players.get(3).setBounds(38, 366, 80, 80);
         fixedBoard.add(Main.deck.players.get(3));
         Main.deck.players.get(3).setVisible(true);
 
@@ -398,6 +398,7 @@ public class GameGUI extends JFrame implements ActionListener, MouseListener {
         setVisible(true);
         // setExtendedState(getExtendedState() | JFrame.MAXIMIZED_BOTH);
         setSize(1440, 900);
+        this.setLocation(Board.dim.width/2-this.getSize().width/2, Board.dim.height/2-this.getSize().height/2);
         repaint();
 
     }
@@ -416,12 +417,14 @@ public class GameGUI extends JFrame implements ActionListener, MouseListener {
         JMenu file = new JMenu("File");
         menuBar.add(file);
 
+        // ImageIcon saveIcon = new ImageIcon("Labyrinth/res/save-icon.png").getImage().getScaledInstance(10,10,Image.SCALE_DEFAULT);
         JMenuItem save = new JMenuItem("Save");
         file.add(save);
+        save.addActionListener(this);
 
         JMenuItem load = new JMenuItem("Load");
         file.add(load);
-
+        load.addActionListener(this);
 
     }
 
@@ -457,6 +460,11 @@ public class GameGUI extends JFrame implements ActionListener, MouseListener {
 
         if(e.getSource() == instructions) {
             new Instructions();
+            setVisible(true);
+        }
+
+        if(e.getSource() == save) {
+            try { UX.save(); } catch (Exception ex){ }
             setVisible(true);
         }
 
@@ -559,22 +567,23 @@ public class GameGUI extends JFrame implements ActionListener, MouseListener {
 
                     if (Main.deck.players.get(currentPlayer).movePlayer(modifyableBoard, i,j, currentRow, currentColumn, 0) == true){
 
-
                         // TODO: FIX THIS
                         //////////
                         Main.board[currentRow][currentColumn].remove(Main.deck.players.get(currentPlayer));
+                        Main.board[currentRow][currentColumn].repaint();
                         Main.deck.players.get(currentPlayer).setLocation(0,0);
                         //////////////
 
                         Main.deck.players.get(currentPlayer).setRows(i);
                         Main.deck.players.get(currentPlayer).setColumns(j);
-                        Main.deck.players.get(currentPlayer).setBounds(0, 0, 80, 80);
-                        if (Main.board[i][j].isMoveable()) {
+                        Main.deck.players.get(currentPlayer).setBounds(15, -15, 80, 80);
+                        //if (Main.board[i][j].isMoveable()) {
                             Main.board[i][j].add(Main.deck.players.get(currentPlayer));
-                        } else {
-                            Main.deck.players.get(currentPlayer).setLocation(Main.board[i][j].getLocation());
-                        }
-
+                            Main.board[i][j].repaint();
+                       // } else {
+                        //    Main.deck.players.get(currentPlayer).setLocation(Main.board[i][j].getLocation());
+                        //    repaint();
+                       // }
 
                         System.out.println("Working: " + i + "," + j + " --> " + Main.board[i][j].getLocation());
                         if (currentPlayer == 3) currentPlayer = 0;
