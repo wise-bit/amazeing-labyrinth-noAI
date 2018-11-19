@@ -11,6 +11,7 @@ import java.awt.*;
 import java.awt.event.*;
 import java.awt.image.BufferedImage;
 import java.io.*;
+import java.util.ArrayList;
 import java.util.Arrays;
 
 public class GameGUI extends JFrame implements ActionListener, MouseListener {
@@ -23,11 +24,20 @@ public class GameGUI extends JFrame implements ActionListener, MouseListener {
     private JMenuItem save = new JMenuItem("Save");
     private JMenuItem load = new JMenuItem("Load");
     private Font font = new Font("Helvetica", Font.BOLD, 40);
+    private Font font2 = new Font("Helvetica", Font.BOLD, 25);
     private Player[] player = new Player[4];
     private ImageIcon[] dots = new ImageIcon[4];
     private JLabel[] playerColour = new JLabel[4];
     private JLabel[] playerName = new JLabel[4];
     private int currentPlayer = 0;
+
+    private ArrayList<JLabel> playerOneLabels = new ArrayList<JLabel>();
+    private ArrayList<JLabel> playerTwoLabels = new ArrayList<JLabel>();
+    private ArrayList<JLabel> playerThreeLabels = new ArrayList<JLabel>();
+    private ArrayList<JLabel> playerFourLabels = new ArrayList<JLabel>();
+
+    private JLabel[] playerScoreName = new JLabel[4];
+    private JLabel[] playerScore = new JLabel[4];
 
     private JButton[] topButtons = new JButton[3];
     private JButton[] bottomButtons = new JButton[3];
@@ -119,7 +129,7 @@ public class GameGUI extends JFrame implements ActionListener, MouseListener {
         //////////////////////////////////////////////////
         //Make player #1 name show up
         playerName[0] = new JLabel(Main.visibleNames[0]);
-        playerName[0].setForeground(Color.BLACK);
+        playerName[0].setForeground(Color.WHITE);
         playerName[0].setFont(font);
         playerName[0].setBounds(100, 10, 200, 80);
         add(playerName[0]);
@@ -129,7 +139,7 @@ public class GameGUI extends JFrame implements ActionListener, MouseListener {
         //////////////////////////////////////////////////
         //Make player #2 name show up
         playerName[1] = new JLabel(Main.visibleNames[1]);
-        playerName[1].setForeground(Color.BLACK);
+        playerName[1].setForeground(Color.WHITE);
         playerName[1].setFont(font);
         playerName[1].setBounds(100, 310, 200, 80);
         add(playerName[1]);
@@ -139,7 +149,7 @@ public class GameGUI extends JFrame implements ActionListener, MouseListener {
         //////////////////////////////////////////////////
         //Make player #3 name show up
         playerName[2] = new JLabel(Main.visibleNames[2]);
-        playerName[2].setForeground(Color.BLACK);
+        playerName[2].setForeground(Color.WHITE);
         playerName[2].setFont(font);
         playerName[2].setBounds(1100, 10, 200, 80);
         add(playerName[2]);
@@ -149,11 +159,91 @@ public class GameGUI extends JFrame implements ActionListener, MouseListener {
         //////////////////////////////////////////////////
         //Make player #4 name show up
         playerName[3] = new JLabel(Main.visibleNames[3]);
-        playerName[3].setForeground(Color.BLACK);
+        playerName[3].setForeground(Color.WHITE);
         playerName[3].setFont(font);
         playerName[3].setBounds(1100, 310, 200, 80);
         add(playerName[3]);
         playerName[3].setVisible(true);
+        //////////////////////////////////////////////////
+
+        //////////////////////////////////////////////////
+        //Make player #1 score show up
+        playerScore[0] = new JLabel("0");
+        playerScore[0].setForeground(Color.WHITE);
+        playerScore[0].setFont(font);
+        playerScore[0].setBounds(200, 578, 200, 80);
+        add(playerScore[0]);
+        playerScore[0].setVisible(true);
+        //////////////////////////////////////////////////
+
+        //////////////////////////////////////////////////
+        //Make player #2 score show up
+        playerScore[1] = new JLabel("0");
+        playerScore[1].setForeground(Color.WHITE);
+        playerScore[1].setFont(font);
+        playerScore[1].setBounds(235, 655, 200, 80);
+        add(playerScore[1]);
+        playerScore[1].setVisible(true);
+        //////////////////////////////////////////////////
+
+        //////////////////////////////////////////////////
+        //Make player #3 score show up
+        playerScore[2] = new JLabel("0");
+        playerScore[2].setForeground(Color.WHITE);
+        playerScore[2].setFont(font);
+        playerScore[2].setBounds(1300, 575, 250, 80);
+        add(playerScore[2]);
+        playerScore[2].setVisible(true);
+        //////////////////////////////////////////////////
+
+        //////////////////////////////////////////////////
+        //Make player #4 score show up
+        playerScore[3] = new JLabel("0");
+        playerScore[3].setForeground(Color.WHITE);
+        playerScore[3].setFont(font);
+        playerScore[3].setBounds(1320, 655, 250, 80);
+        add(playerScore[3]);
+        playerScore[3].setVisible(true);
+        //////////////////////////////////////////////////
+
+        //////////////////////////////////////////////////
+        //Make player #1 name (for score) show up
+        playerScoreName[0] = new JLabel("Red Dot Score:");
+        playerScoreName[0].setForeground(Color.WHITE);
+        playerScoreName[0].setFont(font2);
+        playerScoreName[0].setBounds(10, 600, 250, 30);
+        add(playerScoreName[0]);
+        playerScoreName[0].setVisible(true);
+        //////////////////////////////////////////////////
+
+        //////////////////////////////////////////////////
+        //Make player #2 name (for score) show up
+        playerScoreName[1] = new JLabel("Yellow Dot Score:");
+        playerScoreName[1].setForeground(Color.WHITE);
+        playerScoreName[1].setFont(font2);
+        playerScoreName[1].setBounds(10, 680, 250, 30);
+        add(playerScoreName[1]);
+        playerScoreName[1].setVisible(true);
+        //////////////////////////////////////////////////
+
+        //////////////////////////////////////////////////
+        //Make player #3 name (for score) show up
+        playerScoreName[2] = new JLabel("Blue Dot Score:");
+        playerScoreName[2].setForeground(Color.WHITE);
+        playerScoreName[2].setFont(font2);
+        playerScoreName[2].setBounds(1100, 575, 250, 80);
+        add(playerScoreName[2]);
+        playerScoreName[2].setVisible(true);
+        //////////////////////////////////////////////////
+
+        //////////////////////////////////////////////////
+        //Make player #4 name (for score) show up
+        playerScoreName[3] = new JLabel("Green Dot Score:");
+        playerScoreName[3].setForeground(Color.WHITE);
+        playerScoreName[3].setFont(font2);
+        playerScoreName[3].setBounds(1100, 655, 250, 80);
+        add(playerScoreName[3]);
+        playerScoreName[3].setVisible(true);
         //////////////////////////////////////////////////
 
         //////////////////////////////////////////////////
@@ -239,13 +329,11 @@ public class GameGUI extends JFrame implements ActionListener, MouseListener {
 
         ////////////////////////////////////////////////////
         //Dealing the hand out for player ONE
-        String[] playerOneHand = Main.deck.players.get(0).getPlayerHand();
-
         for(int x = 0; x < 5; x++){
 
             BufferedImage picOne = null;
             try {
-                picOne = ImageIO.read(new File("Labyrinth/res/cards/" + playerOneHand[x] + ".jpg"));
+                picOne = ImageIO.read(new File("Labyrinth/res/cards/" + Main.deck.players.get(0).getPlayerHand()[x] + ".jpg"));
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -255,19 +343,16 @@ public class GameGUI extends JFrame implements ActionListener, MouseListener {
             JLabel cardOne = new JLabel(cardIconOne);
             cardOne.setBounds(10 + (x * 70), 100, 80, 150);
             add(cardOne);
-            setVisible(true);
         }
         ////////////////////////////////////////////////////
 
         ////////////////////////////////////////////////////
         //Dealing the hand out for player TWO
-        String[] playerTwoHand = Main.deck.players.get(1).getPlayerHand();
-
         for(int y = 0; y < 5; y++){
 
             BufferedImage picTwo = null;
             try {
-                picTwo = ImageIO.read(new File("Labyrinth/res/cards/" + playerTwoHand[y] + ".jpg"));
+                picTwo = ImageIO.read(new File("Labyrinth/res/cards/" + Main.deck.players.get(1).getPlayerHand()[y] + ".jpg"));
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -276,20 +361,21 @@ public class GameGUI extends JFrame implements ActionListener, MouseListener {
 
             JLabel cardTwo = new JLabel(cardIconTwo);
             cardTwo.setBounds(10 + (y * 70), 400, 80, 150);
-            add(cardTwo);
-            setVisible(true);
+            playerTwoLabels.add(cardTwo);
+        }
+
+        for(int y = 0; y < 5; y++){
+            add(playerTwoLabels.get(y));
         }
         ////////////////////////////////////////////////////
 
         ////////////////////////////////////////////////////
         //Dealing the hand out for player THREE
-        String[] playerThreeHand = Main.deck.players.get(2).getPlayerHand();
-
         for(int i = 0; i < 5; i++){
 
             BufferedImage picThree = null;
             try {
-                picThree = ImageIO.read(new File("Labyrinth/res/cards/" + playerThreeHand[i] + ".jpg"));
+                picThree = ImageIO.read(new File("Labyrinth/res/cards/" + Main.deck.players.get(2).getPlayerHand()[i] + ".jpg"));
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -299,7 +385,6 @@ public class GameGUI extends JFrame implements ActionListener, MouseListener {
             JLabel cardThree = new JLabel(cardIconThree);
             cardThree.setBounds(1000 + (i * 70), 100, 80, 150);
             add(cardThree);
-            setVisible(true);
         }
         ////////////////////////////////////////////////////
 
@@ -311,13 +396,11 @@ public class GameGUI extends JFrame implements ActionListener, MouseListener {
 
         ////////////////////////////////////////////////////
         //Dealing the hand out for player FOUR
-        String[] playerFourHand = Main.deck.players.get(3).getPlayerHand();
-
         for(int z = 0; z < 5; z++){
 
             BufferedImage picFour = null;
             try {
-                picFour = ImageIO.read(new File("Labyrinth/res/cards/" + playerFourHand[z] + ".jpg"));
+                picFour = ImageIO.read(new File("Labyrinth/res/cards/" + Main.deck.players.get(3).getPlayerHand()[z] + ".jpg"));
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -327,7 +410,6 @@ public class GameGUI extends JFrame implements ActionListener, MouseListener {
             JLabel card = new JLabel(cardIconFour);
             card.setBounds(1000 + (z * 70), 400, 80, 150);
             add(card);
-            setVisible(true);
         }
         ////////////////////////////////////////////////////
 
@@ -385,7 +467,7 @@ public class GameGUI extends JFrame implements ActionListener, MouseListener {
 
         extraTileLabel.setIcon(tileIcon);
 
-        extraTileLabel.setBounds(100, 600, 100, 100);
+        extraTileLabel.setBounds(685, 600, 100, 100);
         extraTileLabel.addMouseListener(this);
         add(extraTileLabel);
         setVisible(true);
@@ -566,6 +648,11 @@ public class GameGUI extends JFrame implements ActionListener, MouseListener {
                     }
 
                     if (Main.deck.players.get(currentPlayer).movePlayer(modifyableBoard, i,j, currentRow, currentColumn, 0) == true){
+
+                        String whatever = Main.board[i][j].getName();
+
+                        Main.deck.players.get(currentPlayer).removeCard(whatever);
+                        playerTwoLabels.get(Arrays.asList(Main.deck.players.get(currentPlayer).getPlayerHand()).indexOf(whatever)).setVisible(false);
 
                         // TODO: FIX THIS
                         //////////

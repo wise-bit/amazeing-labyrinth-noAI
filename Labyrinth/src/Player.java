@@ -126,12 +126,14 @@ public class Player extends JLabel {
         this.treasures++;
     }
 
-    public void removeCard(){
-        int count = 5;
+    public void removeCard(String currentTile){
+
         for (int x = 0; x < playerHand.length; x++) {
-            if (collected.contains(playerHand[x])) {
-                collected.remove(playerHand[x]);
-                count -= 1;
+
+            if (playerHand[x].equals(currentTile)) {
+
+                playerHand[x] = "";
+
             }
         }
     }
@@ -141,8 +143,6 @@ public class Player extends JLabel {
         System.out.println(row + " " + column + " " + end_row + " " + end_column);
 
         modifyableBoard[row*3+1][column*3+1] = 0;
-
-        removeCard();
 
         if (row == end_row && column == end_column) {
             return true;
