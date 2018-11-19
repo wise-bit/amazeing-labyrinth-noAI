@@ -133,6 +133,7 @@ public class Player extends JLabel {
             if (playerHand[x].equals(currentTile)) {
 
                 playerHand[x] = "";
+                incrementTreasure();
 
             }
         }
@@ -141,7 +142,6 @@ public class Player extends JLabel {
     public boolean movePlayer(int[][] modifyableBoard, int end_row, int end_column, int row, int column, int move){
 
         System.out.println(row + " " + column + " " + end_row + " " + end_column);
-
         modifyableBoard[row*3+1][column*3+1] = 0;
 
         if (row == end_row && column == end_column) {
@@ -183,7 +183,7 @@ public class Player extends JLabel {
                         return false;
                 }
             }
-            modifyableBoard[row][column] = 0;
+            modifyableBoard[row*3+1][column*3+1] = 0;
         }
         return false;
 

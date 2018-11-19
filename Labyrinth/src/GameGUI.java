@@ -168,7 +168,7 @@ public class GameGUI extends JFrame implements ActionListener, MouseListener {
 
         //////////////////////////////////////////////////
         //Make player #1 score show up
-        playerScore[0] = new JLabel("0");
+        playerScore[0] = new JLabel(Integer.toString(Main.deck.players.get(0).getTreasures()));
         playerScore[0].setForeground(Color.WHITE);
         playerScore[0].setFont(font);
         playerScore[0].setBounds(200, 578, 200, 80);
@@ -178,7 +178,7 @@ public class GameGUI extends JFrame implements ActionListener, MouseListener {
 
         //////////////////////////////////////////////////
         //Make player #2 score show up
-        playerScore[1] = new JLabel("0");
+        playerScore[1] = new JLabel(Integer.toString(Main.deck.players.get(1).getTreasures()));
         playerScore[1].setForeground(Color.WHITE);
         playerScore[1].setFont(font);
         playerScore[1].setBounds(235, 655, 200, 80);
@@ -188,7 +188,7 @@ public class GameGUI extends JFrame implements ActionListener, MouseListener {
 
         //////////////////////////////////////////////////
         //Make player #3 score show up
-        playerScore[2] = new JLabel("0");
+        playerScore[2] = new JLabel(Integer.toString(Main.deck.players.get(2).getTreasures()));
         playerScore[2].setForeground(Color.WHITE);
         playerScore[2].setFont(font);
         playerScore[2].setBounds(1300, 575, 250, 80);
@@ -198,7 +198,7 @@ public class GameGUI extends JFrame implements ActionListener, MouseListener {
 
         //////////////////////////////////////////////////
         //Make player #4 score show up
-        playerScore[3] = new JLabel("0");
+        playerScore[3] = new JLabel(Integer.toString(Main.deck.players.get(3).getTreasures()));
         playerScore[3].setForeground(Color.WHITE);
         playerScore[3].setFont(font);
         playerScore[3].setBounds(1320, 655, 250, 80);
@@ -342,7 +342,11 @@ public class GameGUI extends JFrame implements ActionListener, MouseListener {
 
             JLabel cardOne = new JLabel(cardIconOne);
             cardOne.setBounds(10 + (x * 70), 100, 80, 150);
-            add(cardOne);
+            playerOneLabels.add(cardOne);
+        }
+
+        for(int x = 0; x < 5; x++){
+            add(playerOneLabels.get(x));
         }
         ////////////////////////////////////////////////////
 
@@ -384,7 +388,11 @@ public class GameGUI extends JFrame implements ActionListener, MouseListener {
 
             JLabel cardThree = new JLabel(cardIconThree);
             cardThree.setBounds(1000 + (i * 70), 100, 80, 150);
-            add(cardThree);
+            playerThreeLabels.add(cardThree);
+        }
+
+        for (int i = 0; i < 5; i++) {
+            add(playerThreeLabels.get(i));
         }
         ////////////////////////////////////////////////////
 
@@ -409,7 +417,11 @@ public class GameGUI extends JFrame implements ActionListener, MouseListener {
 
             JLabel card = new JLabel(cardIconFour);
             card.setBounds(1000 + (z * 70), 400, 80, 150);
-            add(card);
+            playerFourLabels.add(card);
+        }
+
+        for (int z = 0; z < 5; z++) {
+            add(playerFourLabels.get(z));
         }
         ////////////////////////////////////////////////////
 
@@ -560,7 +572,7 @@ public class GameGUI extends JFrame implements ActionListener, MouseListener {
                 Setup.fullBinaryBoard();
                 System.out.println();
 
-                Main.board[1][2 + 2 * i].setBounds(18 + 60 * (1 + 2 * i), 25, 50, 50);
+                Main.board[1][2 + 2 * i].setBounds(18 + 60 * (1 + 2 * i), 22, 50, 50);
                 fixedBoard.add(Main.board[1][2 + 2 * i]);
 
                 repaint();
@@ -575,7 +587,7 @@ public class GameGUI extends JFrame implements ActionListener, MouseListener {
                 Setup.fullBinaryBoard();
                 System.out.println();
 
-                Main.board[7][2 + 2 * i].setBounds(18 + 60  * (1 + 2 * i), 375, 50, 50);
+                Main.board[7][2 + 2 * i].setBounds(18 + 60  * (1 + 2 * i), 382, 50, 50);
                 fixedBoard.add(Main.board[7][2 + 2 * i]);
 
                 repaint();
@@ -651,10 +663,30 @@ public class GameGUI extends JFrame implements ActionListener, MouseListener {
 
                         String whatever = Main.board[i][j].getName();
 
-                        Main.deck.players.get(currentPlayer).removeCard(whatever);
-                        playerTwoLabels.get(Arrays.asList(Main.deck.players.get(currentPlayer).getPlayerHand()).indexOf(whatever)).setVisible(false);
+                        try {
+                            switch (currentPlayer){
+                                case 0:
+                                    int index = Arrays.asList(Main.deck.players.get(currentPlayer).getPlayerHand()).indexOf(whatever);
+                                    playerOneLabels.get(index).setVisible(false);
+                                    System.out.println(playerOneLabels.get(index).isVisible());
+                                    break;
+                                case 1:
+                                    playerTwoLabels.get(Arrays.asList(Main.deck.players.get(currentPlayer).getPlayerHand()).indexOf(whatever)).setVisible(false);
+                                    break;
+                                case 2:
+                                    playerThreeLabels.get(Arrays.asList(Main.deck.players.get(currentPlayer).getPlayerHand()).indexOf(whatever)).setVisible(false);
+                                    break;
+                                case 3:
+                                    playerFourLabels.get(Arrays.asList(Main.deck.players.get(currentPlayer).getPlayerHand()).indexOf(whatever)).setVisible(false);
+                                    break;
+                            }
+                        } catch (Exception exx){
 
-                        // TODO: FIX THIS
+                        }
+
+                        Main.deck.players.get(currentPlayer).removeCard(whatever);
+                        playerScore[currentPlayer].setText(Integer.toString(Main.deck.players.get(currentPlayer).getTreasures()));
+
                         //////////
                         Main.board[currentRow][currentColumn].remove(Main.deck.players.get(currentPlayer));
                         Main.board[currentRow][currentColumn].repaint();
@@ -664,13 +696,9 @@ public class GameGUI extends JFrame implements ActionListener, MouseListener {
                         Main.deck.players.get(currentPlayer).setRows(i);
                         Main.deck.players.get(currentPlayer).setColumns(j);
                         Main.deck.players.get(currentPlayer).setBounds(15, -15, 80, 80);
-                        //if (Main.board[i][j].isMoveable()) {
-                            Main.board[i][j].add(Main.deck.players.get(currentPlayer));
-                            Main.board[i][j].repaint();
-                       // } else {
-                        //    Main.deck.players.get(currentPlayer).setLocation(Main.board[i][j].getLocation());
-                        //    repaint();
-                       // }
+
+                        Main.board[i][j].add(Main.deck.players.get(currentPlayer));
+                        Main.board[i][j].repaint();
 
                         System.out.println("Working: " + i + "," + j + " --> " + Main.board[i][j].getLocation());
                         if (currentPlayer == 3) currentPlayer = 0;
