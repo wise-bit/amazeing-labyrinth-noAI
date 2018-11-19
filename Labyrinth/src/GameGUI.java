@@ -507,6 +507,12 @@ public class GameGUI extends JFrame implements ActionListener, MouseListener {
 
         JMenuItem instructions = new JMenuItem("Instructions");
         help.add(instructions);
+        instructions.addActionListener(new ActionListener() {
+
+            public void actionPerformed(ActionEvent e) {
+                new Instructions();
+            }
+        });
 
         JMenu file = new JMenu("File");
         menuBar.add(file);
@@ -551,11 +557,6 @@ public class GameGUI extends JFrame implements ActionListener, MouseListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-
-        if(e.getSource() == instructions) {
-            new Instructions();
-            setVisible(true);
-        }
 
         if(e.getSource() == save) {
             try { UX.save(); } catch (Exception ex){ }
@@ -686,6 +687,8 @@ public class GameGUI extends JFrame implements ActionListener, MouseListener {
 
                         Main.deck.players.get(currentPlayer).removeCard(whatever);
                         playerScore[currentPlayer].setText(Integer.toString(Main.deck.players.get(currentPlayer).getTreasures()));
+                        if(Main.deck.players.get(currentPlayer).getTreasures() == 5)
+
 
                         //////////
                         Main.board[currentRow][currentColumn].remove(Main.deck.players.get(currentPlayer));
