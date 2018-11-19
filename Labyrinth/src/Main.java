@@ -46,7 +46,7 @@ public class Main {
         extraTile.setIcon(tileIcon);
 
         // new HomePageGUI();
-        new HomePageGUI();
+        new PlayerGUI();
 
         // new UX().save(s.getBoard());
         // new Instructions();

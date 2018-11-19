@@ -8,21 +8,19 @@ import javax.swing.*;
 
 import java.awt.*;
 import java.awt.event.*;
+import java.awt.image.BufferedImage;
 import java.io.*;
 
 public class PlayerGUI extends JFrame implements ActionListener {
 
     //The components used to initialize the game(# of player and colur assignment)
-    private JLabel title1 = new JLabel("Chose the Number of Players:");
-    private JLabel title2 = new JLabel("Enter the Names of the Players:");
+    private JLabel title = new JLabel("Enter the Names of the Players:");
     private JLabel[] playerTitle = new JLabel[4];
-    private JButton twoPlayers = new JButton("2 Players");
-    private JButton threePlayers = new JButton("3 Players");
-    private JButton fourPlayers = new JButton("4 Players");
     private Font font = new Font("Helvetica", Font.BOLD, 40);
     private ImageIcon[] dots = new ImageIcon[4];    //array to hold the player colours
     private JLabel[] playerColour = new JLabel[4];
     private JButton next = new JButton("Continue");
+    private JLabel picture;
 
     //Constructor Method
     public PlayerGUI() throws IOException {
@@ -36,47 +34,11 @@ public class PlayerGUI extends JFrame implements ActionListener {
         //Allows the program to be exited if the close button is clicked
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-        //Adds the title for player selection
-        title1.setForeground(Color.WHITE);
-        title1.setFont(font);
-        title1.setBounds(20, 20, 575, 45);
-        add(title1);
-
-        //Two Player Option
-        twoPlayers.setOpaque(false);
-        twoPlayers.setContentAreaFilled(false);
-        twoPlayers.setBorderPainted(false);
-        twoPlayers.setFont(new Font("Helvetica", Font.CENTER_BASELINE, 40));
-        twoPlayers.setForeground(Color.WHITE);
-        twoPlayers.setBounds(188, 150, 220, 50);
-        add(twoPlayers);
-        twoPlayers.addActionListener(this);
-
-        //Three Player Option
-        threePlayers.setOpaque(false);
-        threePlayers.setContentAreaFilled(false);
-        threePlayers.setBorderPainted(false);
-        threePlayers.setFont(new Font("Helvetica", Font.CENTER_BASELINE, 40));
-        threePlayers.setForeground(Color.WHITE);
-        threePlayers.setBounds(188, 280, 220, 50);
-        add(threePlayers);
-        threePlayers.addActionListener(this);
-
-        //Three Player Option
-        fourPlayers.setOpaque(false);
-        fourPlayers.setContentAreaFilled(false);
-        fourPlayers.setBorderPainted(false);
-        fourPlayers.setFont(new Font("Helvetica", Font.CENTER_BASELINE, 40));
-        fourPlayers.setForeground(Color.WHITE);
-        fourPlayers.setBounds(188, 410, 220, 50);
-        add(fourPlayers);
-        fourPlayers.addActionListener(this);
-
         //Adds the title player name
-        title2.setForeground(Color.WHITE);
-        title2.setFont(font);
-        title2.setBounds(818, 20, 600, 45);
-        add(title2);
+        title.setForeground(Color.WHITE);
+        title.setFont(font);
+        title.setBounds(818, 20, 600, 45);
+        add(title);
 
         //Adds the continue button
         next.setOpaque(false);
@@ -84,14 +46,40 @@ public class PlayerGUI extends JFrame implements ActionListener {
         next.setBorderPainted(false);
         next.setFont(new Font("Helvetica", Font.CENTER_BASELINE, 40));
         next.setForeground(Color.WHITE);
-        next.setBounds(609, 700, 220, 50);
+        next.setBounds(525, 650, 400, 75);
         add(next);
         next.addActionListener(this);
+
+        next.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                next.setForeground(Color.WHITE);
+                next.setFont(new Font("Segoe Script" , Font.BOLD, 70));
+            }
+
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                next.setForeground(Color.WHITE);
+                next.setFont(new Font("Segoe Script" , Font.BOLD, 40));
+            }
+        });
 
         playerOneSetup();
         playerTwoSetup();
         playerThreeSetup();
         playerFourSetup();
+
+        BufferedImage img = null;
+        try {
+            img = ImageIO.read(new File("Labyrinth/res/maze.png"));
+        } catch (IOException e1) {
+            e1.printStackTrace();
+        }
+        Image currentImg = img.getScaledInstance(500,500, Image.SCALE_SMOOTH);
+        ImageIcon imgIcon = new ImageIcon(currentImg);
+
+        picture = new JLabel(imgIcon);
+        picture.setBounds(80, 80, 500, 500);
+        add(picture);
+        picture.setVisible(true);
 
         //Makes all the attributes of the screen visible
         setVisible(true);
@@ -218,38 +206,6 @@ public class PlayerGUI extends JFrame implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent event) {
-
-        if (event.getSource() == twoPlayers) {
-
-            for (int i = 2; i < 4; i++) {
-
-                remove(playerTitle[i]);
-                remove(playerColour[i]);
-                remove(Main.names[i]);
-            }
-
-        } else if (event.getSource() == threePlayers) {
-
-            if (isThisComponentFoundInJPanel(playerTitle[2])) {
-
-                remove(playerTitle[3]);
-                remove(playerColour[3]);
-                remove(Main.names[3]);
-
-            } else {
-                reAddPlayerThreeSetup();
-            }
-
-        } else if (event.getSource() == fourPlayers) {
-
-            if (isThisComponentFoundInJPanel(playerTitle[3]) == false) {
-
-                reAddPlayerThreeSetup();
-                reAddPlayerFourSetup();
-            }
-        }
-
-        repaint();
 
         if (event.getSource() == next) {
             Main.visibleNames[0] = Main.names[0].getText();
