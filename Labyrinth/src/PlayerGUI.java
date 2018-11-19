@@ -37,7 +37,7 @@ public class PlayerGUI extends JFrame implements ActionListener {
         //Adds the title player name
         title.setForeground(Color.WHITE);
         title.setFont(font);
-        title.setBounds(818, 20, 600, 45);
+        title.setBounds(818, 20, 700, 45);
         add(title);
 
         //Adds the continue button
@@ -53,12 +53,12 @@ public class PlayerGUI extends JFrame implements ActionListener {
         next.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 next.setForeground(Color.WHITE);
-                next.setFont(new Font("Segoe Script" , Font.BOLD, 70));
+                next.setFont(new Font("Helvetica" , Font.BOLD, 70));
             }
 
             public void mouseExited(java.awt.event.MouseEvent evt) {
                 next.setForeground(Color.WHITE);
-                next.setFont(new Font("Segoe Script" , Font.BOLD, 40));
+                next.setFont(new Font("Helvetica" , Font.BOLD, 40));
             }
         });
 
@@ -77,7 +77,7 @@ public class PlayerGUI extends JFrame implements ActionListener {
         ImageIcon imgIcon = new ImageIcon(currentImg);
 
         picture = new JLabel(imgIcon);
-        picture.setBounds(80, 80, 500, 500);
+        picture.setBounds(80, 30, 500, 500);
         add(picture);
         picture.setVisible(true);
 
