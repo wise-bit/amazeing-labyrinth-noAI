@@ -645,6 +645,10 @@ public class GameGUI extends JFrame implements ActionListener, MouseListener {
             ImageIcon tileIcon = new ImageIcon(currentTileImage);
 
             extraTileLabel.setIcon(tileIcon);
+        } else {
+
+            JOptionPane.showMessageDialog(null, "Invalid move, sir!", "Information!!!!!", JOptionPane.INFORMATION_MESSAGE);
+
         }
 
     }

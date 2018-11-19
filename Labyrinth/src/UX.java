@@ -64,6 +64,7 @@ public class UX {
                     String[] l = line.split(",");
                     String[] cards = l[0].split(":");
                     Player p = new Player(cards, l[1], l[2], Integer.parseInt(l[3]), Integer.parseInt(l[4]));
+                    System.out.println(p);
                     p.setLocation(35 + 60*p.getColumns(), 10 + 60*p.getRows());
                     Main.deck.players.set(position-81, p);
                 }
