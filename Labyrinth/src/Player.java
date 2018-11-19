@@ -116,7 +116,8 @@ public class Player extends JLabel {
     }
 
     public String toStorageString() {
-        return playerHand + "," + playerName + "," + playerColour + "," + treasures + "," + collected + " " + rows + " " + columns;
+        String hand = String.join(":", playerHand);
+        return hand + "," + playerName + "," + playerColour + "," + treasures + "," + rows + "," + columns;
     }
 
     //Helper Methods

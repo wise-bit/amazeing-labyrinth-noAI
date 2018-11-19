@@ -30,6 +30,7 @@ public class GameGUI extends JFrame implements ActionListener, MouseListener {
     private JLabel[] playerColour = new JLabel[4];
     private JLabel[] playerName = new JLabel[4];
     private int currentPlayer = 0;
+    private boolean hasSlided = false;
 
     private ArrayList<JLabel> playerOneLabels = new ArrayList<JLabel>();
     private ArrayList<JLabel> playerTwoLabels = new ArrayList<JLabel>();
@@ -507,7 +508,6 @@ public class GameGUI extends JFrame implements ActionListener, MouseListener {
         JMenuItem instructions = new JMenuItem("Instructions");
         help.add(instructions);
         instructions.addActionListener(new ActionListener() {
-
             public void actionPerformed(ActionEvent e) {
                 new Instructions();
             }
@@ -519,11 +519,27 @@ public class GameGUI extends JFrame implements ActionListener, MouseListener {
         // ImageIcon saveIcon = new ImageIcon("Labyrinth/res/save-icon.png").getImage().getScaledInstance(10,10,Image.SCALE_DEFAULT);
         JMenuItem save = new JMenuItem("Save");
         file.add(save);
-        save.addActionListener(this);
+        save.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent f) {
+                try {
+                    UX.save();
+                } catch (Exception easd){
+                    System.out.println(easd);
+                }
+            }
+        });
 
         JMenuItem load = new JMenuItem("Load");
         file.add(load);
-        load.addActionListener(this);
+        load.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent f) {
+                try {
+                    UX.load();
+                } catch (Exception easd){
+                    System.out.println(easd);
+                }
+            }
+        });
 
     }
 
@@ -557,82 +573,79 @@ public class GameGUI extends JFrame implements ActionListener, MouseListener {
     @Override
     public void actionPerformed(ActionEvent e) {
 
-        if(e.getSource() == save) {
-            try { UX.save(); } catch (Exception ex){ }
-            setVisible(true);
+        if (!hasSlided) {
+
+            hasSlided = true;
+
+            for (int i = 0; i < 3; i++) {
+
+                if (e.getSource() == topButtons[i]) {
+
+                    Board.shiftBoardTiles(0, 2 + 2 * i, 4);
+
+                    binaryBoardPrinter();
+                    Setup.fullBinaryBoard();
+                    System.out.println();
+
+                    Main.board[1][2 + 2 * i].setBounds(18 + 60 * (1 + 2 * i), 22, 50, 50);
+                    fixedBoard.add(Main.board[1][2 + 2 * i]);
+
+                    repaint();
+
+                } else if (e.getSource() == bottomButtons[i]) {
+
+                    Board.shiftBoardTiles(8, 2 + 2 * i, 3);
+
+                    binaryBoardPrinter();
+                    Setup.fullBinaryBoard();
+                    System.out.println();
+
+                    Main.board[7][2 + 2 * i].setBounds(18 + 60 * (1 + 2 * i), 382, 50, 50);
+                    fixedBoard.add(Main.board[7][2 + 2 * i]);
+
+                    repaint();
+
+                } else if (e.getSource() == rightButtons[i]) {
+
+                    Board.shiftBoardTiles(2 + 2 * i, 8, 2);
+
+                    binaryBoardPrinter();
+                    Setup.fullBinaryBoard();
+                    System.out.println();
+
+                    Main.board[2 + 2 * i][7].setBounds(378, 22 + 60 * (1 + 2 * i), 50, 50);
+                    fixedBoard.add(Main.board[2 + 2 * i][7]);
+
+                    repaint();
+
+                } else if (e.getSource() == leftButtons[i]) {
+
+                    Board.shiftBoardTiles(2 + 2 * i, 0, 1);
+
+                    binaryBoardPrinter();
+                    Setup.fullBinaryBoard();
+                    System.out.println();
+
+                    Main.board[2 + 2 * i][1].setBounds(18, 22 + 60 * (1 + 2 * i), 50, 50);
+                    fixedBoard.add(Main.board[2 + 2 * i][1]);
+
+                    repaint();
+
+                }
+
+            }
+
+            BufferedImage extraTileImg = null;
+            try {
+                extraTileImg = ImageIO.read(new File("Labyrinth/res/Images/" + Main.extraTile.makeFileName()));
+            } catch (IOException e1) {
+                e1.printStackTrace();
+            }
+            Image currentTileImage = extraTileImg.getScaledInstance(50, 50, Image.SCALE_SMOOTH);
+            ImageIcon tileIcon = new ImageIcon(currentTileImage);
+
+            extraTileLabel.setIcon(tileIcon);
         }
-
-        for (int i = 0; i < 3; i++) {
-
-            if (e.getSource() == topButtons[i]) {
-
-                Board.shiftBoardTiles(0, 2 + 2 * i, 4);
-
-                binaryBoardPrinter();
-                Setup.fullBinaryBoard();
-                System.out.println();
-
-                Main.board[1][2 + 2 * i].setBounds(18 + 60 * (1 + 2 * i), 22, 50, 50);
-                fixedBoard.add(Main.board[1][2 + 2 * i]);
-
-                repaint();
-
-            }
-            else if (e.getSource() == bottomButtons[i]) {
-
-                Board.shiftBoardTiles(8, 2 + 2 * i, 3);
-
-                binaryBoardPrinter();
-                Setup.fullBinaryBoard();
-                System.out.println();
-
-                Main.board[7][2 + 2 * i].setBounds(18 + 60  * (1 + 2 * i), 382, 50, 50);
-                fixedBoard.add(Main.board[7][2 + 2 * i]);
-
-                repaint();
-
-            }
-            else if (e.getSource() == rightButtons[i]) {
-
-                Board.shiftBoardTiles(2 + 2 * i, 8, 2);
-
-                binaryBoardPrinter();
-                Setup.fullBinaryBoard();
-                System.out.println();
-
-                Main.board[2 + 2 * i][7].setBounds(378, 22 + 60  * (1 + 2 * i), 50, 50);
-                fixedBoard.add(Main.board[2 + 2 * i][7]);
-
-                repaint();
-
-            }
-            else if (e.getSource() == leftButtons[i]) {
-
-                Board.shiftBoardTiles(2 + 2 * i, 0, 1);
-
-                binaryBoardPrinter();
-                Setup.fullBinaryBoard();
-                System.out.println();
-
-                Main.board[2 + 2 * i][1].setBounds(18, 22 + 60  * (1 + 2 * i), 50, 50);
-                fixedBoard.add(Main.board[2 + 2 * i][1]);
-
-                repaint();
-
-            }
-
-        }
-
-        BufferedImage extraTileImg = null;
-        try {
-            extraTileImg = ImageIO.read(new File("Labyrinth/res/Images/" + Main.extraTile.makeFileName()));
-        } catch (IOException e1) {
-            e1.printStackTrace();
-        }
-        Image currentTileImage = extraTileImg.getScaledInstance(50,50, Image.SCALE_SMOOTH);
-        ImageIcon tileIcon = new ImageIcon(currentTileImage);
-
-        extraTileLabel.setIcon(tileIcon);
 
     }
 
@@ -710,6 +723,7 @@ public class GameGUI extends JFrame implements ActionListener, MouseListener {
                         System.out.println("Working: " + i + "," + j + " --> " + Main.board[i][j].getLocation());
                         if (currentPlayer == 3) currentPlayer = 0;
                         else currentPlayer++;
+                        hasSlided = false;
                     }
                 }
             }
